@@ -40,6 +40,7 @@ namespace Juego_PA.ViewModel
 
         // public Rana Rana { get; set; } = new();
         public bool Ganaste { get; set; } = false;
+        public bool GameOver { get; set; } = false;
         public Vista Vista { get; set; } = Vista.Inicio;
         public int LimiteMovimientos { get; set; }
 
@@ -103,7 +104,9 @@ namespace Juego_PA.ViewModel
                 _posicionYAnterior = Rana.Y;
 
                 LimiteMovimientos -= 1;
+
             }
+
 
             if ((Rana.X == 1 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0))
             {
@@ -117,6 +120,12 @@ namespace Juego_PA.ViewModel
                 Ganaste = true;
 
             }
+
+            else if (LimiteMovimientos <= 0)
+            {
+                GameOver = true;
+            }
+
             OnPropertyChanged();
             //Thread.Sleep(1000);
         }
@@ -130,6 +139,8 @@ namespace Juego_PA.ViewModel
             Vista = Vista.Juego;
 
             Ganaste = false;
+
+            GameOver = false;
 
             MediadorViewModel.IniciarJuego();
 

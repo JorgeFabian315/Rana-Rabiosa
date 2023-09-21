@@ -80,15 +80,17 @@
                 <ImageBrush ImageSource="/Assets/rana.png" />
             </Rectangle.Fill>
         </Rectangle>
-        <WrapPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+        <WrapPanel Grid.Row="2"
+                   Grid.Column="3"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Right"
                    Margin="10">
-            <TextBlock Text="Limite Movimientos: " FontSize="20" />
+            <TextBlock Text="Limite Movimientos: "
+                       FontSize="20" />
             <TextBlock Text="{Binding LimiteMovimientos}"
                        FontSize="20" />
         </WrapPanel>
-            
-        
-        <!--#REGION MENU-->
+        <!--#REGION MENU DESPLEGABLE-->
         <Grid Width="0"
               Grid.ColumnSpan="4"
               Grid.RowSpan="3"
@@ -151,7 +153,10 @@
             </ToggleButton.Triggers>
         </ToggleButton>
         <!--#ENDREGION MENU-->
-        <!--#REGION PANTALLA DE VICTORIA-->
+        
+        
+         
+        <!--#REGION PANTALLA DE VICTORIA  -->
         <Grid Grid.ColumnSpan="4"
               Grid.RowSpan="3">
             <Grid.Resources>
@@ -160,6 +165,11 @@
                             Value="Hidden" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Ganaste}"
+                                     Value="true">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding GameOver}"
                                      Value="true">
                             <Setter Property="Visibility"
                                     Value="Visible" />
@@ -174,10 +184,28 @@
                     Height="500"
                     Background="GhostWhite">
                 <StackPanel Margin="10">
-                    <TextBlock Text="Ganaste"
+                    <TextBlock TextWrapping="Wrap"
+                               TextAlignment="Center"
                                HorizontalAlignment="Center"
-                               FontSize="50"
-                               Foreground="Green" />
+                               FontSize="50">
+                        <TextBlock.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Text"
+                                        Value="Ganaste" />
+                                <Setter Property="Foreground"
+                                        Value="Green" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding GameOver}"
+                                                 Value="true">
+                                        <Setter Property="Text"
+                                                Value="Perdiste: sin limite de movimientos" />
+                                        <Setter Property="Foreground"
+                                                Value="Red" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Resources>
+                    </TextBlock>
                     <Button Width="200"
                             Height="100"
                             Margin="0,20"
