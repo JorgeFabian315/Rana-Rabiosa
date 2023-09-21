@@ -10,5 +10,7 @@ namespace Juego_PA.Models
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public int LimiteMovimientos { get; set; }
+
     }
 }

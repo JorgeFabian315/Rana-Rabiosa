@@ -37,12 +37,9 @@ namespace Juego_PA.ViewModel
         //    }
         //}
         public Rana Rana { get; set; } = new();
-
-        // public Rana Rana { get; set; } = new();
         public bool Ganaste { get; set; } = false;
         public bool GameOver { get; set; } = false;
         public Vista Vista { get; set; } = Vista.Inicio;
-        public int LimiteMovimientos { get; set; }
 
         public ICommand MoverCommand { get; set; }
         public ICommand IniciarCommand { get; set; }
@@ -50,7 +47,7 @@ namespace Juego_PA.ViewModel
         public JuegoViewModel()
         {
             Rana = new();
-            MoverCommand = new RelayCommand<Movimientos>(Mover);
+            MoverCommand = new RelayCommand<Movimientos>(Nivel1);
             IniciarCommand = new RelayCommand(IniciarJuego);
             CambiarVistaCommand = new RelayCommand<Vista>(CambiarVista);
 
@@ -64,7 +61,9 @@ namespace Juego_PA.ViewModel
 
         int _posicionXAnterior = 0;
         int _posicionYAnterior = 0;
-        private void Mover(Movimientos movimiento)
+
+
+        private async void Nivel1(Movimientos movimiento)
         {
             regex = new(@"^(DDBB|BBDD|DDBDBI)$");
             /* 
@@ -73,9 +72,37 @@ namespace Juego_PA.ViewModel
              * B = ABAJO
              * A = ARRIBA
              */
+             
+            RealizarMovimiento(movimiento);
+
+            if ((Rana.X == 1 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0))
+            {
+                OnPropertyChanged("Rana");
+                await Task.Delay(350); // Pausa de un 0.5 segundos
+                Rana.X = 0;
+                Rana.Y = 0;
+                Rana.LimiteMovimientos = 6;
+                _patron = "";
+            }
+
+            if (regex.IsMatch(_patron))
+            {
+                Ganaste = true;
+
+            }
+
+            else if (Rana.LimiteMovimientos <= 0)
+            {
+                GameOver = true;
+            }
+
+            OnPropertyChanged();
+        }
 
 
-            if (LimiteMovimientos > 0)
+        public void RealizarMovimiento(Movimientos movimiento)
+        {
+            if (Rana.LimiteMovimientos > 0)
             {
                 if (movimiento == Movimientos.Derecha)
                 {
@@ -103,33 +130,11 @@ namespace Juego_PA.ViewModel
                 _posicionXAnterior = Rana.X;
                 _posicionYAnterior = Rana.Y;
 
-                LimiteMovimientos -= 1;
+                Rana.LimiteMovimientos -= 1;
 
             }
 
-
-            if ((Rana.X == 1 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0))
-            {
-                Rana.X = 0;
-                Rana.Y = 0;
-                LimiteMovimientos = 6;
-                _patron = "";
-            }
-            if (regex.IsMatch(_patron))
-            {
-                Ganaste = true;
-
-            }
-
-            else if (LimiteMovimientos <= 0)
-            {
-                GameOver = true;
-            }
-
-            OnPropertyChanged();
-            //Thread.Sleep(1000);
         }
-
 
         public void IniciarJuego()
         {
@@ -146,7 +151,7 @@ namespace Juego_PA.ViewModel
 
             _patron = "";
 
-            LimiteMovimientos = 6;
+            Rana.LimiteMovimientos = 6;
 
             OnPropertyChanged();
         }

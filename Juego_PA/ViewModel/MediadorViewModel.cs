@@ -14,5 +14,10 @@ namespace Juego_PA.ViewModel
         {
             IniciarJuegoEvent?.Invoke();
         }
+        public static event Action? PararJuegoEvent;
+        public static void PararJuego()
+        {
+            PararJuegoEvent?.Invoke();
+        }
     }
 }
