@@ -10,6 +10,10 @@ namespace Juego_PA.Views
     {
         Inicio,
         Juego,
-        Nivel1
+        SeleccionarNivel,
+        Nivel1,
+        Nivel2,
+        Nivel3,
+        Nivel4
     };
 }

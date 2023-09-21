@@ -136,7 +136,7 @@ namespace Juego_PA.ViewModel
             Rana.X = 0;
             Rana.Y = 0;
 
-            Vista = Vista.Juego;
+            Vista = Vista.Nivel1;
 
             Ganaste = false;
 

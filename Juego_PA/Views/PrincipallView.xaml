@@ -31,10 +31,18 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static local:Vista.Nivel1}">
+                                     Value="{x:Static local:Vista.SeleccionarNivel}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <local:PantallaNivelesView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Nivel2}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <local:NIvel2View />
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>

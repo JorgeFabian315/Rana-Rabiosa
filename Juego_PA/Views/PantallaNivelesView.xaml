@@ -25,9 +25,15 @@
             </WrapPanel.Resources>
             <Button Content="Nivel 1"
                         Command="{Binding IniciarCommand}"/>
-            <Button Content="Nivel 2"/>
-            <Button Content="Nivel 3"/>
-            <Button Content="Nivel 4"/>
+            <Button Content="Nivel 2"
+                    Background="Black"
+                    Foreground="White"/>
+            <Button Content="Nivel 3"
+                        Background="Black"
+                        Foreground="White" />
+            <Button Content="Nivel 4"
+                        Background="Black"
+                        Foreground="White" />
         </WrapPanel>
     </StackPanel>
         
