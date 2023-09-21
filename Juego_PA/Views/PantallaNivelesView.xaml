@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Juego_PA.Views.PantallaNivelesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Juego_PA.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="GhostWhite">
+    <StackPanel  VerticalAlignment="Center">
+        <TextBlock Text="Selecciona el nivel" 
+                   Margin="0,0,0,20"
+                   HorizontalAlignment="Center" FontSize="30"
+                   />
+        <WrapPanel Margin="15" HorizontalAlignment="Center">
+            <WrapPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width"
+                            Value="100" />
+                    <Setter Property="Height"
+                            Value="100" />
+                    <Setter Property="Margin"
+                            Value="15 0" />
+                </Style>
+            </WrapPanel.Resources>
+            <Button Content="Nivel 1"
+                        Command="{Binding IniciarCommand}"/>
+            <Button Content="Nivel 2"/>
+            <Button Content="Nivel 3"/>
+            <Button Content="Nivel 4"/>
+        </WrapPanel>
+    </StackPanel>
+        
+    </Grid>
+</UserControl>

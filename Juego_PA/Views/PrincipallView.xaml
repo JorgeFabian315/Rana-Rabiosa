@@ -1,0 +1,46 @@
+﻿<Window x:Class="Juego_PA.Views.PrincipallView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Juego_PA.ViewModel"
+        xmlns:local="clr-namespace:Juego_PA.Views"
+        mc:Ignorable="d"
+        Title="PrincipallView"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Height="600"
+        Width="1000">
+    <Window.DataContext>
+        <vm:JuegoViewModel x:Name="avm" />
+    </Window.DataContext>
+    <Grid>
+        <local:JuegoView x:Name="juegopantalla" Focusable="True"/>
+        <ContentControl Grid.RowSpan="3"
+                    Grid.ColumnSpan="4">
+            <ContentControl.Resources>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
+                        
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Inicio}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <local:PantallaInicioView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Nivel1}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <local:PantallaNivelesView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
+</Window>
