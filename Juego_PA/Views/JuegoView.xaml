@@ -74,6 +74,7 @@
         </Rectangle>
         
         <Rectangle Width="120"
+                   Name="rana"
                    Grid.Column="{Binding Rana.X}"
                    Grid.Row="{Binding Rana.Y}"
                    Height="120">
@@ -190,7 +191,7 @@
                     <TextBlock TextWrapping="Wrap"
                                TextAlignment="Center"
                                HorizontalAlignment="Center"
-                               FontSize="50">
+                               FontSize="35">
                         <TextBlock.Resources>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Text"

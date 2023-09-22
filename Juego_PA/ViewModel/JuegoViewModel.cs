@@ -59,8 +59,7 @@ namespace Juego_PA.ViewModel
             OnPropertyChanged();
         }
 
-        int _posicionXAnterior = 0;
-        int _posicionYAnterior = 0;
+
 
 
         private async void Nivel1(Movimientos movimiento)
@@ -72,15 +71,16 @@ namespace Juego_PA.ViewModel
              * B = ABAJO
              * A = ARRIBA
              */
-             
+
             RealizarMovimiento(movimiento);
 
             if ((Rana.X == 1 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0))
             {
                 OnPropertyChanged("Rana");
-                await Task.Delay(350); // Pausa de un 0.5 segundos
+                await Task.Delay(400); // Pausa de un 0.5 segundos
                 Rana.X = 0;
                 Rana.Y = 0;
+                MediadorViewModel.PintarBordes();
                 Rana.LimiteMovimientos = 6;
                 _patron = "";
             }
@@ -100,10 +100,17 @@ namespace Juego_PA.ViewModel
         }
 
 
+        int _posicionXAnterior = 0;
+        int _posicionYAnterior = 0;
         public void RealizarMovimiento(Movimientos movimiento)
         {
             if (Rana.LimiteMovimientos > 0)
             {
+
+
+                _posicionXAnterior = Rana.X;
+                _posicionYAnterior = Rana.Y;
+
                 if (movimiento == Movimientos.Derecha)
                 {
                     Rana.X += 1;
@@ -127,8 +134,16 @@ namespace Juego_PA.ViewModel
                     _patron += "B";
                 }
 
-                _posicionXAnterior = Rana.X;
-                _posicionYAnterior = Rana.Y;
+
+
+                if(_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y )
+                {
+                    Rana.X = _posicionXAnterior;
+                    Rana.Y = _posicionYAnterior;
+                }
+
+
+
 
                 Rana.LimiteMovimientos -= 1;
 

@@ -1,6 +1,7 @@
 ﻿using Juego_PA.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
@@ -28,11 +29,19 @@ namespace Juego_PA.Views
             InitializeComponent();
             gridPadre.Focus();
             MediadorViewModel.IniciarJuegoEvent += MediadorViewModel_IniciarJuegoEvent;
+            MediadorViewModel.PintarBordesEvent += MediadorViewModel_PintarBordesEvent;
         }
+
+        private void MediadorViewModel_PintarBordesEvent()
+        {
+            ColorearBordes();
+        }
+
         private void MediadorViewModel_IniciarJuegoEvent()
         {
             gridPadre.Focus();
             tgbMenu.IsChecked = false;
+            ColorearBordes();
         }
         private void gridPadre_KeyDown(object sender, KeyEventArgs e)
         {
@@ -56,6 +65,23 @@ namespace Juego_PA.Views
                     movi = Movimientos.Abajo;
 
                 avm.MoverCommand.Execute(movi);
+
+                int columnRana = Grid.GetColumn(rana);
+                int rowRana = Grid.GetRow(rana);
+
+                foreach (var borde in gridPadre.Children.OfType<Border>())
+                {
+                    var colorBorder = borde.Background;
+
+                    var columnBorde = Grid.GetColumn(borde);
+                    var rowBorde = Grid.GetRow(borde);
+
+                    if (columnRana == columnBorde && rowRana == rowBorde || columnBorde == 0 && rowBorde == 0 )
+                    {
+                        borde.Background = Brushes.Green;
+                    }
+                }
+
             }
             else
             {
@@ -64,10 +90,34 @@ namespace Juego_PA.Views
 
             tgbMenu.IsChecked = false;
         }
+        public void ColorearBordes()
+        {
+            foreach (var borde in gridPadre.Children.OfType<Border>())
+            {
+                var colorBorder = borde.Background;
 
-        //private void gridPadre_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    gridPadre.Focus();
-        //}
+                var colorAzul = new BrushConverter().ConvertFrom("#afddec");
+
+                var columnBorde = Grid.GetColumn(borde);
+                var rowBorde = Grid.GetRow(borde);
+
+                if (rowBorde == 0 || rowBorde == 2)
+                {
+                    if(columnBorde % 2 == 0)
+                        borde.Background = (SolidColorBrush)colorAzul;
+                    else
+                        borde.Background = Brushes.SkyBlue;
+
+                }
+                else
+                {
+                    if (columnBorde % 2 == 0)
+                        borde.Background = Brushes.SkyBlue;
+                    else
+                        borde.Background = (SolidColorBrush)colorAzul;
+                }
+            }
+        }
+       
     }
 }

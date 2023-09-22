@@ -14,10 +14,10 @@ namespace Juego_PA.ViewModel
         {
             IniciarJuegoEvent?.Invoke();
         }
-        public static event Action? PararJuegoEvent;
-        public static void PararJuego()
+        public static event Action? PintarBordesEvent;
+        public static void PintarBordes()
         {
-            PararJuegoEvent?.Invoke();
+            PintarBordesEvent?.Invoke();
         }
     }
 }
