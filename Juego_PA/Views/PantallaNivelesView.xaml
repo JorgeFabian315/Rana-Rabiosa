@@ -24,7 +24,8 @@
                 </Style>
             </WrapPanel.Resources>
             <Button Content="Nivel 1"
-                        Command="{Binding IniciarCommand}"/>
+                        Command="{Binding CambiarVistaCommand}"
+                        CommandParameter="{x:Static local:Vista.Tutorial}" />
             <Button Content="Nivel 2"
                     Background="Black"
                     Foreground="White"/>
