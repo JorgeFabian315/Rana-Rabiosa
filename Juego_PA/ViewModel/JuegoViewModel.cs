@@ -107,6 +107,7 @@ namespace Juego_PA.ViewModel
             if (Rana.LimiteMovimientos > 0)
             {
 
+                string _movimiento = "";
 
                 _posicionXAnterior = Rana.X;
                 _posicionYAnterior = Rana.Y;
@@ -114,24 +115,24 @@ namespace Juego_PA.ViewModel
                 if (movimiento == Movimientos.Derecha)
                 {
                     Rana.X += 1;
-                    _patron += "D";
+                    _movimiento = "D";
                 }
                 else if (movimiento == Movimientos.Izquierda)
                 {
                     Rana.X -= 1;
-                    _patron += "I";
+                    _movimiento = "I";
 
                 }
 
                 else if (movimiento == Movimientos.Arriba)
                 {
                     Rana.Y -= 1;
-                    _patron += "A";
+                    _movimiento = "A";
                 }
                 else if (movimiento == Movimientos.Abajo)
                 {
                     Rana.Y += 1;
-                    _patron += "B";
+                    _movimiento = "B";
                 }
 
 
@@ -140,6 +141,10 @@ namespace Juego_PA.ViewModel
                 {
                     Rana.X = _posicionXAnterior;
                     Rana.Y = _posicionYAnterior;
+                }
+                else
+                {
+                    _patron += _movimiento;
                 }
 
 
