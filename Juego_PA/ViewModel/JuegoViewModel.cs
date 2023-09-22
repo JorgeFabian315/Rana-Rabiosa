@@ -137,7 +137,7 @@ namespace Juego_PA.ViewModel
 
 
 
-                if(_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y )
+                if(_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y && _patron != "DDBDB")
                 {
                     Rana.X = _posicionXAnterior;
                     Rana.Y = _posicionYAnterior;
