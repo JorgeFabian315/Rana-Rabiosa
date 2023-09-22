@@ -10,6 +10,7 @@ namespace Juego_PA.Views
     {
         Inicio,
         Juego,
+        Tutorial,
         SeleccionarNivel,
         Nivel1,
         Nivel2,

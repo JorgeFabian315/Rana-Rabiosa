@@ -114,14 +114,17 @@
                         Focusable="False">
                 <Button Height="50"
                         Margin="15"
+                        Focusable="False"
                         Content="Regresar"
                         Command="{Binding CambiarVistaCommand}"
                         IsDefault="False"
                         CommandParameter="{x:Static local:Vista.Inicio}" />
                 <Button Height="50"
                         Margin="15"
-                        IsDefault="False"
                         Focusable="False"
+                        Command="{Binding CambiarVistaCommand}"
+                        IsDefault="False"
+                        CommandParameter="{x:Static local:Vista.Tutorial}"
                         Content="Ver tutorial" />
             </StackPanel>
         </Grid>
