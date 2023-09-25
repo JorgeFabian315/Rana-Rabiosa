@@ -23,7 +23,7 @@ namespace Juego_PA.Views
     /// </summary>
     public partial class JuegoView : UserControl
     {
-
+        System.Drawing.Rectangle loto;
         public JuegoView()
         {
             InitializeComponent();
@@ -49,6 +49,7 @@ namespace Juego_PA.Views
 
             if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
             {
+               // ImageBrush imagenLoto = new BitmapImage(new Uri("pack://aplication/:,,,/Assets/loto.png"));
                 var avm = this.DataContext as JuegoViewModel;
 
                 gridPadre.Focus();
@@ -64,13 +65,16 @@ namespace Juego_PA.Views
                 if (e.Key == Key.Down)
                     movi = Movimientos.Abajo;
 
-                avm.MoverCommand.Execute(movi);
+                if(avm != null)
+                    avm.MoverCommand.Execute(movi);
 
                 int columnRana = Grid.GetColumn(rana);
                 int rowRana = Grid.GetRow(rana);
 
                 foreach (var borde in gridPadre.Children.OfType<Border>())
                 {
+
+
                     var colorBorder = borde.Background;
 
                     var columnBorde = Grid.GetColumn(borde);
@@ -78,6 +82,10 @@ namespace Juego_PA.Views
 
                     if (columnRana == columnBorde && rowRana == rowBorde || columnBorde == 0 && rowBorde == 0 )
                     {
+                        loto = new()
+                        {
+
+                        };
                         borde.Background = Brushes.Green;
                     }
                 }
@@ -104,7 +112,7 @@ namespace Juego_PA.Views
                 if (rowBorde == 0 || rowBorde == 2)
                 {
                     if(columnBorde % 2 == 0)
-                        borde.Background = (SolidColorBrush)colorAzul;
+                        borde.Background = colorAzul == null ? Brushes.AliceBlue : (SolidColorBrush)colorAzul;
                     else
                         borde.Background = Brushes.SkyBlue;
 
@@ -114,7 +122,7 @@ namespace Juego_PA.Views
                     if (columnBorde % 2 == 0)
                         borde.Background = Brushes.SkyBlue;
                     else
-                        borde.Background = (SolidColorBrush)colorAzul;
+                        borde.Background = colorAzul == null ? Brushes.AliceBlue : (SolidColorBrush)colorAzul;
                 }
             }
         }

@@ -225,6 +225,7 @@
                             Content="Nivel 2"
                             Command="{Binding CambiarVistaCommand}"
                             IsDefault="False"
+                            Focusable="False"
                             CommandParameter="{x:Static local:Vista.Nivel2}">
                         <Button.Resources>
                             <Style TargetType="Button">

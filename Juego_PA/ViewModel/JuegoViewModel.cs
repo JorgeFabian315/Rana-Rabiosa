@@ -77,7 +77,7 @@ namespace Juego_PA.ViewModel
             if ((Rana.X == 1 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0))
             {
                 OnPropertyChanged("Rana");
-                await Task.Delay(400); // Pausa de un 0.5 segundos
+                await Task.Delay(350); // Pausa de un 0.5 segundos
                 Rana.X = 0;
                 Rana.Y = 0;
                 MediadorViewModel.PintarBordes();

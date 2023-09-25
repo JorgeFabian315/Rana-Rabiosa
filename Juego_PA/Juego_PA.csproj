@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Assets\cocodrilo.png" />
     <None Remove="Assets\flor.png" />
+    <None Remove="Assets\loto.png" />
     <None Remove="Assets\rana.png" />
     <None Remove="Assets\Tutorial.jpeg" />
   </ItemGroup>
@@ -21,6 +22,7 @@
   <ItemGroup>
     <Resource Include="Assets\cocodrilo.png" />
     <Resource Include="Assets\flor.png" />
+    <Resource Include="Assets\loto.png" />
     <Resource Include="Assets\rana.png" />
     <Resource Include="Assets\Tutorial.jpeg" />
   </ItemGroup>
