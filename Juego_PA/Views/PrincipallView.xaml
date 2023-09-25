@@ -14,7 +14,7 @@
     <Window.DataContext>
         <vm:JuegoViewModel x:Name="avm" />
     </Window.DataContext>
-    <Grid>
+    <Grid x:Name="ffh">
         <local:JuegoView x:Name="juegopantalla" Focusable="True"/>
         <ContentControl Grid.RowSpan="3"
                     Grid.ColumnSpan="4">
