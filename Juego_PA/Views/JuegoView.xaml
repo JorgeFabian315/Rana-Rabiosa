@@ -72,7 +72,7 @@
                 <ImageBrush ImageSource="/Assets/flor.png" />
             </Rectangle.Fill>
         </Rectangle>
-        
+
         <Rectangle Width="120"
                    Name="rana"
                    Grid.Column="{Binding Rana.X}"
@@ -81,8 +81,8 @@
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/rana.png" />
             </Rectangle.Fill>
-         
-        
+
+
         </Rectangle>
         <WrapPanel Grid.Row="0"
                    Grid.ColumnSpan="2"
@@ -94,8 +94,8 @@
                        FontSize="15"
                        FontWeight="SemiBold" />
         </WrapPanel>
-        
-        
+
+
         <!--#REGION MENU DESPLEGABLE-->
         <Grid Width="0"
               Grid.ColumnSpan="4"
@@ -112,23 +112,24 @@
                     Opacity=".6" />
             <StackPanel Grid.Row="1"
                         Focusable="False">
-                <Button Height="50"
-                        Margin="15"
+                <Button Height="59"
+                        Margin="30"
                         Focusable="False"
                         Content="Regresar"
                         Command="{Binding CambiarVistaCommand}"
                         IsDefault="False"
-                        CommandParameter="{x:Static local:Vista.Inicio}" />
-                <Button Height="50"
-                        Margin="15"
+                        CommandParameter="{x:Static local:Vista.Inicio}" Width="88" />
+                <Button Height="53"
+                        Margin="30"
                         Focusable="False"
                         Command="{Binding CambiarVistaCommand}"
                         IsDefault="False"
                         CommandParameter="{x:Static local:Vista.Tutorial}"
-                        Content="Ver tutorial" />
+                        Content="Ver tutorial" Width="101" />
             </StackPanel>
         </Grid>
-        <ToggleButton Width="35"
+        <ToggleButton 
+                      Width="35"
                       Height="35"
                       Grid.ColumnSpan="4"
                       Grid.RowSpan="3"
@@ -162,7 +163,7 @@
             </ToggleButton.Triggers>
         </ToggleButton>
         <!--#ENDREGION MENU-->
-        
+
         <!--#REGION PANTALLA DE VICTORIA  -->
         <Grid Grid.ColumnSpan="4"
               Grid.RowSpan="3">
@@ -207,19 +208,20 @@
                                         <Setter Property="Text"
                                                 Value="Perdiste: te quedaste sin movimientos" />
                                         <Setter Property="Foreground"
-                                                Value="Red" />
+                                                Value="#FFC62424" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Resources>
                     </TextBlock>
-                    <Button Width="200"
-                            Height="100"
+                    <Button Width="150"
+                            Height="60"
                             Margin="0,20,0,10"
                             Content="Volver a jugar nivel 1"
                             Command="{Binding IniciarCommand}" />
-                    <Button Height="50"
-                            Margin="15,0"
+                    <Button Height="100"
+                            
+                            Margin="35,30"
                             Content="Nivel 2"
                             Command="{Binding CambiarVistaCommand}"
                             IsDefault="False"
@@ -238,8 +240,9 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Height="50"
-                            Margin="15"
+                    <Button Height="60"
+                            Margin="60"
+                            
                             Content="Regresar"
                             Command="{Binding CambiarVistaCommand}"
                             IsDefault="False"

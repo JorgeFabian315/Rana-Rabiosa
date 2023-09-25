@@ -7,36 +7,39 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="GhostWhite">
-    <StackPanel  VerticalAlignment="Center">
-        <TextBlock Text="Selecciona el nivel" 
+        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\hola13.jpg" Stretch="Fill"></Image>
+        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\rana.png" Margin="125,138,515,258"  Width="160"></Image>
+        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\flor.png" Width="175" Margin="757,240,-132,-240"></Image>
+        <StackPanel  VerticalAlignment="Center">
+            <TextBlock Text="Selecciona el nivel" 
                    Margin="0,0,0,20"
-                   HorizontalAlignment="Center" FontSize="30"
+                   HorizontalAlignment="Center" FontSize="30" FontFamily="MV Boli" Foreground="#FFD42424"
                    />
-        <WrapPanel Margin="15" HorizontalAlignment="Center">
-            <WrapPanel.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Width"
+            <WrapPanel Margin="15" HorizontalAlignment="Center">
+                <WrapPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Width"
                             Value="100" />
-                    <Setter Property="Height"
+                        <Setter Property="Height"
                             Value="100" />
-                    <Setter Property="Margin"
+                        <Setter Property="Margin"
                             Value="15 0" />
-                </Style>
-            </WrapPanel.Resources>
-            <Button Content="Nivel 1"
+                    </Style>
+                </WrapPanel.Resources>
+                <Button Content="Nivel 1"
                         Command="{Binding CambiarVistaCommand}"
-                        CommandParameter="{x:Static local:Vista.Tutorial}" />
-            <Button Content="Nivel 2"
+                        CommandParameter="{x:Static local:Vista.Tutorial}" FontFamily="Monotype Corsiva" Foreground="#FFC62424" Background="#FF76CA2B" FontSize="20" />
+                <Button Content="Nivel 2"
                     Background="Black"
-                    Foreground="White"/>
-            <Button Content="Nivel 3"
+                    FontFamily="Monotype Corsiva" Foreground="#FFC62424" FontSize="20"/>
+                <Button Content="Nivel 3"
                         Background="Black"
-                        Foreground="White" />
-            <Button Content="Nivel 4"
+                         FontFamily="Monotype Corsiva" Foreground="#FFC62424" FontSize="20" />
+                <Button Content="Nivel 4"
                         Background="Black"
-                        Foreground="White" />
-        </WrapPanel>
-    </StackPanel>
-        
+                         FontFamily="Monotype Corsiva" Foreground="#FFC62424" FontSize="20" />
+            </WrapPanel>
+        </StackPanel>
+
     </Grid>
 </UserControl>

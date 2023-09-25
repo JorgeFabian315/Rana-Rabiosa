@@ -7,12 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="LightBlue">
+
+
+
+
+        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\hola13.jpg" Stretch="Fill"></Image>
+        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\rana.png" Width="100" Margin="150,0,150,110" ></Image>
+        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\flor.png" Margin="777,442,-107,-46"  Width="160"></Image>
+        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\flor.png" Margin="8,415,662,-19"  Width="130"></Image>
         <StackPanel VerticalAlignment="Center">
-            <Button Width="150"
+            <Button 
                     Command="{Binding CambiarVistaCommand}"
                     CommandParameter="{x:Static local:Vista.SeleccionarNivel}"
-                    Content="Iniciar"
-                    Height="70" />
+                    Content="Iniciar" Width="87" Foreground="#FFDF0A0A" FontSize="16" FontFamily="Impact" 
+                    />
         </StackPanel>
+
+
     </Grid>
 </UserControl>
