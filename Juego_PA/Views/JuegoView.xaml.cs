@@ -1,4 +1,5 @@
-﻿using Juego_PA.ViewModel;
+﻿using Juego_PA.Models;
+using Juego_PA.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -30,22 +31,29 @@ namespace Juego_PA.Views
             gridPadre.Focus();
             MediadorViewModel.IniciarJuegoEvent += MediadorViewModel_IniciarJuegoEvent;
             MediadorViewModel.PintarBordesEvent += MediadorViewModel_PintarBordesEvent;
+            MediadorViewModel.RegresarEvent += MediadorViewModel_RegresarEvent;
+        }
+
+        private void MediadorViewModel_RegresarEvent()
+        {
+            MessageBox.Show("No puedes regresarte");
         }
 
         private void MediadorViewModel_PintarBordesEvent()
         {
-            ColorearBordes();
+            //ColorearBordes();
+            CargarImagenes();
         }
 
         private void MediadorViewModel_IniciarJuegoEvent()
         {
             gridPadre.Focus();
-            tgbMenu.IsChecked = false;
-            ColorearBordes();
+            //ColorearBordes();
+            CargarImagenes();
         }
         private void gridPadre_KeyDown(object sender, KeyEventArgs e)
         {
-            tgbMenu.Focusable = false;
+            btnTutorial.Focusable = false;
 
             if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
             {
@@ -65,23 +73,17 @@ namespace Juego_PA.Views
                 if (e.Key == Key.Down)
                     movi = Movimientos.Abajo;
 
-                if(avm != null)
+                if (avm != null)
                     avm.MoverCommand.Execute(movi);
 
                 int columnRana = Grid.GetColumn(rana);
                 int rowRana = Grid.GetRow(rana);
 
-                foreach (var borde in gridPadre.Children.OfType<Border>())
+                foreach (var image in gridPadre.Children.OfType<Image>())
                 {
-                    var colorBorder = borde.Background;
+                    var columnImage = Grid.GetColumn(image);
+                    var rowImage = Grid.GetRow(image);
 
-                    var columnBorde = Grid.GetColumn(borde);
-                    var rowBorde = Grid.GetRow(borde);
-
-                    if (columnRana == columnBorde && rowRana == rowBorde || columnBorde == 0 && rowBorde == 0 )
-                    {
-                        borde.Background = Brushes.Maroon;
-                    }
                 }
 
             }
@@ -90,7 +92,6 @@ namespace Juego_PA.Views
                 MessageBox.Show("Tecla incorrecta");
             }
 
-            tgbMenu.IsChecked = false;
         }
         public void ColorearBordes()
         {
@@ -105,7 +106,7 @@ namespace Juego_PA.Views
 
                 if (rowBorde == 0 || rowBorde == 2)
                 {
-                    if(columnBorde % 2 == 0)
+                    if (columnBorde % 2 == 0)
                         borde.Background = colorAzul == null ? Brushes.AliceBlue : (SolidColorBrush)colorAzul;
                     else
                         borde.Background = Brushes.SkyBlue;
@@ -120,6 +121,25 @@ namespace Juego_PA.Views
                 }
             }
         }
-       
+
+
+        public void CargarImagenes()
+        {
+            foreach (var image in gridPadre.Children.OfType<Image>())
+            {
+                image.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            PantallaTutorial.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnTutorial_Click(object sender, RoutedEventArgs e)
+        {
+            PantallaTutorial.Visibility = Visibility.Visible;
+
+        }
     }
 }

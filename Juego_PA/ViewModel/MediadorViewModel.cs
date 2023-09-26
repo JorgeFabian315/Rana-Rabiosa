@@ -19,5 +19,12 @@ namespace Juego_PA.ViewModel
         {
             PintarBordesEvent?.Invoke();
         }
+
+
+        public static event Action? RegresarEvent;
+        public static void Regresar()
+        {
+            RegresarEvent?.Invoke();
+        }
     }
 }

@@ -139,6 +139,7 @@ namespace Juego_PA.ViewModel
 
                 if(_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y && _patron != "DDBDB")
                 {
+                    MediadorViewModel.Regresar();
                     Rana.X = _posicionXAnterior;
                     Rana.Y = _posicionYAnterior;
                 }
