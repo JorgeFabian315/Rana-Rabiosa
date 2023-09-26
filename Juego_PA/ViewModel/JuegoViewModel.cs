@@ -44,6 +44,10 @@ namespace Juego_PA.ViewModel
         public ICommand MoverCommand { get; set; }
         public ICommand IniciarCommand { get; set; }
         public ICommand CambiarVistaCommand { get; set; }
+
+
+        int _posicionXAnterior = 0;
+        int _posicionYAnterior = 0;
         public JuegoViewModel()
         {
             Rana = new();
@@ -74,6 +78,7 @@ namespace Juego_PA.ViewModel
 
             RealizarMovimiento(movimiento);
 
+
             if ((Rana.X == 1 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0))
             {
                 OnPropertyChanged("Rana");
@@ -88,9 +93,9 @@ namespace Juego_PA.ViewModel
             if (regex.IsMatch(_patron))
             {
                 Ganaste = true;
+                Rana.LimiteMovimientos = 0;
 
             }
-
             else if (Rana.LimiteMovimientos <= 0)
             {
                 GameOver = true;
@@ -100,8 +105,6 @@ namespace Juego_PA.ViewModel
         }
 
 
-        int _posicionXAnterior = 0;
-        int _posicionYAnterior = 0;
         public void RealizarMovimiento(Movimientos movimiento)
         {
             if (Rana.LimiteMovimientos > 0)
@@ -137,7 +140,7 @@ namespace Juego_PA.ViewModel
 
 
 
-                if(_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y && _patron != "DDBDB")
+                if (_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y && _patron != "DDBDB")
                 {
                     MediadorViewModel.Regresar();
                     Rana.X = _posicionXAnterior;
