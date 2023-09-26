@@ -84,6 +84,12 @@ namespace Juego_PA.Views
                     var columnImage = Grid.GetColumn(image);
                     var rowImage = Grid.GetRow(image);
 
+
+                    if (columnRana == columnImage && rowImage == rowRana)
+                    {
+                        image.Visibility = Visibility.Visible;
+                    }
+
                 }
 
             }
@@ -127,7 +133,18 @@ namespace Juego_PA.Views
         {
             foreach (var image in gridPadre.Children.OfType<Image>())
             {
-                image.Visibility = Visibility.Visible;
+                var columnImage = Grid.GetColumn(image);
+                var rowImage = Grid.GetRow(image);
+
+                if (columnImage == 0 && rowImage == 0)
+                {
+                    image.Visibility = Visibility.Visible;
+
+                }
+                else
+                    image.Visibility = Visibility.Collapsed;
+
+
             }
         }
 

@@ -24,6 +24,8 @@
                         Value="0" />
             </Style>
             <Style TargetType="Image">
+                <Setter Property="Visibility"
+                        Value="Collapsed" />
                 <Setter Property="Effect">
                     <Setter.Value>
                         <DropShadowEffect BlurRadius="25"
@@ -31,6 +33,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+           
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -77,6 +80,7 @@
                 Background="SkyBlue"></Border>
         <Image Source="/Assets/loto.png"
                Width="130"
+               Visibility="Visible"
                Grid.Column="0" />
         <Image Source="/Assets/loto.png"
                Width="130"
