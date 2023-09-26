@@ -23,7 +23,7 @@ namespace Juego_PA.Views
     /// </summary>
     public partial class JuegoView : UserControl
     {
-        System.Drawing.Rectangle loto;
+        Image? loto;
         public JuegoView()
         {
             InitializeComponent();
@@ -49,7 +49,7 @@ namespace Juego_PA.Views
 
             if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
             {
-               // ImageBrush imagenLoto = new BitmapImage(new Uri("pack://aplication/:,,,/Assets/loto.png"));
+                // ImageBrush imagenLoto = new BitmapImage(new Uri("pack://aplication/:,,,/Assets/loto.png"));
                 var avm = this.DataContext as JuegoViewModel;
 
                 gridPadre.Focus();
@@ -73,8 +73,6 @@ namespace Juego_PA.Views
 
                 foreach (var borde in gridPadre.Children.OfType<Border>())
                 {
-
-
                     var colorBorder = borde.Background;
 
                     var columnBorde = Grid.GetColumn(borde);
@@ -82,11 +80,7 @@ namespace Juego_PA.Views
 
                     if (columnRana == columnBorde && rowRana == rowBorde || columnBorde == 0 && rowBorde == 0 )
                     {
-                        loto = new()
-                        {
-
-                        };
-                        borde.Background = Brushes.Green;
+                        borde.Background = Brushes.Maroon;
                     }
                 }
 

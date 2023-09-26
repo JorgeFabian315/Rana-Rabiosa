@@ -7,9 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="GhostWhite">
-        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\hola13.jpg" Stretch="Fill"></Image>
-        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\rana.png" Margin="125,138,515,258"  Width="160"></Image>
-        <Image Source="C:\Users\javie\Downloads\Nueva carpeta (2)\Rana_Rabiosa-master\Juego_PA\Assets\flor.png" Width="175" Margin="757,240,-132,-240"></Image>
+        <Image Source="/Assets/hola13.jpg" Stretch="Fill"></Image>
+        <Image Source="/Assets/rana.png" Margin="125,138,515,258" Width="160"></Image>
+        <Image Source="/Assets/flor.png" Width="175" Margin="757,240,-132,-240"></Image>
         <StackPanel  VerticalAlignment="Center">
             <TextBlock Text="Selecciona el nivel" 
                    Margin="0,0,0,20"
