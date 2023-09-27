@@ -19,8 +19,6 @@ namespace Juego_PA.ViewModel
 {
     public class JuegoViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<string> ListaMovimientos { get; set; } = new();
-
         Regex? regex;
 
         private string _patron = "";
@@ -34,7 +32,6 @@ namespace Juego_PA.ViewModel
         public ICommand IniciarCommand { get; set; }
         public ICommand CambiarVistaCommand { get; set; }
 
-
         int _posicionXAnterior = 0;
         int _posicionYAnterior = 0;
         public JuegoViewModel()
@@ -45,15 +42,11 @@ namespace Juego_PA.ViewModel
             CambiarVistaCommand = new RelayCommand<Vista>(CambiarVista);
 
         }
-
         private void CambiarVista(Vista vista)
         {
             Vista = vista;
             OnPropertyChanged();
         }
-
-
-
 
         private async void Nivel1(Movimientos movimiento)
         {
@@ -92,7 +85,6 @@ namespace Juego_PA.ViewModel
 
             OnPropertyChanged();
         }
-
 
         public void RealizarMovimiento(Movimientos movimiento)
         {
