@@ -25,17 +25,6 @@ namespace Juego_PA.ViewModel
 
         private string _patron = "";
 
-        //private Rana _rana;
-
-        //public Rana Rana
-        //{
-        //    get { return _rana; }
-        //    set
-        //    {
-        //        _rana = value;
-        //        OnPropertyChanged("Rana");
-        //    }
-        //}
         public Rana Rana { get; set; } = new();
         public bool Ganaste { get; set; } = false;
         public bool GameOver { get; set; } = false;
@@ -109,9 +98,7 @@ namespace Juego_PA.ViewModel
         {
             if (Rana.LimiteMovimientos > 0)
             {
-
                 string _movimiento = "";
-
                 _posicionXAnterior = Rana.X;
                 _posicionYAnterior = Rana.Y;
 
@@ -138,8 +125,6 @@ namespace Juego_PA.ViewModel
                     _movimiento = "B";
                 }
 
-
-
                 if (_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y && _patron != "DDBDB")
                 {
                     MediadorViewModel.Regresar();
@@ -150,9 +135,6 @@ namespace Juego_PA.ViewModel
                 {
                     _patron += _movimiento;
                 }
-
-
-
 
                 Rana.LimiteMovimientos -= 1;
 
