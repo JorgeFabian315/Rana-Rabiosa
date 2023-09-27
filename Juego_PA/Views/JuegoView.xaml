@@ -457,7 +457,7 @@
             <Border CornerRadius="10"
                     Margin="20">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Assets/Tutorial.jpeg" />
+                    <ImageBrush ImageSource="/Assets/Tutorial.jpg" />
                 </Border.Background>
             </Border>
             <Button x:Name="btnOk"
