@@ -124,11 +124,11 @@
                 <ImageBrush ImageSource="/Assets/flor.png" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Width="110"
+        <Rectangle Width="85"
                    Name="rana"
                    Grid.Column="{Binding Rana.X}"
                    Grid.Row="{Binding Rana.Y}"
-                   Height="110">
+                   Height="85">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/rana.png" />
             </Rectangle.Fill>
