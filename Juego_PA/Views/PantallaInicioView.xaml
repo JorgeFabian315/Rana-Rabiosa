@@ -12,15 +12,18 @@
 
 
         <Image Source="/Assets/hola13.jpg" Stretch="Fill"></Image>
-        <Image Source="/Assets/rana.png" Width="100" Margin="150,0,150,110" ></Image>
+        <Image Source="/Assets/rana.png" Width="100" Margin="350,0,350,173" ></Image>
         <Image Source="/Assets/flor.png" Margin="777,442,-107,-46"  Width="160"></Image>
         <Image Source="/Assets/flor.png" Margin="8,415,662,-19"  Width="130"></Image>
+        <Image Source="/Assets/loto.png" Width="70" Margin="241,217,489,-217"></Image>
+        <Image Source="/Assets/loto.png" Width="70" Margin="439,211,291,-211"></Image>
         <StackPanel VerticalAlignment="Center">
             <Button 
                     Command="{Binding CambiarVistaCommand}"
                     CommandParameter="{x:Static local:Vista.SeleccionarNivel}"
                     Content="Iniciar" Width="87" Foreground="#FFDF0A0A" FontSize="16" FontFamily="Impact" 
                     />
+            <Button Content="SALIR" Width="88" Height="39" Foreground="Red" FontSize="15" FontFamily="Impact" Click="Button_Click"/>
         </StackPanel>
 
 
