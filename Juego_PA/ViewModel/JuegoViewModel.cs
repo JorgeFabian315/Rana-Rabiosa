@@ -34,6 +34,9 @@ namespace Juego_PA.ViewModel
 
         int _posicionXAnterior = 0;
         int _posicionYAnterior = 0;
+
+
+
         public JuegoViewModel()
         {
             Rana = new();
@@ -48,6 +51,7 @@ namespace Juego_PA.ViewModel
             OnPropertyChanged();
         }
 
+        bool _moverJuego = true;
         private async void Nivel1(Movimientos movimiento)
         {
             regex = new(@"^(DDBB|BBDD|DDBDBI)$");
@@ -57,16 +61,18 @@ namespace Juego_PA.ViewModel
              * B = ABAJO
              * A = ARRIBA
              */
-
-            RealizarMovimiento(movimiento);
-
-
+            if (_moverJuego)
+            {
+                RealizarMovimiento(movimiento);
+                _moverJuego = false;
+            }
             if ((Rana.X == 1 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0))
             {
                 OnPropertyChanged("Rana");
                 await Task.Delay(350); // Pausa de un 0.5 segundos
                 Rana.X = 0;
                 Rana.Y = 0;
+                _moverJuego = true;
                 MediadorViewModel.PintarBordes();
                 Rana.LimiteMovimientos = 6;
                 _patron = "";
@@ -82,6 +88,8 @@ namespace Juego_PA.ViewModel
             {
                 GameOver = true;
             }
+
+            _moverJuego = true;
 
             OnPropertyChanged();
         }
@@ -103,9 +111,7 @@ namespace Juego_PA.ViewModel
                 {
                     Rana.X -= 1;
                     _movimiento = "I";
-
                 }
-
                 else if (movimiento == Movimientos.Arriba)
                 {
                     Rana.Y -= 1;
