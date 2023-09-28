@@ -41,6 +41,8 @@
                     Value="80" />
             <Setter Property="Margin"
                     Value="10" />
+            <Setter Property="Cursor"
+                    Value="Hand" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">

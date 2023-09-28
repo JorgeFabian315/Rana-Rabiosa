@@ -86,6 +86,7 @@ namespace Juego_PA.ViewModel
             }
             else if (Rana.LimiteMovimientos <= 0)
             {
+                _moverJuego = false;
                 GameOver = true;
             }
 

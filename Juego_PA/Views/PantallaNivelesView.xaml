@@ -61,6 +61,32 @@
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                         To="120"
+                                                         Duration="0:0:0.3" />
+                                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                         To="120"
+                                                         Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                         To="100"
+                                                         Duration="0:0:0.3" />
+                                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                         To="100"
+                                                         Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
                     </Style>
                     <Style TargetType="Button"
                            x:Key="BotonBloqueado">
