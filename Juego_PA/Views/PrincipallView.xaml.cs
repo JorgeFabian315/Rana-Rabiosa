@@ -23,11 +23,9 @@ namespace Juego_PA.Views
         public PrincipallView()
         {
             InitializeComponent();
-            juegopantalla.Focus();
+         
         }
 
- 
-
-       
     }
+
 }

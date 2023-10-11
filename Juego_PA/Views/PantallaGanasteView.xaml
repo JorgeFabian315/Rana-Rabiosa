@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Juego_PA.Views.PantallaGanasteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Juego_PA.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <!--#REGION PANTALLA DE VICTORIA  -->
+    <Grid Grid.ColumnSpan="5"
+          Grid.ZIndex="7"
+          Grid.RowSpan="5">
+        <Border Background="Black"
+                Opacity=".4" />
+        <Border Width="500"
+                CornerRadius="10"
+                Height="500"
+                Background="GhostWhite">
+            <StackPanel Margin="0,0,0,30"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <TextBlock TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           FontWeight="SemiBold">
+                    <TextBlock.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Text"
+                                    Value="Ganaste" />
+                            <Setter Property="FontSize"
+                                    Value="45" />
+                            <Setter Property="Foreground"
+                                    Value="Green" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding GameOver}"
+                                             Value="true">
+                                    <Setter Property="Text"
+                                            Value="Perdiste" />
+                                    <Setter Property="Foreground"
+                                            Value="#FFC62424" />
+                                    <Setter Property="FontSize"
+                                            Value="30" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Resources></TextBlock>
+                <!--<TextBlock TextWrapping="Wrap"
+                           FontSize="20"
+                           Text="Te quedaste sin movimientos"
+                           TextAlignment="Center"
+                           FontWeight="SemiBold">
+                    <TextBlock.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                            <Setter Property="Foreground"
+                                    Value="#FFC62424" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding GameOver}"
+                                             Value="true">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Resources></TextBlock>-->
+                <TextBlock TextWrapping="Wrap"
+                           FontSize="20"
+                           Text="{Binding Rana.Puntaje, StringFormat=Puntaje: 0}"
+                           TextAlignment="Center"
+                           FontWeight="SemiBold">
+                    <TextBlock.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Setter Property="Foreground"
+                                    Value="Green" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding GameOver}"
+                                             Value="true">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Resources></TextBlock>
+                <Button Style="{StaticResource BotonVolverJugar}"
+                        Command="{Binding IniciarCommand}" />
+                <Button IsDefault="False"
+                        Tag="Nivel2"
+                        x:Name="btnNivel2"
+                        Focusable="False"
+                        Click="btnNivel2_Click"
+                        Command="{Binding IniciarCommand}"
+                        Style="{StaticResource BotonNivel2}"></Button>
+                <Button Content="Regresar"
+                        Command="{Binding CambiarVistaCommand}"
+                        Style="{StaticResource BotonesPantallaGanaste}"
+                        CommandParameter="{x:Static local:Vista.SeleccionarNivel}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+    <!--#ENDREGION PANTALLA DE VICTORIA-->
+</UserControl>

@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Juego_PA.Views.Niveles.Nivel3View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Juego_PA.Views.Niveles"
+             xmlns:ico="http://schemas.fontawesome.io/icons/"
+             xmlns:vista="clr-namespace:Juego_PA.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="1000"
+             Focusable="True"
+             Loaded="UserControl_Loaded"
+             PreviewKeyDown="UserControl_PreviewKeyDown">
+    <Grid x:Name="Tablero">
+        
+        <Button Grid.ZIndex="5"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Command="{Binding CambiarVistaCommand}"
+                CommandParameter="{x:Static vista:Vista.SeleccionarNivel}"
+                Style="{StaticResource botonTutorial}">
+            <ico:ImageAwesome Icon="ArrowLeft"
+                              Margin="3">
+                <ico:ImageAwesome.Resources>
+                    <Style TargetType="ico:ImageAwesome">
+                        <Setter Property="Foreground"
+                                Value="#141726" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
+                                         Value="True">
+                                <Setter Property="Foreground"
+                                        Value="#fff" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ico:ImageAwesome.Resources>
+            </ico:ImageAwesome>
+        </Button>
+    
+        <!--#REGION RANA Y FLOR-->
+        <Image Width="120"
+               Grid.Column="4"
+               Grid.Row="4"
+               Tag="Flor"
+               Grid.ZIndex="5"
+               x:Name="flor"
+               Source="/Assets/flor.png"
+               Height="120" />
+        <Image Width="60"
+               x:Name="rana"
+               Tag="Rana"
+               Source="/Assets/rana.png"
+               Grid.ZIndex="6"
+               Grid.Column="{Binding Rana.X}"
+               Grid.Row="{Binding Rana.Y}"
+               Height="60" />
+        <!--#ENDREGION RANA Y FLOR-->
+        
+        
+        
+    </Grid>
+    
+    
+</UserControl>

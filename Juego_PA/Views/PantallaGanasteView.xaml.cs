@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Juego_PA.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,18 @@ using System.Windows.Shapes;
 namespace Juego_PA.Views
 {
     /// <summary>
-    /// Lógica de interacción para NIvel2View.xaml
+    /// Lógica de interacción para PantallaGanasteView.xaml
     /// </summary>
-    public partial class NIvel2View : UserControl
+    public partial class PantallaGanasteView : UserControl
     {
-        public NIvel2View()
+        public PantallaGanasteView()
         {
             InitializeComponent();
+        }
+
+        private void btnNivel2_Click(object sender, RoutedEventArgs e)
+        {
+            MediadorViewModel.Nivel2();
         }
     }
 }

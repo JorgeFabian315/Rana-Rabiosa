@@ -10,6 +10,7 @@ namespace Juego_PA.Views
     {
         Inicio,
         Juego,
+        Ganaste,
         Tutorial,
         SeleccionarNivel,
         Nivel1,
@@ -17,4 +18,13 @@ namespace Juego_PA.Views
         Nivel3,
         Nivel4
     };
+
+    public enum Nivel
+    {
+        Nivel1,
+        Nivel2,
+        Nivel3,
+        Nivel4
+    }
+
 }

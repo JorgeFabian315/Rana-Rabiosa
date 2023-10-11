@@ -11,7 +11,8 @@
     <Grid Background="GhostWhite">
         <Image Source="/Assets/hola13.jpg"
                Stretch="Fill" />
-      
+        <Border Background="Black"
+                Opacity=".3" />
         <Image Source="/Assets/flor.png"
                Width="175"
                Margin="757,240,-132,-240" />
@@ -31,9 +32,10 @@
                         <Setter Property="Width"
                                 Value="100" />
                         <Setter Property="Background"
-                                Value="#63DF41" />
+                                Value="#007216" />
                         <Setter Property="Cursor"
                                 Value="Hand" />
+                      
                         <Setter Property="Height"
                                 Value="100" />
                         <Setter Property="Effect">
@@ -135,15 +137,21 @@
                         FontFamily="Monotype Corsiva"
                         FontSize="20" />
                 <Button Content="Nivel 2"
-                        Style="{StaticResource BotonBloqueado}"
+                        Style="{StaticResource BotonDesbloqueado}"
+                        Command="{Binding IniciarCommand}"
+                        CommandParameter="2"
                         FontFamily="Monotype Corsiva"
                         FontSize="20" />
                 <Button Content="Nivel 3"
-                        Style="{StaticResource BotonBloqueado}"
+                        Style="{StaticResource BotonDesbloqueado}"
+                        Command="{Binding IniciarCommand}"
+                        CommandParameter="3"
                         FontFamily="Monotype Corsiva"
                         FontSize="20" />
                 <Button Content="Nivel 4"
-                        Style="{StaticResource BotonBloqueado}"
+                        Command="{Binding IniciarCommand}"
+                        CommandParameter="4"
+                        Style="{StaticResource BotonDesbloqueado}"
                         FontFamily="Monotype Corsiva"
                         FontSize="20" />
             </WrapPanel>

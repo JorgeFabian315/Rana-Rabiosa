@@ -22,48 +22,51 @@ namespace Juego_PA.Views
     /// <summary>
     /// Lógica de interacción para JuegoView.xaml
     /// </summary>
+    /// 
     public partial class JuegoView : UserControl
     {
-        Image? loto;
+        Jugador _jugador = new();
         public JuegoView()
         {
             InitializeComponent();
-            gridPadre.Focus();
-            MediadorViewModel.IniciarJuegoEvent += MediadorViewModel_IniciarJuegoEvent;
-            MediadorViewModel.PintarBordesEvent += MediadorViewModel_PintarBordesEvent;
-            MediadorViewModel.RegresarEvent += MediadorViewModel_RegresarEvent;
+            this.Focus();
+            CrearNivel();
+            //MediadorViewModel.IniciarJuegoEvent += MediadorViewModel_IniciarJuegoEvent;
+            //MediadorViewModel.RegresarEvent += MediadorViewModel_RegresarEvent;
+            //MediadorViewModel.EliminarHojasEvent += MediadorViewModel_EliminarHojasEvent;
+            //MediadorViewModel.Nivel2Event += EmpezarNivel2;
+        }
+
+        private void MediadorViewModel_EliminarHojasEvent()
+        {
+            EliminarHojas();
         }
 
         private void MediadorViewModel_RegresarEvent()
         {
             MessageBox.Show("No puedes regresarte");
         }
-
-        private void MediadorViewModel_PintarBordesEvent()
-        {
-            //ColorearBordes();
-            CargarImagenes();
-        }
-
+      
         private void MediadorViewModel_IniciarJuegoEvent()
         {
-            gridPadre.Focus();
-            //ColorearBordes();
-            CargarImagenes();
+            //this.Focusable = true;
+            //this.Focus();
+            //gridPadre.Focusable = true;
+            //gridPadre.Focus();
+            //CrearNivel();
+            //btnTutorial.Focusable = false;
         }
         private void gridPadre_KeyDown(object sender, KeyEventArgs e)
         {
+            this.Focus();
+            gridPadre.Focusable = true;
             btnTutorial.Focusable = false;
 
             if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
             {
-                // ImageBrush imagenLoto = new BitmapImage(new Uri("pack://aplication/:,,,/Assets/loto.png"));
                 var avm = this.DataContext as JuegoViewModel;
 
-                gridPadre.Focus();
-
                 Movimientos movi = new();
-
                 if (e.Key == Key.Left)
                     movi = Movimientos.Izquierda;
                 if (e.Key == Key.Right)
@@ -73,24 +76,16 @@ namespace Juego_PA.Views
                 if (e.Key == Key.Down)
                     movi = Movimientos.Abajo;
 
-                if (avm != null)
-                    avm.MoverCommand.Execute(movi);
+                _jugador.Movimiento = movi;
 
+                if (avm != null)
+                    avm.MoverCommand.Execute(_jugador);
+
+
+                // CREAR HOJA EN LA MISMA POSICION DE LA RANA
                 int columnRana = Grid.GetColumn(rana);
                 int rowRana = Grid.GetRow(rana);
-
-                foreach (var image in gridPadre.Children.OfType<Image>())
-                {
-                    var columnImage = Grid.GetColumn(image);
-                    var rowImage = Grid.GetRow(image);
-
-
-                    if (columnRana == columnImage && rowImage == rowRana)
-                    {
-                        image.Visibility = Visibility.Visible;
-                    }
-
-                }
+                CrearHoja(columnRana, rowRana);
 
             }
             else
@@ -99,54 +94,175 @@ namespace Juego_PA.Views
             }
 
         }
-        public void ColorearBordes()
+        public void CrearNivel(int numColum = 4, int numFila = 3, Nivel _nivel = Nivel.Nivel1)
         {
-            foreach (var borde in gridPadre.Children.OfType<Border>())
+            #region CREACION DE ENEMIGOS COCODRILOS
+            Image _cocodrilo1 = new()
             {
-                var colorBorder = borde.Background;
+                Tag = "Enemigo",
+                Source = new BitmapImage(new Uri("pack://application:,,,/Assets/cocodrilo.png")),
+                Margin = new Thickness(20)
 
-                var colorAzul = new BrushConverter().ConvertFrom("#afddec");
+            };
 
-                var columnBorde = Grid.GetColumn(borde);
-                var rowBorde = Grid.GetRow(borde);
+            Image _cocodrilo2 = new()
+            {
+                Tag = "Enemigo",
+                Source = new BitmapImage(new Uri("/Juego_PA;component/Assets/cocodrilo.png", UriKind.Relative)),
+                Margin = new Thickness(20)
 
-                if (rowBorde == 0 || rowBorde == 2)
+            };
+            #endregion
+
+            #region ELIMINAR IMAGENES
+            EliminarImagenes();
+            #endregion
+
+
+            if (_nivel == Nivel.Nivel1)
+            {
+                _jugador.Nivel = 1;
+
+                //CrearTablero(numColum, numFila);
+                MoverImagenes(_cocodrilo1, 1, 1);
+                MoverImagenes(_cocodrilo2, 3, 0);
+            }
+            else if (_nivel == Nivel.Nivel2)
+            {
+                _jugador.Nivel = 2;
+
+                //CrearTablero(numColum, numFila);
+                MoverImagenes(flor, 4, 4);
+
+                Image _tornado1 = new()
                 {
-                    if (columnBorde % 2 == 0)
-                        borde.Background = colorAzul == null ? Brushes.AliceBlue : (SolidColorBrush)colorAzul;
-                    else
-                        borde.Background = Brushes.SkyBlue;
+                    Tag = "Tornado",
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Assets/tornado.png")),
+                    Margin = new Thickness(20)
+                };
 
-                }
-                else
+                Image _tornado2 = new()
                 {
-                    if (columnBorde % 2 == 0)
-                        borde.Background = Brushes.SkyBlue;
+                    Tag = "Tornado",
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Assets/tornado.png")),
+                    Margin = new Thickness(20)
+                };
+
+
+                MoverImagenes(_cocodrilo1, 1, 3);
+                MoverImagenes(_cocodrilo2, 4, 2);
+                MoverImagenes(_tornado1, 3, 1);
+                MoverImagenes(_tornado2, 2, 4);
+
+                gridPadre.Children.Add(_tornado1);
+                gridPadre.Children.Add(_tornado2);
+
+
+            }
+
+            gridPadre.Children.Add(_cocodrilo1);
+            gridPadre.Children.Add(_cocodrilo2);
+        }
+
+
+        #region MOVER ENEMIGOS Y IMAGENES
+        public void MoverImagenes(Image enemigo, int x, int y)
+        {
+            Grid.SetColumn(enemigo, x);
+            Grid.SetRow(enemigo, y);
+        }
+        #endregion
+
+        #region CREAR COLUMNAS Y FILAS GRID
+        public void CrearTablero(int numColum, int numFila, Grid tablero)
+        {
+
+            gridPadre.ColumnDefinitions.Clear();
+            gridPadre.RowDefinitions.Clear();
+
+            // Crear columnas y filas en el grid
+            for (int i = 0; i < numColum; i++)
+            {
+                tablero.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            for (int j = 0; j < numFila; j++)
+            {
+                tablero.RowDefinitions.Add(new RowDefinition());
+            }
+
+            for (int fila = 0; fila < numFila; fila++)
+            {
+                for (int columna = 0; columna < numColum; columna++)
+                {
+                    Border _borderFondo = new();
+                    if (fila % 2 != 0)
+                    {
+                        if (columna % 2 == 0)
+                            _borderFondo.Background = Brushes.SkyBlue;
+                        else
+                            _borderFondo.Background = Brushes.DeepSkyBlue;
+                    }
                     else
-                        borde.Background = colorAzul == null ? Brushes.AliceBlue : (SolidColorBrush)colorAzul;
+                    {
+                        if (columna % 2 == 0)
+                            _borderFondo.Background = Brushes.DeepSkyBlue;
+                        else
+                            _borderFondo.Background = Brushes.SkyBlue;
+                    }
+                    Grid.SetColumn(_borderFondo, columna);
+
+                    Grid.SetRow(_borderFondo, fila);
+
+                    tablero.Children.Add(_borderFondo);
                 }
             }
         }
 
+        #endregion
 
-        public void CargarImagenes()
+        #region ELIMINAR IMAGENES
+        public void EliminarImagenes()
         {
             foreach (var image in gridPadre.Children.OfType<Image>())
             {
-                var columnImage = Grid.GetColumn(image);
-                var rowImage = Grid.GetRow(image);
-
-                if (columnImage == 0 && rowImage == 0)
-                {
-                    image.Visibility = Visibility.Visible;
-
-                }
-                else
+                if ((string)image.Tag != "Rana" && (string)image.Tag != "Flor")
                     image.Visibility = Visibility.Collapsed;
-
-
             }
         }
+
+        #endregion
+
+        #region CREAR HOJA DE LOTO
+        public void CrearHoja(int colum, int row)
+        {
+            Image loto = new()
+            {
+                Width = 130,
+                Height = 130,
+                Tag = "Loto"
+
+            };
+            loto.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/loto.png"));
+            Grid.SetColumn(loto, colum);
+            Grid.SetRow(loto, row);
+            gridPadre.Children.Add(loto);
+
+        }
+
+        #endregion
+        
+        #region ELIMINAR HOJAS LOTO
+        public void EliminarHojas()
+        {
+            foreach (var image in gridPadre.Children.OfType<Image>())
+            {
+                if ((string)image.Tag == "Loto")
+                    image.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        #endregion
+
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
@@ -158,5 +274,20 @@ namespace Juego_PA.Views
             PantallaTutorial.Visibility = Visibility.Visible;
 
         }
+
+        private void EmpezarNivel2()
+        {
+            CrearNivel(5, 5, Nivel.Nivel2);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
+            this.Focusable = true;
+            gridPadre.Focusable = true;
+            gridPadre.Focus();
+        }
+
+       
     }
 }

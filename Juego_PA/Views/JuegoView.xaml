@@ -9,10 +9,11 @@
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="1000"
+             Focusable="True"
+             Loaded="UserControl_Loaded"
              Name="usercontrol">
     <Grid x:Name="gridPadre"
-          KeyDown="gridPadre_KeyDown"
-          Grid.Row="1"
+          PreviewKeyDown="gridPadre_KeyDown"
           Focusable="True">
         <Grid.Resources>
             <Style TargetType="Border">
@@ -24,116 +25,38 @@
                         Value="0" />
             </Style>
             <Style TargetType="Image">
-                <Setter Property="Visibility"
-                        Value="Collapsed" />
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect BlurRadius="25"
-                                          Opacity=".5" />
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Grid.ZIndex"
+                        Value="4" />
             </Style>
-           
         </Grid.Resources>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Border />
-        <Border Grid.Column="1"
-                Background="SkyBlue"></Border>
-        <Border Grid.Column="2"></Border>
-        <Border Grid.Column="3"
-                Background="SkyBlue">
-            <Image Source="/Assets/cocodrilo.png"
-                   Style="{x:Null}"
-                   Margin="40" />
-        </Border>
-        <Border Grid.Row="1"
-                Background="SkyBlue"></Border>
-        <Border Grid.Row="1"
-                Grid.Column="1">
-            <Image Source="/Assets/cocodrilo.png"
-                   Margin="40"
-                   Style="{x:Null}" />
-        </Border>
-        <Border Grid.Row="1"
-                Grid.Column="2"
-                Background="SkyBlue"></Border>
-        <Border Grid.Row="1"
-                Grid.Column="3"></Border>
-        <Border Grid.Row="2"></Border>
-        <Border Grid.Row="2"
-                Grid.Column="1"
-                Background="SkyBlue"></Border>
-        <Border Grid.Row="2"
-                Grid.Column="2"></Border>
-        <Border Grid.Row="2"
-                Grid.Column="3"
-                Background="SkyBlue"></Border>
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Visibility="Visible"
-               Grid.Column="0" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="1" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="2" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="0"
-               Grid.Row="1" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="2"
-               Grid.Row="1" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="3"
-               Grid.Row="1" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="0"
-               Grid.Row="2" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="1"
-               Grid.Row="2" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="3"
-               Grid.Row="2" />
-        <Image Source="/Assets/loto.png"
-               Width="130"
-               Grid.Column="2"
-               Grid.Row="2" />
-        <Rectangle Width="120"
-                   Grid.Column="2"
-                   Grid.Row="2"
-                   Height="120">
+        <Rectangle Height="140"
+                   Width="140"
+                   Margin="10"
+                   Grid.ZIndex="4"
+                   Visibility="Visible"
+                   Grid.Column="0">
             <Rectangle.Fill>
-                <ImageBrush ImageSource="/Assets/flor.png" />
+                <ImageBrush ImageSource="/Assets/loto.png" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Width="85"
-                   Name="rana"
-                   Grid.Column="{Binding Rana.X}"
-                   Grid.Row="{Binding Rana.Y}"
-                   Height="85">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/Assets/rana.png" />
-            </Rectangle.Fill>
-        </Rectangle>
+        <Image Width="120"
+               Grid.Column="2"
+               Grid.Row="2"
+               Tag="Flor"
+               Grid.ZIndex="5"
+               x:Name="flor"
+               Source="/Assets/flor.png"
+               Height="120" />
+        <Image Width="85"
+               x:Name="rana"
+               Tag="Rana"
+               Source="/Assets/rana.png"
+               Grid.ZIndex="6"
+               Grid.Column="{Binding Rana.X}"
+               Grid.Row="{Binding Rana.Y}"
+               Height="85" />
         <WrapPanel Grid.Row="0"
+                   Grid.ZIndex="5"
                    Grid.ColumnSpan="2"
                    Margin="5, 5,10,10">
             <TextBlock Text="Limite Movimientos: "
@@ -143,32 +66,11 @@
                        FontSize="15"
                        FontWeight="SemiBold" />
         </WrapPanel>
-        <Button Background="Transparent"
-                Width="30"
-                BorderThickness="0"
-                Height="30"
-                Grid.ColumnSpan="4"
-                Grid.RowSpan="3"
+        <Button Grid.Column="4"
+                Grid.ZIndex="5"
                 Name="btnTutorial"
-                Click="btnTutorial_Click"
-                Focusable="False"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Margin="10"
-                Cursor="Hand">
-            <Button.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter />
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Resources>
+                Style="{StaticResource botonTutorial}"
+                Click="btnTutorial_Click">
             <ico:ImageAwesome Icon="QuestionCircleOutline">
                 <ico:ImageAwesome.Resources>
                     <Style TargetType="ico:ImageAwesome">
@@ -185,273 +87,15 @@
                 </ico:ImageAwesome.Resources>
             </ico:ImageAwesome>
         </Button>
-        <!--#REGION PANTALLA DE VICTORIA  -->
-        <Grid Grid.ColumnSpan="4"
-              Grid.RowSpan="3">
-            <Grid.Resources>
-                <Style TargetType="Grid">
-                    <Setter Property="Visibility"
-                            Value="Hidden" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Ganaste}"
-                                     Value="true">
-                            <Setter Property="Visibility"
-                                    Value="Visible" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding GameOver}"
-                                     Value="true">
-                            <Setter Property="Visibility"
-                                    Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background"
-                            Value="#63DF41" />
-                    <Setter Property="Width"
-                            Value="300" />
-                    <Setter Property="Margin"
-                            Value="10" />
-                    <Setter Property="Foreground"
-                            Value="White" />
-                    <Setter Property="Cursor"
-                            Value="Hand" />
-                    <Setter Property="Focusable"
-                            Value="False" />
-                    <Setter Property="FontSize"
-                            Value="20" />
-                    <Setter Property="Height"
-                            Value="50" />
-                    <Setter Property="BorderBrush"
-                            Value="#257521" />
-                    <Setter Property="BorderThickness"
-                            Value="2" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        Name="border"
-                                        Tag="{TemplateBinding Tag}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="5">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding GameOver}"
-                                                 Value="true">
-                                        <Setter Property="Background"
-                                                TargetName="border"
-                                                Value="#F44336" />
-                                        <Setter Property="BorderBrush"
-                                                Value="#CD0000" />
-                                    </DataTrigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <EventTrigger RoutedEvent="MouseEnter">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation 
-                                        Storyboard.TargetProperty="Width"
-                                        To="315" Duration="0:0:0.3"/>
-                                    <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                     To="60"
-                                                     Duration="0:0:0.3" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseLeave">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                     To="300"
-                                                     Duration="0:0:0.3" />
-                                    <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                     To="50"
-                                                     Duration="0:0:0.3" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        
-                    </Style.Triggers>
-                </Style>
-            </Grid.Resources>
-            
-            
-            
-            <Border Background="Black"
-                    Opacity=".4" />
-            <Border Width="500"
-                    CornerRadius="10"
-                    Height="500"
-                    Background="GhostWhite">
-                <Grid Margin="0,50">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height=".25*" />
-                        <RowDefinition Height=".75*" />
-                    </Grid.RowDefinitions>
-                    <StackPanel 
-                                Margin="0,0,0,30"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                    <TextBlock TextWrapping="Wrap"
-                               TextAlignment="Center"
-                               FontWeight="SemiBold">
-                        <TextBlock.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Text"
-                                        Value="Ganaste" />
-                                    <Setter Property="FontSize"
-                                            Value="45" />
-                                    <Setter Property="Foreground"
-                                        Value="Green" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding GameOver}"
-                                                 Value="true">
-                                        <Setter Property="Text"
-                                                Value="Perdiste" />
-                                        <Setter Property="Foreground"
-                                                Value="#FFC62424" />
-                                            <Setter Property="FontSize"
-                                                    Value="30" />
-                                        </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Resources></TextBlock>
-                        <TextBlock TextWrapping="Wrap"
-                                   FontSize="20"
-                                   TextAlignment="Center"
-                                   Text="Te quedaste sin movimientos"
-                                   FontWeight="SemiBold">
-                            <TextBlock.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                    <Setter Property="Foreground"
-                                            Value="#FFC62424" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding GameOver}"
-                                                     Value="true">
-                                            <Setter Property="Visibility"
-                                                    Value="Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Resources></TextBlock>
-                    </StackPanel>
-                <StackPanel Margin="10" VerticalAlignment="Top"
-                            Grid.Row="1">
-                    <Button Content="Volver a jugar nivel 1"
-                            Command="{Binding IniciarCommand}" />
-                        <Button Content="Nivel 2"
-                                Command="{Binding CambiarVistaCommand}"
-                                IsDefault="False"
-                                Tag="Nivel2"
-                                x:Name="btnNivel2"
-                                Focusable="False"
-                                CommandParameter="{x:Static local:Vista.Nivel2}">
-                            <Button.Resources>
-                                <Style TargetType="Button">
-                                    <Setter Property="Background"
-                                            Value="#63DF41" />
-                                    <Setter Property="Width"
-                                            Value="300" />
-                                    <Setter Property="Margin"
-                                            Value="10" />
-                                    <Setter Property="Foreground"
-                                            Value="White" />
-                                    <Setter Property="Cursor"
-                                            Value="Hand" />
-                                    <Setter Property="Focusable"
-                                            Value="False" />
-                                    <Setter Property="FontSize"
-                                            Value="20" />
-                                    <Setter Property="Height"
-                                            Value="50" />
-                                    <Setter Property="BorderBrush"
-                                            Value="#257521" />
-                                    <Setter Property="BorderThickness"
-                                            Value="2" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        Name="border"
-                                                        Tag="{TemplateBinding Tag}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="5">
-                                                    <ContentPresenter VerticalAlignment="Center"
-                                                                      HorizontalAlignment="Center" />
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <DataTrigger Binding="{Binding GameOver}"
-                                                                 Value="true">
-                                                        <Setter Property="Visibility"
-                                                                Value="Collapsed" />
-                                                    </DataTrigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <EventTrigger RoutedEvent="MouseEnter">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                                     To="315"
-                                                                     Duration="0:0:0.3" />
-                                                    <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                                     To="60"
-                                                                     Duration="0:0:0.3" />
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                        <EventTrigger RoutedEvent="MouseLeave">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                                     To="300"
-                                                                     Duration="0:0:0.3" />
-                                                    <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                                     To="50"
-                                                                     Duration="0:0:0.3" />
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                  
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Resources>
-                            
-                            
-                         
-                        </Button>
-                        <Button 
-                            Content="Regresar"
-                            Command="{Binding CambiarVistaCommand}"
-                            IsDefault="False"
-                            CommandParameter="{x:Static local:Vista.SeleccionarNivel}" />
-                </StackPanel>
-                </Grid>
-            </Border>
-        </Grid>
-        <!--#ENDREGION PANTALLA DE VICTORIA-->
         
         
         
-        
-        
-        
-        <!--#REGION PANTALLA DE TUTORIAL--> 
+        <!--#REGION PANTALLA DE TUTORIAL-->
         <Grid x:Name="PantallaTutorial"
-              Grid.ColumnSpan="4"
+              Grid.ColumnSpan="5"
+              Grid.ZIndex="7"
               Visibility="Collapsed"
-              Grid.RowSpan="3">
+              Grid.RowSpan="5">
             <Border Background="Black"
                     Opacity=".7" />
             <Border CornerRadius="10"

@@ -1,0 +1,186 @@
+﻿<UserControl x:Class="Juego_PA.Views.Niveles.Nivel1View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Juego_PA.Views.Niveles"
+             xmlns:vista="clr-namespace:Juego_PA.Views"
+             xmlns:ico="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="1000"
+             Loaded="OnLoaded"
+             PreviewKeyDown="Tablero_PreviewKeyDown"
+             Focusable="True">
+    <Grid Focusable="False"
+          x:Name="dock">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".9*" />
+        </Grid.RowDefinitions>
+        <Grid DockPanel.Dock="Top"
+              Background="#004881">
+            <Button Grid.ZIndex="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Command="{Binding CambiarVistaCommand}"
+                    CommandParameter="{x:Static vista:Vista.SeleccionarNivel}"
+                    Style="{StaticResource botonTutorial}">
+                <ico:ImageAwesome Icon="ArrowLeft"
+                                  Margin="3">
+                    <ico:ImageAwesome.Resources>
+                        <Style TargetType="ico:ImageAwesome">
+                            <Setter Property="Foreground"
+                                    Value="#141726" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
+                                             Value="True">
+                                    <Setter Property="Foreground"
+                                            Value="#fff" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ico:ImageAwesome.Resources>
+                </ico:ImageAwesome>
+            </Button>
+            <TextBlock Text="Nivel 1"
+                       Focusable="False"
+                       Height="60"
+                       FontSize="30"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="10,0"
+                       TextAlignment="Center" />
+            <Button Grid.Column="4"
+                    Grid.ZIndex="5"
+                    VerticalAlignment="Center"
+                    Name="btnTutorial"
+                    Style="{StaticResource botonTutorial}"
+                    Click="btnTutorial_Click">
+                <ico:ImageAwesome Icon="QuestionCircleOutline">
+                    <ico:ImageAwesome.Resources>
+                        <Style TargetType="ico:ImageAwesome">
+                            <Setter Property="Foreground"
+                                    Value="#141726" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
+                                             Value="True">
+                                    <Setter Property="Foreground"
+                                            Value="#fff" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ico:ImageAwesome.Resources>
+                </ico:ImageAwesome>
+            </Button>
+        </Grid>
+        <Grid x:Name="Tablero"
+              Grid.Row="1"
+              Focusable="True">
+            <Grid.Resources>
+                <Style TargetType="Image">
+                    <Setter Property="Grid.ZIndex"
+                            Value="4" />
+                </Style>
+            </Grid.Resources>
+            <WrapPanel Grid.Row="0"
+                       Grid.ZIndex="5"
+                       VerticalAlignment="Top"
+                       Margin="5, 5,10,10">
+                <TextBlock Text="Limite Movimientos: "
+                           FontSize="15"
+                           Foreground="Black"
+                           FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Rana.LimiteMovimientos}"
+                           FontSize="15"
+                           Foreground="Black"
+                           FontWeight="SemiBold" />
+            </WrapPanel>
+            <Image Width="120"
+                   Tag="LotoInicial"
+                   Grid.ZIndex="4"
+                   Source="/Assets/loto.png"
+                   Height="120" />
+            <!--#REGION RANA Y FLOR-->
+            <Image Width="120"
+                   Grid.Column="2"
+                   Grid.Row="2"
+                   Tag="Flor"
+                   Grid.ZIndex="5"
+                   x:Name="flor"
+                   Source="/Assets/flor.png"
+                   Height="120" />
+            <Image Width="85"
+                   x:Name="rana"
+                   Tag="Rana"
+                   Source="/Assets/rana.png"
+                   Grid.ZIndex="6"
+                   Grid.Column="{Binding Rana.X}"
+                   Grid.Row="{Binding Rana.Y}"
+                   Height="85" />
+            <!--#ENDREGION RANA Y FLOR-->
+        </Grid>
+        <!--#REGION TUTORIAL-->
+        <Grid Grid.RowSpan="2"
+              x:Name="TutotialPantalla"
+              Visibility="Collapsed">
+            <Border Background="Black"
+                    Opacity=".5" />
+            <Image Source="/Assets/Tutorial.jpg"
+                   Margin="30" />
+            <Button Width="60"
+                    Height="60"
+                    Click="Ok_Click"
+                    Style="{StaticResource BotonOk}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,70,50"
+                    x:Name="Ok"
+                    Content="Ok" />
+        </Grid>
+        <!--#ENDREGION TUTORIAL-->
+        <!--#REGION MENSAJE NO REGRESAR-->
+        <Grid Grid.RowSpan="2"
+              Visibility="Collapsed"
+              x:Name="Aviso">
+            <Border Background="Black"
+                    Opacity=".5" />
+            <Border Background="GhostWhite"
+                    Width="500"
+                    CornerRadius="10"
+                    Height="300">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".2*" />
+                        <RowDefinition Height=".8*" />
+                    </Grid.RowDefinitions>
+                    <Border Background="red"
+                            CornerRadius="10,10,0,0">
+                        <TextBlock Text="Advertencia"
+                                   FontSize="25"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center" />
+                    </Border>
+                    <TextBlock Text="No puedes regresarte de posición"
+                               FontSize="25"
+                               Grid.Row="1"
+                               FontWeight="Light"
+                               Margin="0,20,0,0"
+                               TextAlignment="Center" />
+                    <Button Width="60"
+                            Height="60"
+                            Grid.Row="1"
+                            Click="OkRegresar_Click"
+                            Style="{StaticResource BotonOk}"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Right"
+                            x:Name="OkRegresar"
+                            Content="Ok" />
+                </Grid>
+            </Border>
+          
+        </Grid>
+        <!--#ENDREGION TUTORIAL-->
+    </Grid>
+</UserControl>

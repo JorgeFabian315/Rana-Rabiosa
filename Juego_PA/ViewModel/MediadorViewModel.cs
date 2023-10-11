@@ -3,28 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Juego_PA.ViewModel
 {
     public static class MediadorViewModel
     {
-        public static event Action? IniciarJuegoEvent;
-
-        public static void IniciarJuego()
+        public static event Action? EliminarHojasEvent;
+        public static void EliminarHojas()
         {
-            IniciarJuegoEvent?.Invoke();
+            EliminarHojasEvent?.Invoke();
         }
-        public static event Action? PintarBordesEvent;
-        public static void PintarBordes()
+        public static event Action? Nivel2Event;
+        public static void Nivel2()
         {
-            PintarBordesEvent?.Invoke();
+            Nivel2Event?.Invoke();
         }
-
 
         public static event Action? RegresarEvent;
         public static void Regresar()
         {
             RegresarEvent?.Invoke();
         }
+        public static event Action? IniciarJuegoNivel1Event;
+
+        public static void IniciarJuegoNivel1()
+        {
+            IniciarJuegoNivel1Event?.Invoke();
+        }
+
+        public static event Action? IniciarJuegoNivel2Event;
+
+        public static void IniciarJuegoNivel2()
+        {
+            IniciarJuegoNivel2Event?.Invoke();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

@@ -4,24 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Juego_PA.ViewModel"
+        xmlns:nivel="clr-namespace:Juego_PA.Views.Niveles"
         xmlns:local="clr-namespace:Juego_PA.Views"
         mc:Ignorable="d"
-        Title="PrincipallView"
+        Title="Rana Rabiosa"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
         Height="600"
         Width="1000">
     <Window.DataContext>
         <vm:JuegoViewModel x:Name="avm" />
     </Window.DataContext>
     <Grid>
-        <local:JuegoView x:Name="juegopantalla" Focusable="True"/>
-        <ContentControl Grid.RowSpan="3"
-                    Grid.ColumnSpan="4">
+        <ContentControl>
             <ContentControl.Resources>
                 <Style TargetType="ContentControl">
                     <Style.Triggers>
-
                         <DataTrigger Binding="{Binding Vista}"
                                      Value="{x:Static local:Vista.Inicio}">
                             <Setter Property="Content">
@@ -39,18 +37,51 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
-                                     Value="{x:Static local:Vista.Nivel2}">
-                            <Setter Property="Content">
-                                <Setter.Value>
-                                    <local:NIvel2View />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Vista}"
                                      Value="{x:Static local:Vista.Tutorial}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <local:TutorialView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                       
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Ganaste}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <local:PantallaGanasteView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Nivel1}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <nivel:Nivel1View  Focusable="True" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Nivel2}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <nivel:Nivel2View  Focusable="True" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Nivel3}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <nivel:Nivel3View  Focusable="True" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Nivel4}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <nivel:Nivel4View  Focusable="True" />
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>

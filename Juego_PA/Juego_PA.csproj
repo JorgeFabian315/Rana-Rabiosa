@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="Assets\cocodrilo.png" />
+    <None Remove="Assets\corazon.png" />
     <None Remove="Assets\flor.png" />
     <None Remove="Assets\hola13.jpg" />
     <None Remove="Assets\loto.png" />
+    <None Remove="Assets\mitad.png" />
     <None Remove="Assets\rana.png" />
+    <None Remove="Assets\serpiente.png" />
+    <None Remove="Assets\tornado.png" />
     <None Remove="Assets\Tutorial.jpg" />
   </ItemGroup>
 
@@ -23,10 +27,14 @@
 
   <ItemGroup>
     <Resource Include="Assets\cocodrilo.png" />
+    <Resource Include="Assets\corazon.png" />
     <Resource Include="Assets\flor.png" />
     <Resource Include="Assets\hola13.jpg" />
     <Resource Include="Assets\loto.png" />
+    <Resource Include="Assets\mitad.png" />
     <Resource Include="Assets\rana.png" />
+    <Resource Include="Assets\serpiente.png" />
+    <Resource Include="Assets\tornado.png" />
     <Resource Include="Assets\Tutorial.jpg" />
   </ItemGroup>
 

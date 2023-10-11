@@ -13,12 +13,14 @@
         </Grid.Background>
         <Button Height="66"
                 Width="73"
+                Style="{StaticResource BotonOk}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Margin="0,0,15,10"
                 Focusable="False"
                 Command="{Binding IniciarCommand}"
+                CommandParameter="1"
                 IsDefault="False"
-                Content="Ok" FontSize="20" Foreground="#FFBE0C0C" FontFamily="Segoe Script" />
+                Content="Ok" FontSize="20" />
     </Grid>
 </UserControl>
