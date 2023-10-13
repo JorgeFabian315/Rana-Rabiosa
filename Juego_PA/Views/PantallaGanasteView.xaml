@@ -22,7 +22,7 @@
                         HorizontalAlignment="Center">
                 <TextBlock TextWrapping="Wrap"
                            TextAlignment="Center"
-                           FontWeight="SemiBold">
+                           FontWeight="SemiBold" FontFamily="Algerian">
                     <TextBlock.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="Text"
@@ -85,18 +85,18 @@
                         </Style>
                     </TextBlock.Resources></TextBlock>
                 <Button Style="{StaticResource BotonVolverJugar}"
-                        Command="{Binding IniciarCommand}" />
+                        Command="{Binding IniciarCommand}" FontFamily="Ink Free" />
                 <Button IsDefault="False"
                         Tag="Nivel2"
                         x:Name="btnNivel2"
                         Focusable="False"
                         Click="btnNivel2_Click"
                         Command="{Binding IniciarCommand}"
-                        Style="{StaticResource BotonNivel2}"></Button>
+                        Style="{StaticResource BotonNivel2}" FontFamily="Ink Free"></Button>
                 <Button Content="Regresar"
                         Command="{Binding CambiarVistaCommand}"
                         Style="{StaticResource BotonesPantallaGanaste}"
-                        CommandParameter="{x:Static local:Vista.SeleccionarNivel}" />
+                        CommandParameter="{x:Static local:Vista.SeleccionarNivel}" FontFamily="Ink Free" />
             </StackPanel>
         </Border>
     </Grid>
