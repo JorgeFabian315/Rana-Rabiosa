@@ -40,6 +40,7 @@ namespace Juego_PA.ViewModel
         int _posicionYAnterior = 0;
         string _movimientoPermitido = "";
         string _movimiento = "";
+        bool _quedarseInmovil = false;
         public JuegoViewModel()
         {
             MoverCommand = new RelayCommand<Jugador>(RealizarMovimiento);
@@ -52,7 +53,7 @@ namespace Juego_PA.ViewModel
         {
             Rana.LimiteMovimientos -= 1;
 
-            if (Rana.LimiteMovimientos > 0)
+            if (Rana.LimiteMovimientos > 0 && !_quedarseInmovil)
             {
                 _posicionXAnterior = Rana.X;
                 _posicionYAnterior = Rana.Y;
@@ -104,7 +105,8 @@ namespace Juego_PA.ViewModel
                 }
 
             }
-            else
+            
+            if(Rana.LimiteMovimientos == 0)
             {
                 Vista = Vista.Ganaste;
                 GameOver = true;
@@ -136,19 +138,19 @@ namespace Juego_PA.ViewModel
                 MediadorViewModel.IniciarJuegoNivel2();
                 Vista = Vista.Nivel2;
                 Rana.Vida = 6;
-                Rana.LimiteMovimientos = 30;
+                Rana.LimiteMovimientos = 20;
             }
             else if (nivel == "3")
             {
                 Vista = Vista.Nivel3;
                 Rana.Vida = 6;
-                Rana.LimiteMovimientos = 30;
+                Rana.LimiteMovimientos = 25;
             }
             else if (nivel == "4")
             {
                 Vista = Vista.Nivel4;
                 Rana.Vida = 6;
-                Rana.LimiteMovimientos = 30;
+                Rana.LimiteMovimientos = 25;
             }
 
 
@@ -212,15 +214,17 @@ namespace Juego_PA.ViewModel
                 NivelActual = 2;
             }
 
-            if ((Rana.X == 0 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0)
-                || (Rana.X == 1 && Rana.Y == 3) || (Rana.X == 2 && Rana.Y == 1))
+            if (((Rana.X == 0 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0)
+                || (Rana.X == 1 && Rana.Y == 3) || (Rana.X == 2 && Rana.Y == 1)) && !_quedarseInmovil)
             {
                 OnPropertyChanged("Rana");
+                _quedarseInmovil = true;
                 await Task.Delay(300); // Pausa de un 0.5 segundos
+                _quedarseInmovil = false;
                 Rana.Vida -= 1;
                 Rana.X = 0;
                 Rana.Y = 0;
-                Rana.LimiteMovimientos = 30;
+                Rana.LimiteMovimientos = 20;
                 _movimiento = "";
             }
             if(Rana.Vida == 0)
