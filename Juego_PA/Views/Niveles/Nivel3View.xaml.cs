@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Juego_PA.Models;
+using Juego_PA.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,40 +26,38 @@ namespace Juego_PA.Views.Niveles
     {
         DispatcherTimer gameTimer = new();
         int _velocidadPescador = 10;
+        Jugador _jugador = new();
         public Nivel3View()
         {
             InitializeComponent();
             CrearTablero(6, 6, Tablero);
             CrearEnemigos();
-            gameTimer.Interval = TimeSpan.FromMilliseconds(50);
-            gameTimer.Tick += GameTimer_Tick;
-            gameTimer.Start();
+            //gameTimer.Interval = TimeSpan.FromMilliseconds(50);
+            //gameTimer.Tick += GameTimer_Tick;
+            //gameTimer.Start();
+            MediadorViewModel.IniciarJuegoNivel3Event += MediadorViewModel_IniciarJuegoNivel3Event;
+        }
 
+        private void MediadorViewModel_IniciarJuegoNivel3Event()
+        {
+            EliminarTodasHojas();
         }
 
         private void GameTimer_Tick(object? sender, EventArgs e)
         {
-            var getTopPescador = Canvas.GetTop(pescador);
-            var getLeftPescador = Canvas.GetLeft(pescador);
-            double limiteAbajo = Mycanvas.ActualHeight;
-            double limiteIzquierda = Mycanvas.ActualWidth;
+            //var getTopPescador = Canvas.GetTop(pescador);
+            //var getLeftPescador = Canvas.GetLeft(pescador);
+            //double limiteAbajo = Mycanvas.ActualHeight;
+            //double limiteIzquierda = Mycanvas.ActualWidth;
 
-            if(getTopPescador < limiteAbajo - pescador.Height)
-            {
-                Canvas.SetTop(pescador, getTopPescador + _velocidadPescador);
-            }
-            else if(getLeftPescador <= limiteIzquierda - pescador.Width)
-            {
-                Canvas.SetLeft(pescador, getLeftPescador + _velocidadPescador);
-            }
-            
-
-
-
-
-
-
-
+            //if(getTopPescador < limiteAbajo - pescador.Height)
+            //{
+            //    Canvas.SetTop(pescador, getTopPescador + _velocidadPescador);
+            //}
+            //else if(getLeftPescador <= limiteIzquierda - pescador.Width)
+            //{
+            //    Canvas.SetLeft(pescador, getLeftPescador + _velocidadPescador);
+            //}    
         }
 
         #region CREAR COLUMNAS Y FILAS GRID
@@ -111,9 +112,63 @@ namespace Juego_PA.Views.Niveles
             this.Focus();
         }
 
-        private void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        private async void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
+            {
+                dock.Focusable = false;
+                this.Focus();
+                this.Focusable = true;
 
+                var avm = this.DataContext as JuegoViewModel;
+
+                Movimientos movi = new();
+                if (e.Key == Key.Left)
+                    movi = Movimientos.Izquierda;
+                if (e.Key == Key.Right)
+                    movi = Movimientos.Derecha;
+                if (e.Key == Key.Up)
+                    movi = Movimientos.Arriba;
+                if (e.Key == Key.Down)
+                    movi = Movimientos.Abajo;
+
+                _jugador.Movimiento = movi;
+                _jugador.Nivel = 3;
+
+                if (avm != null)
+                    avm.MoverCommand.Execute(_jugador);
+
+
+                // CREAR HOJA EN LA MISMA POSICION DE LA RANA
+                int columnRana = Grid.GetColumn(rana);
+                int rowRana = Grid.GetRow(rana);
+
+                //if ((columnRana == 0 && rowRana == 1) || (columnRana == 3 && rowRana == 0)
+                //    || (columnRana == 2 && rowRana == 1) || (columnRana == 1 && rowRana == 3))
+                //{
+                //    await Task.Delay(300); // Pausa de un 0.5 segundos
+                //    EliminarHojas();
+                //}
+                //else
+
+
+                //ANIMACION ENEMIGOS PLANTA 
+                if (columnRana == 2 && rowRana == 2)
+                {
+                    rana.Visibility = Visibility.Collapsed;
+                    IniciarAnimacion();
+                    await Task.Delay(450); // Pausa de un 0.5 segundos
+                    rana.Visibility = Visibility.Visible;
+                    MoverImagenes(rana, 0, 0);
+                }
+                //////
+                CrearHoja(columnRana, rowRana);
+
+            }
+            else
+            {
+                MessageBox.Show("Tecla incorrecta");
+            }
         }
 
 
@@ -171,6 +226,56 @@ namespace Juego_PA.Views.Niveles
 
 
         #endregion
+
+        #region CREAR HOJA DE LOTO
+        public void CrearHoja(int colum, int row)
+        {
+            Image loto = new()
+            {
+                Width = 70,
+                Height = 70,
+                Tag = "Loto"
+
+            };
+            loto.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/loto.png"));
+            Grid.SetColumn(loto, colum);
+            Grid.SetRow(loto, row);
+            Tablero.Children.Add(loto);
+
+        }
+
+        #endregion
+
+        #region ELIMINAR HOJAS LOTO
+        public void EliminarTodasHojas()
+        {
+            foreach (var image in Tablero.Children.OfType<Image>())
+            {
+                if ((string)image.Tag == "Loto")
+                    image.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        #endregion
+
+
+        private void IniciarAnimacion()
+        {
+            // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorMataRana.
+            DoubleAnimation animacionFlorMataRana = new DoubleAnimation();
+            animacionFlorMataRana.To = 100; // Altura final deseada para FlorMataRana
+            animacionFlorMataRana.Duration = TimeSpan.FromSeconds(0.4); // Duración de la animación (en segundos)
+            // Asigna la animación al elemento de imagen FlorMataRana y comienza la animación.
+            FlorMataRana.BeginAnimation(Image.HeightProperty, animacionFlorMataRana);
+            
+            // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorRoja.
+            DoubleAnimation animacionFlorRoja = new DoubleAnimation();
+            animacionFlorRoja.To = 0; // Altura final deseada para FlorRoja
+            animacionFlorRoja.Duration = TimeSpan.FromSeconds(0.3); // Duración de la animación (en segundos)
+            // Asigna la animación al elemento de imagen FlorRoja y comienza la animación.
+            FlorRoja.BeginAnimation(Image.HeightProperty, animacionFlorRoja);
+        }
+
 
 
     }

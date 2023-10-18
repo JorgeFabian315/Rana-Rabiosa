@@ -144,13 +144,15 @@ namespace Juego_PA.ViewModel
             {
                 Vista = Vista.Nivel3;
                 Rana.Vida = 6;
-                Rana.LimiteMovimientos = 25;
+                MediadorViewModel.IniciarJuegoNivel3();
+                Rana.LimiteMovimientos = 20;
             }
             else if (nivel == "4")
             {
                 Vista = Vista.Nivel4;
                 Rana.Vida = 6;
-                Rana.LimiteMovimientos = 25;
+                MediadorViewModel.IniciarJuegoNivel4();
+                Rana.LimiteMovimientos = 20;
             }
 
 

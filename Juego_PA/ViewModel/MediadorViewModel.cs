@@ -39,8 +39,18 @@ namespace Juego_PA.ViewModel
             IniciarJuegoNivel2Event?.Invoke();
         }
 
+        public static event Action? IniciarJuegoNivel3Event;
 
+        public static void IniciarJuegoNivel3()
+        {
+            IniciarJuegoNivel3Event?.Invoke();
+        }
+        public static event Action? IniciarJuegoNivel4Event;
 
+        public static void IniciarJuegoNivel4()
+        {
+            IniciarJuegoNivel4Event?.Invoke();
+        }
 
 
 

@@ -12,10 +12,12 @@
              Focusable="True"
              Loaded="UserControl_Loaded"
              PreviewKeyDown="UserControl_PreviewKeyDown">
-    <DockPanel Background="#C0D3E4">
+    <DockPanel Background="#C0D3E4"
+               x:Name="dock">
         <Grid DockPanel.Dock="Top"
               Height="60"
               Margin="5"
+              Focusable="False"
               Background="DeepSkyBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".1*" />
@@ -52,7 +54,7 @@
                            FontSize="15"
                            Foreground="White"
                            FontWeight="SemiBold" />
-                <TextBlock Text="10"
+                <TextBlock Text="{Binding Rana.LimiteMovimientos}"
                            FontFamily="/Assets/#Spicy Nachos"
                            FontSize="35"
                            Foreground="White"
@@ -63,7 +65,7 @@
                            FontSize="15"
                            Foreground="White"
                            FontWeight="SemiBold" />
-                <TextBlock Text="1000"
+                <TextBlock Text="{Binding Rana.Puntaje}"
                            FontFamily="/Assets/#Spicy Nachos"
                            FontSize="35"
                            Foreground="White"
@@ -165,8 +167,10 @@
                 </Image>
             </WrapPanel>
         </Grid>
+        
         <Grid x:Name="Tablero"
               Background="#C0D3E4"
+              Focusable="True"
               Margin="5 0 5 5">
             <Grid.Resources>
                 <Style  TargetType="Border">
@@ -176,6 +180,8 @@
                             Value="3" />
                 </Style>
             </Grid.Resources>
+            
+            
             <!--#REGION RANA Y FLOR-->
             <Image Width="70"
                    Tag="LotoInicial"
@@ -189,7 +195,7 @@
                    Grid.Column="4"
                    Grid.Row="1"
                    Source="/Assets/moneda.png" />
-            <Image Width="120"
+            <Image Width="80"
                    Grid.Column="5"
                    Grid.Row="5"
                    Tag="Flor"
@@ -206,11 +212,71 @@
                    Grid.Row="{Binding Rana.Y}"
                    Height="50" />
             <!--#ENDREGION RANA Y FLOR-->
+            
+            
+            <!--#REGION ENEMIGOS PLANTA-->
+            <Border Background="DeepSkyBlue"
+                    Grid.Column="2"
+                    Grid.ZIndex="4"
+                    Grid.Row="2">
+                <!--<Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                 Storyboard.TargetName="FlorMataRana"
+                                                 To="100"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                 Storyboard.TargetName="FlorRoja"
+                                                 To="0"
+                                                 Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                 Storyboard.TargetName="FlorMataRana"
+                                                 To="0"
+                                                 Duration="0:0:0.2" />
+                                <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                 Storyboard.TargetName="FlorRoja"
+                                                 To="100"
+                                                 Duration="0:0:0.4" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Border.Triggers>-->
+            </Border>
+            <Image Width="60"
+                   Height="60"
+                   Tag="LotoInicial"
+                   Grid.ZIndex="4"
+                   Grid.Column="2"
+                   Grid.Row="2"
+                   x:Name="FlorRoja"
+                   Source="/Assets/flormala.png" />
+            <Image Width="100"
+                   Height="0"
+                   Tag="LotoInicial"
+                   Grid.ZIndex="4"
+                   Grid.Column="2"
+                   Margin="0 0 0 10"
+                   Grid.Row="1"
+                   Grid.RowSpan="2"
+                   VerticalAlignment="Bottom"
+                   x:Name="FlorMataRana"
+                   Source="/Assets/flormatarana.png" />
+            <!--#ENDREGION ENEMIGOS PLANTA-->
+            
             <!--#REGION CANVAS ENEMIGOS MOVIMIENTO-->
-            <Canvas Grid.Column="3"
+            <!--<Canvas Grid.Column="3"
                     Grid.ColumnSpan="3"
                     Grid.ZIndex="3"
                     Grid.RowSpan="3"
+                    Focusable="False"
                     Grid.Row="0"
                     x:Name="Mycanvas">
                 <Rectangle Width="120"
@@ -222,8 +288,11 @@
                         <ImageBrush ImageSource="/Assets/lancha.png" />
                     </Rectangle.Fill>
                 </Rectangle>
-            </Canvas>
+            </Canvas>-->
             <!--#ENDREGION CANVAS ENEMIGOS MOVIMIENTO-->
+            
+            
+            
         </Grid>
     </DockPanel>
 </UserControl>

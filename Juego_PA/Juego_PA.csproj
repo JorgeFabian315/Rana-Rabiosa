@@ -11,6 +11,8 @@
     <None Remove="Assets\cocodrilo.png" />
     <None Remove="Assets\corazon.png" />
     <None Remove="Assets\flor.png" />
+    <None Remove="Assets\flormala.png" />
+    <None Remove="Assets\flormatarana.png" />
     <None Remove="Assets\hola13.jpg" />
     <None Remove="Assets\lancha.png" />
     <None Remove="Assets\loto.png" />
@@ -21,6 +23,11 @@
     <None Remove="Assets\Spicy Nachos.otf" />
     <None Remove="Assets\tornado.png" />
     <None Remove="Assets\Tutorial.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\flormala.png" />
+    <Resource Include="Assets\flormatarana.png" />
   </ItemGroup>
 
   <ItemGroup>
