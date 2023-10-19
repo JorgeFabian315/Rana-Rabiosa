@@ -18,11 +18,13 @@
     <None Remove="Assets\loto.png" />
     <None Remove="Assets\mitad.png" />
     <None Remove="Assets\moneda.png" />
+    <None Remove="Assets\pirana.png" />
     <None Remove="Assets\rana.png" />
     <None Remove="Assets\serpiente.png" />
     <None Remove="Assets\Spicy Nachos.otf" />
     <None Remove="Assets\tornado.png" />
     <None Remove="Assets\Tutorial.jpg" />
+    <None Remove="Assets\tutorial2.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,11 +46,13 @@
     <Resource Include="Assets\loto.png" />
     <Resource Include="Assets\mitad.png" />
     <Resource Include="Assets\moneda.png" />
+    <Resource Include="Assets\pirana.png" />
     <Resource Include="Assets\rana.png" />
     <Resource Include="Assets\serpiente.png" />
     <Resource Include="Assets\Spicy Nachos.otf" />
     <Resource Include="Assets\tornado.png" />
     <Resource Include="Assets\Tutorial.jpg" />
+    <Resource Include="Assets\tutorial2.jpeg" />
   </ItemGroup>
 
 </Project>

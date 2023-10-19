@@ -27,15 +27,19 @@ namespace Juego_PA.Views.Niveles
         DispatcherTimer gameTimer = new();
         int _velocidadPescador = 10;
         Jugador _jugador = new();
+        Movimientos movi = new();
         public Nivel3View()
         {
             InitializeComponent();
+            IniciarJuego();
+        }
+
+        public void IniciarJuego()
+        {
             CrearTablero(6, 6, Tablero);
             CrearEnemigos();
-            //gameTimer.Interval = TimeSpan.FromMilliseconds(50);
-            //gameTimer.Tick += GameTimer_Tick;
-            //gameTimer.Start();
             MediadorViewModel.IniciarJuegoNivel3Event += MediadorViewModel_IniciarJuegoNivel3Event;
+            CrearMoneda();
         }
 
         private void MediadorViewModel_IniciarJuegoNivel3Event()
@@ -43,22 +47,6 @@ namespace Juego_PA.Views.Niveles
             EliminarTodasHojas();
         }
 
-        private void GameTimer_Tick(object? sender, EventArgs e)
-        {
-            //var getTopPescador = Canvas.GetTop(pescador);
-            //var getLeftPescador = Canvas.GetLeft(pescador);
-            //double limiteAbajo = Mycanvas.ActualHeight;
-            //double limiteIzquierda = Mycanvas.ActualWidth;
-
-            //if(getTopPescador < limiteAbajo - pescador.Height)
-            //{
-            //    Canvas.SetTop(pescador, getTopPescador + _velocidadPescador);
-            //}
-            //else if(getLeftPescador <= limiteIzquierda - pescador.Width)
-            //{
-            //    Canvas.SetLeft(pescador, getLeftPescador + _velocidadPescador);
-            //}    
-        }
 
         #region CREAR COLUMNAS Y FILAS GRID
         public void CrearTablero(int numColum, int numFila, Grid tablero)
@@ -107,10 +95,7 @@ namespace Juego_PA.Views.Niveles
 
         #endregion
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.Focus();
-        }
+       
 
         private async void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -122,15 +107,21 @@ namespace Juego_PA.Views.Niveles
 
                 var avm = this.DataContext as JuegoViewModel;
 
-                Movimientos movi = new();
-                if (e.Key == Key.Left)
-                    movi = Movimientos.Izquierda;
-                if (e.Key == Key.Right)
-                    movi = Movimientos.Derecha;
-                if (e.Key == Key.Up)
-                    movi = Movimientos.Arriba;
-                if (e.Key == Key.Down)
-                    movi = Movimientos.Abajo;
+                switch (e.Key)
+                {
+                    case Key.Left:
+                        movi = Movimientos.Izquierda;
+                        break;
+                    case Key.Right:
+                        movi = Movimientos.Derecha;
+                        break;
+                    case Key.Up:
+                        movi = Movimientos.Arriba;
+                        break;
+                    case Key.Down:
+                        movi = Movimientos.Abajo;
+                        break;
+                }
 
                 _jugador.Movimiento = movi;
                 _jugador.Nivel = 3;
@@ -156,13 +147,15 @@ namespace Juego_PA.Views.Niveles
                 if (columnRana == 2 && rowRana == 2)
                 {
                     rana.Visibility = Visibility.Collapsed;
-                    IniciarAnimacion();
-                    await Task.Delay(450); // Pausa de un 0.5 segundos
-                    rana.Visibility = Visibility.Visible;
-                    MoverImagenes(rana, 0, 0);
+                    IniciarAnimacionPlantas();
+                    await Task.Delay(500); // Pausa de un 0.5 segundos
+                    TerminarAnimacionPlantas();
                 }
-                //////
-                CrearHoja(columnRana, rowRana);
+                else
+                {
+
+                    CrearHoja(columnRana, rowRana);
+                }
 
             }
             else
@@ -171,25 +164,49 @@ namespace Juego_PA.Views.Niveles
             }
         }
 
+        #region CREAR MONEDA 
+        public void CrearMoneda()
+        {
+            Image moneda1 = new()
+            {
+                Tag = "Moneda",
+                Source = new BitmapImage(new Uri("pack://application:,,,/Assets/moneda.png")),
+                Margin = new Thickness(7)
+
+            };
+            Image moneda2 = new()
+            {
+                Tag = "Moneda",
+                Source = new BitmapImage(new Uri("pack://application:,,,/Assets/moneda.png")),
+                Margin = new Thickness(7)
+
+            };
+
+            MoverAgregarImagenes(moneda1, 1, 5);
+            MoverAgregarImagenes(moneda2, 5, 1);
+
+
+        }
+        #endregion
 
         #region CREAR ENEMIGOS
         public void CrearEnemigos()
         {
-            //Image _cocodrilo1 = new()
-            //{
-            //    Tag = "Enemigo",
-            //    Source = new BitmapImage(new Uri("pack://application:,,,/Assets/cocodrilo.png")),
-            //    Margin = new Thickness(20)
+            Image _pirana1 = new()
+            {
+                Tag = "Enemigo",
+                Source = new BitmapImage(new Uri("pack://application:,,,/Assets/pirana.png")),
+                Margin = new Thickness(7)
 
-            //};
+            };
+            Image _pirana2 = new()
+            {
+                Tag = "Enemigo",
+                Source = new BitmapImage(new Uri("pack://application:,,,/Assets/pirana.png")),
+                Margin = new Thickness(7)
 
-            //Image _cocodrilo2 = new()
-            //{
-            //    Tag = "Enemigo",
-            //    Source = new BitmapImage(new Uri("/Juego_PA;component/Assets/cocodrilo.png", UriKind.Relative)),
-            //    Margin = new Thickness(20)
+            };
 
-            //};
             Image _serpiente1 = new()
             {
                 Tag = "Enemigo",
@@ -204,24 +221,22 @@ namespace Juego_PA.Views.Niveles
                 Margin = new Thickness(7)
 
             };
-            //MoverImagenes(_cocodrilo1, 0, 1);
-            //MoverImagenes(_cocodrilo2, 3, 0);
-            MoverImagenes(_serpiente1, 0, 5);
-            MoverImagenes(_serpiente2, 5, 4);
 
-            //Tablero.Children.Add(_cocodrilo1);
-            //Tablero.Children.Add(_cocodrilo2);
-            Tablero.Children.Add(_serpiente1);
-            Tablero.Children.Add(_serpiente2);
+            MoverAgregarImagenes(_pirana1, 0, 2);
+            MoverAgregarImagenes(_pirana2, 5, 0);
+            MoverAgregarImagenes(_serpiente1, 0, 5);
+            MoverAgregarImagenes(_serpiente2, 5, 4);
 
         }
         #endregion
 
         #region MOVER ENEMIGOS Y IMAGENES
-        public void MoverImagenes(Image enemigo, int x, int y)
+        public void MoverAgregarImagenes(Image enemigo, int x, int y)
         {
             Grid.SetColumn(enemigo, x);
             Grid.SetRow(enemigo, y);
+
+            Tablero.Children.Add(enemigo);
         }
 
 
@@ -258,25 +273,50 @@ namespace Juego_PA.Views.Niveles
 
         #endregion
 
-
-        private void IniciarAnimacion()
+        #region ANIMACIONES PLANTAS CARNIVORAS
+        private void IniciarAnimacionPlantas()
         {
             // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorMataRana.
             DoubleAnimation animacionFlorMataRana = new DoubleAnimation();
             animacionFlorMataRana.To = 100; // Altura final deseada para FlorMataRana
-            animacionFlorMataRana.Duration = TimeSpan.FromSeconds(0.4); // Duración de la animación (en segundos)
+            animacionFlorMataRana.Duration = TimeSpan.FromSeconds(0.5); // Duración de la animación (en segundos)
             // Asigna la animación al elemento de imagen FlorMataRana y comienza la animación.
             FlorMataRana.BeginAnimation(Image.HeightProperty, animacionFlorMataRana);
-            
+
             // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorRoja.
             DoubleAnimation animacionFlorRoja = new DoubleAnimation();
             animacionFlorRoja.To = 0; // Altura final deseada para FlorRoja
-            animacionFlorRoja.Duration = TimeSpan.FromSeconds(0.3); // Duración de la animación (en segundos)
+            animacionFlorRoja.Duration = TimeSpan.FromSeconds(0.5); // Duración de la animación (en segundos)
             // Asigna la animación al elemento de imagen FlorRoja y comienza la animación.
             FlorRoja.BeginAnimation(Image.HeightProperty, animacionFlorRoja);
         }
+        private void TerminarAnimacionPlantas()
+        {
 
+            rana.Visibility = Visibility.Visible;
+            EliminarTodasHojas();
+            var avm = this.DataContext as JuegoViewModel;
+            avm?.MoverRanaOrigen.Execute(null);
 
+            // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorMataRana.
+            DoubleAnimation animacionFlorMataRana = new DoubleAnimation();
+            animacionFlorMataRana.To = 0; // Altura final deseada para FlorMataRana
+            animacionFlorMataRana.Duration = TimeSpan.FromSeconds(0.5); // Duración de la animación (en segundos)
+            // Asigna la animación al elemento de imagen FlorMataRana y comienza la animación.
+            FlorMataRana.BeginAnimation(Image.HeightProperty, animacionFlorMataRana);
 
+            // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorRoja.
+            DoubleAnimation animacionFlorRoja = new DoubleAnimation();
+            animacionFlorRoja.To = 100; // Altura final deseada para FlorRoja
+            animacionFlorRoja.Duration = TimeSpan.FromSeconds(0.5); // Duración de la animación (en segundos)
+            // Asigna la animación al elemento de imagen FlorRoja y comienza la animación.
+            FlorRoja.BeginAnimation(Image.HeightProperty, animacionFlorRoja);
+        }
+        #endregion ANIMACIONES PLANTAS CARNIVORAS
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus();
+        }
     }
 }

@@ -138,8 +138,8 @@
                         FontSize="20" />
                 <Button Content="Nivel 2"
                         Style="{StaticResource BotonDesbloqueado}"
-                        Command="{Binding IniciarCommand}"
-                        CommandParameter="2"
+                        Command="{Binding CambiarVistaCommand}"
+                        CommandParameter="{x:Static local:Vista.Tutorial2}"
                         FontFamily="Monotype Corsiva"
                         FontSize="20" />
                 <Button Content="Nivel 3"

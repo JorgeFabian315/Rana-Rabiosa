@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -34,7 +35,15 @@ namespace Juego_PA.ViewModel
         public ICommand IniciarCommand { get; set; }
         public ICommand CambiarVistaCommand { get; set; }
         public ICommand Nivel2Command { get; set; }
+        public ICommand MoverRanaOrigen => new RelayCommand(MoverRana);
 
+        private void MoverRana()
+        {
+            Rana.X = 0;
+            Rana.Y = 0;
+            Rana.Vida -= 2;
+            OnPropertyChanged(nameof(Rana));
+        }
 
         int _posicionXAnterior = 0;
         int _posicionYAnterior = 0;
@@ -105,8 +114,8 @@ namespace Juego_PA.ViewModel
                 }
 
             }
-            
-            if(Rana.LimiteMovimientos == 0)
+
+            if (Rana.LimiteMovimientos == 0)
             {
                 Vista = Vista.Ganaste;
                 GameOver = true;
@@ -115,7 +124,7 @@ namespace Juego_PA.ViewModel
             OnPropertyChanged();
         }
 
-     
+
         public void IniciarJuego(string nivel)
         {
 
@@ -161,7 +170,7 @@ namespace Juego_PA.ViewModel
         private async void Nivel1()
         {
             regex = new(@"^(DDBB|BBDD|DDBDBI)$");
-            if ((_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y) 
+            if ((_posicionXAnterior >= Rana.X && _posicionYAnterior >= Rana.Y)
                 && _patron != "DDBD" && _movimientoPermitido != "I")
             {
                 MediadorViewModel.Regresar();
@@ -210,7 +219,7 @@ namespace Juego_PA.ViewModel
                 await Task.Delay(300); // Pausa de un 0.5 segundos
                 Vista = Vista.Ganaste;
                 // Si cumple la expresion regular se suma 100  y si no 80 y si hace 15 movimientos se sumara 50
-                Rana.Puntaje += regex.IsMatch(_movimiento) ? 100 : _movimiento.Length > 15 ? 50 : 80; 
+                Rana.Puntaje += regex.IsMatch(_movimiento) ? 100 : _movimiento.Length > 15 ? 50 : 80;
                 Rana.Puntaje += (Rana.Vida * 10); // Se le sumara el puntaje dependiendo de su vida 
                 Rana.LimiteMovimientos = 0;
                 NivelActual = 2;
@@ -229,18 +238,31 @@ namespace Juego_PA.ViewModel
                 Rana.LimiteMovimientos = 20;
                 _movimiento = "";
             }
-            if(Rana.Vida == 0)
-            {
-                OnPropertyChanged("Rana");
-                await Task.Delay(300); // Pausa de un 0.5 segundos
-                Vista = Vista.Ganaste;
-                GameOver = true;
-            }
 
+
+            ///////////
+
+            if (Rana.Vida == 0)
+            {
+                 PerdistePorVidas();
+            }
             OnPropertyChanged();
         }
         private void Nivel3()
         {
+
+            if (Rana.Vida == 0)
+            {
+                PerdistePorVidas();
+            }
+
+
+
+
+
+
+
+
             OnPropertyChanged();
         }
         private void Nivel4()
@@ -250,6 +272,13 @@ namespace Juego_PA.ViewModel
         }
 
 
+        private async void PerdistePorVidas()
+        {
+            OnPropertyChanged(nameof(Rana));
+            await Task.Delay(300); // Pausa de un 0.5 segundos
+            Vista = Vista.Ganaste;
+            GameOver = true;
+        }
 
 
 
