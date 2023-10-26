@@ -12,22 +12,248 @@
              Focusable="True"
              Loaded="UserControl_Loaded"
              PreviewKeyDown="UserControl_PreviewKeyDown">
-    <DockPanel Background="#C0D3E4"
-               x:Name="dock">
-        <Grid DockPanel.Dock="Top"
-              Height="60"
-              Margin="5"
-              Focusable="False"
-              Background="DeepSkyBlue">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".1*" />
-                <ColumnDefinition Width=".2*" />
-                <ColumnDefinition Width=".4*" />
-                <ColumnDefinition Width=".1*" />
-                <ColumnDefinition Width=".2*" />
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <DockPanel Background="#C0D3E4"
+                   x:Name="dock"
+                   Visibility="Collapsed">
+            <Grid DockPanel.Dock="Top"
+                  Height="60"
+                  Margin="5"
+                  Focusable="False"
+                  Background="DeepSkyBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".1*" />
+                    <ColumnDefinition Width=".2*" />
+                    <ColumnDefinition Width=".4*" />
+                    <ColumnDefinition Width=".1*" />
+                    <ColumnDefinition Width=".2*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.ZIndex="5"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Command="{Binding CambiarVistaCommand}"
+                        CommandParameter="{x:Static vista:Vista.SeleccionarNivel}"
+                        Style="{StaticResource botonTutorial}">
+                    <ico:ImageAwesome Icon="ArrowLeft"
+                                      Margin="3">
+                        <ico:ImageAwesome.Resources>
+                            <Style TargetType="ico:ImageAwesome">
+                                <Setter Property="Foreground"
+                                        Value="#141726" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
+                                                 Value="True">
+                                        <Setter Property="Foreground"
+                                                Value="#fff" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ico:ImageAwesome.Resources>
+                    </ico:ImageAwesome>
+                </Button>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Limite de Movimientos: "
+                               FontSize="15"
+                               Foreground="White"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Rana.LimiteMovimientos}"
+                               FontFamily="/Assets/#Spicy Nachos"
+                               FontSize="35"
+                               Foreground="White"
+                               FontWeight="DemiBold" />
+                </StackPanel>
+                <StackPanel Grid.Column="3">
+                    <TextBlock Text="Puntaje: "
+                               FontSize="15"
+                               Foreground="White"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Rana.Puntaje}"
+                               FontFamily="/Assets/#Spicy Nachos"
+                               FontSize="35"
+                               Foreground="White"
+                               FontWeight="DemiBold" />
+                </StackPanel>
+                <TextBlock Grid.ColumnSpan="5"
+                           HorizontalAlignment="Center"
+                           FontSize="50"
+                           Foreground="White"
+                           FontFamily="/Assets/#Spicy Nachos"
+                           Text="Nivel 3" />
+                <WrapPanel Grid.Column="4"
+                           Margin="7"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right">
+                    <Image Height="35"
+                           Grid.ZIndex="1">
+                        <Image.Resources>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source"
+                                        Value="/Assets/corazon.png" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="1">
+                                        <Setter Property="Source"
+                                                Value="/Assets/mitad.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="0">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Resources>
+                    </Image>
+                    <Image Height="35"
+                           Grid.ZIndex="1">
+                        <Image.Resources>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source"
+                                        Value="/Assets/corazon.png" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="3">
+                                        <Setter Property="Source"
+                                                Value="/Assets/mitad.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="2">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="1">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Resources>
+                    </Image>
+                    <Image Height="35"
+                           Grid.ZIndex="1">
+                        <Image.Resources>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source"
+                                        Value="/Assets/corazon.png" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="5">
+                                        <Setter Property="Source"
+                                                Value="/Assets/mitad.png" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="4">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="3">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="2">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Rana.Vida}"
+                                                 Value="1">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Resources>
+                    </Image>
+                </WrapPanel>
+            </Grid>
+            <Grid x:Name="Tablero"
+                  Background="#C0D3E4"
+                  Focusable="True"
+                  Margin="5,0,5,5">
+                <Grid.Resources>
+                    <Style  TargetType="Border">
+                        <Setter Property="Margin"
+                                Value="2" />
+                        <Setter Property="CornerRadius"
+                                Value="3" />
+                    </Style>
+                </Grid.Resources>
+                <!--#REGION RANA Y FLOR-->
+                <Image Width="70"
+                       Tag="LotoInicial"
+                       Grid.ZIndex="4"
+                       Source="/Assets/loto.png"
+                       Height="70" />
+                <Image Width="80"
+                       Grid.Column="5"
+                       Grid.Row="5"
+                       Tag="Flor"
+                       Grid.ZIndex="5"
+                       x:Name="flor"
+                       Source="/Assets/flor.png"
+                       Height="80" />
+                <Image Width="50"
+                       x:Name="rana"
+                       Tag="Rana"
+                       Source="/Assets/rana.png"
+                       Grid.ZIndex="6"
+                       Grid.Column="{Binding Rana.X}"
+                       Grid.Row="{Binding Rana.Y}"
+                       Height="50" />
+                <!--#ENDREGION RANA Y FLOR-->
+                <!--#REGION ENEMIGOS PLANTA-->
+                <Image Width="60"
+                       Height="60"
+                       Tag="LotoInicial"
+                       Grid.ZIndex="4"
+                       Grid.Column="3"
+                       Grid.Row="2"
+                       x:Name="FlorRoja"
+                       Source="/Assets/flormala.png" />
+                <Image Width="100"
+                       Height="0"
+                       Tag="LotoInicial"
+                       Grid.ZIndex="4"
+                       Grid.Column="3"
+                       Margin="0 0 0 10"
+                       Grid.Row="1"
+                       Grid.RowSpan="2"
+                       VerticalAlignment="Bottom"
+                       x:Name="FlorMataRana"
+                       Source="/Assets/flormatarana.png" />
+                <Image Width="60"
+                       Height="60"
+                       Tag="LotoInicial"
+                       Grid.ZIndex="4"
+                       Grid.Column="4"
+                       Grid.Row="4"
+                       x:Name="FlorRoja2"
+                       Source="/Assets/flormala.png" />
+                <Image Width="100"
+                       Height="0"
+                       Tag="LotoInicial"
+                       Grid.ZIndex="4"
+                       Grid.Column="4"
+                       Margin="0 0 0 10"
+                       Grid.Row="3"
+                       Grid.RowSpan="2"
+                       VerticalAlignment="Bottom"
+                       x:Name="FlorMataRana2"
+                       Source="/Assets/flormatarana.png" /> 
+                <!--#ENDREGION ENEMIGOS PLANTA-->
+                <Border Background="Black"
+                        Grid.ColumnSpan="6"
+                        Grid.ZIndex="10"
+                        Opacity="0"
+                        x:Name="bordeTransicion"
+                        Grid.RowSpan="6" />
+            </Grid>
+        </DockPanel>
+        <Grid>
             <Button Grid.ZIndex="5"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Left"
                     Command="{Binding CambiarVistaCommand}"
                     CommandParameter="{x:Static vista:Vista.SeleccionarNivel}"
@@ -42,211 +268,19 @@
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
                                              Value="True">
                                     <Setter Property="Foreground"
-                                            Value="#fff" />
+                                            Value="DeepSkyBlue" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </ico:ImageAwesome.Resources>
                 </ico:ImageAwesome>
             </Button>
-            <StackPanel Grid.Column="1">
-                <TextBlock Text="Limite de Movimientos: "
-                           FontSize="15"
-                           Foreground="White"
-                           FontWeight="SemiBold" />
-                <TextBlock Text="{Binding Rana.LimiteMovimientos}"
-                           FontFamily="/Assets/#Spicy Nachos"
-                           FontSize="35"
-                           Foreground="White"
-                           FontWeight="DemiBold" />
-            </StackPanel>
-            <StackPanel Grid.Column="3">
-                <TextBlock Text="Puntaje: "
-                           FontSize="15"
-                           Foreground="White"
-                           FontWeight="SemiBold" />
-                <TextBlock Text="{Binding Rana.Puntaje}"
-                           FontFamily="/Assets/#Spicy Nachos"
-                           FontSize="35"
-                           Foreground="White"
-                           FontWeight="DemiBold" />
-            </StackPanel>
-            <TextBlock Grid.ColumnSpan="5"
-                       HorizontalAlignment="Center"
-                       FontSize="50"
-                       Foreground="White"
-                       FontFamily="/Assets/#Spicy Nachos"
-                       Text="Nivel 3" />
-            <WrapPanel Grid.Column="4"
-                       Margin="7"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Right">
-                <Image Height="35"
-                       Grid.ZIndex="1">
-                    <Image.Resources>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source"
-                                    Value="/Assets/corazon.png" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="1">
-                                    <Setter Property="Source"
-                                            Value="/Assets/mitad.png" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="0">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Resources>
-                </Image>
-                <Image Height="35"
-                       Grid.ZIndex="1">
-                    <Image.Resources>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source"
-                                    Value="/Assets/corazon.png" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="3">
-                                    <Setter Property="Source"
-                                            Value="/Assets/mitad.png" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="2">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="1">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Resources>
-                </Image>
-                <Image Height="35"
-                       Grid.ZIndex="1">
-                    <Image.Resources>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source"
-                                    Value="/Assets/corazon.png" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="5">
-                                    <Setter Property="Source"
-                                            Value="/Assets/mitad.png" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="4">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="3">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="2">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Rana.Vida}"
-                                             Value="1">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Resources>
-                </Image>
-            </WrapPanel>
+            <TextBlock HorizontalAlignment="Center"
+                       FontSize="70"
+                       FontWeight="SemiBold"
+                       Text="Próximamente el nivel 3"
+                       Foreground="DeepSkyBlue"
+                       VerticalAlignment="Center" />
         </Grid>
-        <Grid x:Name="Tablero"
-              Background="#C0D3E4"
-              Focusable="True"
-              Margin="5 0 5 5">
-            <Grid.Resources>
-                <Style  TargetType="Border">
-                    <Setter Property="Margin"
-                            Value="2" />
-                    <Setter Property="CornerRadius"
-                            Value="3" />
-                </Style>
-            </Grid.Resources>
-            <!--#REGION RANA Y FLOR-->
-            <Image Width="70"
-                   Tag="LotoInicial"
-                   Grid.ZIndex="4"
-                   Source="/Assets/loto.png"
-                   Height="70" />
-            <Image Width="80"
-                   Grid.Column="5"
-                   Grid.Row="5"
-                   Tag="Flor"
-                   Grid.ZIndex="5"
-                   x:Name="flor"
-                   Source="/Assets/flor.png"
-                   Height="80" />
-            <Image Width="50"
-                   x:Name="rana"
-                   Tag="Rana"
-                   Source="/Assets/rana.png"
-                   Grid.ZIndex="6"
-                   Grid.Column="{Binding Rana.X}"
-                   Grid.Row="{Binding Rana.Y}"
-                   Height="50" />
-            <!--#ENDREGION RANA Y FLOR-->
-            <!--#REGION ENEMIGOS PLANTA-->
-            <Image Width="60"
-                   Height="60"
-                   Tag="LotoInicial"
-                   Grid.ZIndex="4"
-                   Grid.Column="3"
-                   Grid.Row="2"
-                   x:Name="FlorRoja"
-                   Source="/Assets/flormala.png" />
-            <Image Width="100"
-                   Height="0"
-                   Tag="LotoInicial"
-                   Grid.ZIndex="4"
-                   Grid.Column="3"
-                   Margin="0 0 0 10"
-                   Grid.Row="1"
-                   Grid.RowSpan="2"
-                   VerticalAlignment="Bottom"
-                   x:Name="FlorMataRana"
-                   Source="/Assets/flormatarana.png" />
-            <Image Width="60"
-                   Height="60"
-                   Tag="LotoInicial"
-                   Grid.ZIndex="4"
-                   Grid.Column="4"
-                   Grid.Row="4"
-                   x:Name="FlorRoja2"
-                   Source="/Assets/flormala.png" />
-            <Image Width="100"
-                   Height="0"
-                   Tag="LotoInicial"
-                   Grid.ZIndex="4"
-                   Grid.Column="4"
-                   Margin="0 0 0 10"
-                   Grid.Row="3"
-                   Grid.RowSpan="2"
-                   VerticalAlignment="Bottom"
-                   x:Name="FlorMataRana2"
-                   Source="/Assets/flormatarana.png" />
-            <!--#ENDREGION ENEMIGOS PLANTA-->
-            <Border Background="Black"
-                    Grid.ColumnSpan="6"
-                    Grid.ZIndex="10"
-                    Opacity="0"
-                    x:Name="bordeTransicion"
-                    Grid.RowSpan="6" />
-        </Grid>
-    </DockPanel>
+    </Grid>
 </UserControl>

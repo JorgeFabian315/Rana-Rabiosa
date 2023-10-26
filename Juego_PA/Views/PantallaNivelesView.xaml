@@ -32,7 +32,7 @@
                         <Setter Property="Width"
                                 Value="100" />
                         <Setter Property="Background"
-                                Value="#007216" />
+                                Value="#63DF41" />
                         <Setter Property="Cursor"
                                 Value="Hand" />
                       
@@ -143,15 +143,11 @@
                         FontFamily="Monotype Corsiva"
                         FontSize="20" />
                 <Button Content="Nivel 3"
-                        Style="{StaticResource BotonDesbloqueado}"
-                        Command="{Binding IniciarCommand}"
-                        CommandParameter="3"
+                        Style="{StaticResource BotonBloqueado}"
                         FontFamily="Monotype Corsiva"
                         FontSize="20" />
                 <Button Content="Nivel 4"
-                        Command="{Binding IniciarCommand}"
-                        CommandParameter="4"
-                        Style="{StaticResource BotonDesbloqueado}"
+                        Style="{StaticResource BotonBloqueado}"
                         FontFamily="Monotype Corsiva"
                         FontSize="20" />
             </WrapPanel>

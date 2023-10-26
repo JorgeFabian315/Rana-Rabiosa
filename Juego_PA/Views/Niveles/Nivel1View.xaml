@@ -11,15 +11,16 @@
              d:DesignWidth="1000"
              Loaded="OnLoaded"
              PreviewKeyDown="Tablero_PreviewKeyDown"
-             Focusable="True">
+             Focusable="True"
+             Background="#C0D3E4">
     <Grid Focusable="False"
           x:Name="dock">
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*" />
             <RowDefinition Height=".9*" />
         </Grid.RowDefinitions>
-        <Grid DockPanel.Dock="Top"
-              Background="#004881">
+        <Grid Background="DeepSkyBlue"
+              Margin="5,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".1*" />
                 <ColumnDefinition Width=".2*" />
@@ -51,13 +52,11 @@
             </Button>
             <TextBlock Text="Nivel 1"
                        Focusable="False"
-                       Height="60"
                        Grid.ColumnSpan="4"
                        HorizontalAlignment="Center"
                        FontSize="30"
                        Foreground="White"
-                       VerticalAlignment="Center"
-                       TextAlignment="Center" />
+                       VerticalAlignment="Center" />
             <Button Grid.Column="4"
                     Grid.ZIndex="5"
                     VerticalAlignment="Center"
@@ -81,19 +80,20 @@
                 </ico:ImageAwesome>
             </Button>
             <StackPanel Grid.Column="1"
-                       VerticalAlignment="Center">
+                        VerticalAlignment="Center">
                 <TextBlock Text="Limite Movimientos: "
                            FontSize="16"
                            Foreground="White"
                            FontWeight="SemiBold" />
                 <TextBlock Text="{Binding Rana.LimiteMovimientos}"
-                           FontSize="20"
+                           FontSize="25"
                            Foreground="White"
                            FontWeight="SemiBold" />
             </StackPanel>
         </Grid>
         <Grid x:Name="Tablero"
               Grid.Row="1"
+              Margin="5,10"
               Focusable="True">
             <Grid.Resources>
                 <Style TargetType="Image">
@@ -186,40 +186,7 @@
             </Border>
         </Grid>
         <!--#ENDREGION TUTORIAL-->
-        <!--#REGION TECLA INCORRECTA-->
-        <Grid Grid.ColumnSpan="4"
-              Grid.RowSpan="4"
-              Visibility="Collapsed"
-              x:Name="TeclaIncorrectapantalla">
-            <Border Background="Black"
-                    Opacity=".6" />
-            <Border Background="GhostWhite"
-                    Width="320"
-                    CornerRadius="10"
-                    Height="350">
-                <Grid>
-                    <Border Background="Red"
-                            CornerRadius="10,10,0,0"
-                            VerticalAlignment="Top"
-                            Height="50">
-                        <TextBlock Text="Tecla incorrecta"
-                                   Foreground="White"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   FontSize="20" />
-                    </Border>
-                    <Button HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
-                            Height="50"
-                            Margin="0,0,20,20"
-                            Width="50"
-                            Content="Ok"
-                            x:Name="btnOkTeclaIncorrecta"
-                            Click="btnOkTeclaIncorrecta_Click"
-                            Style="{StaticResource BotonOk}" />
-                </Grid>
-            </Border>
-        </Grid>
-        <!--#ENDREGION TECLA INCORRECTA-->
+        
+        <vista:TeclaIncorrectaView Grid.ColumnSpan="5" Grid.RowSpan="5"/>
     </Grid>
 </UserControl>

@@ -52,9 +52,6 @@ namespace Juego_PA.Views.Niveles
         #region CREAR COLUMNAS Y FILAS GRID
         public void CrearTablero(Grid tablero, int numColum = 6, int numFila = 6, int numeroTablero = 1)
         {
-
-
-
             if (tablero.ColumnDefinitions.Count < 1 || tablero.RowDefinitions.Count < 1)
             {
                 for (int i = 0; i < numColum; i++)
