@@ -44,26 +44,6 @@
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Resources></TextBlock>
-                <!--<TextBlock TextWrapping="Wrap"
-                           FontSize="20"
-                           Text="Te quedaste sin movimientos"
-                           TextAlignment="Center"
-                           FontWeight="SemiBold">
-                    <TextBlock.Resources>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility"
-                                    Value="Collapsed" />
-                            <Setter Property="Foreground"
-                                    Value="#FFC62424" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameOver}"
-                                             Value="true">
-                                    <Setter Property="Visibility"
-                                            Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Resources></TextBlock>-->
                 <TextBlock TextWrapping="Wrap"
                            FontSize="20"
                            Text="{Binding Rana.Puntaje, StringFormat=Puntaje: 0}"

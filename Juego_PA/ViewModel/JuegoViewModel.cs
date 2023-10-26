@@ -239,13 +239,13 @@ namespace Juego_PA.ViewModel
                 _movimiento = "";
             }
 
-
             ///////////
-
             if (Rana.Vida == 0)
             {
                  PerdistePorVidas();
             }
+
+
             OnPropertyChanged();
         }
         private void Nivel3()
@@ -275,9 +275,10 @@ namespace Juego_PA.ViewModel
         private async void PerdistePorVidas()
         {
             OnPropertyChanged(nameof(Rana));
-            await Task.Delay(300); // Pausa de un 0.5 segundos
+            await Task.Delay(150); // Pausa de un 0.5 segundos
             Vista = Vista.Ganaste;
             GameOver = true;
+            OnPropertyChanged();
         }
 
 

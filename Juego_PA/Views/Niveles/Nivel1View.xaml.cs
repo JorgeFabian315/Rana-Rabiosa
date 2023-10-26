@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Media;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,13 +25,14 @@ namespace Juego_PA.Views.Niveles
     /// </summary>
     public partial class Nivel1View : UserControl
     {
-        Jugador _jugador = new();
-
+		Jugador _jugador = new();
+        SoundPlayer soundPlayer = new(@"C:Juego_PA\Juego_PA\Views\Niveles\SonidoSalto.mp3"); 
         public Nivel1View()
         {
             InitializeComponent();
             MediadorViewModel.IniciarJuegoNivel1Event += MediadorViewModel_IniciarJuegoEvent;
             MediadorViewModel.RegresarEvent += MediadorViewModel_RegresarEvent;
+
             CrearTablero(4, 3, Tablero);
             CrearCocodrilos();
         }
@@ -53,8 +56,13 @@ namespace Juego_PA.Views.Niveles
                 this.Focusable = true;
 
                 var avm = this.DataContext as JuegoViewModel;
+                
+                
+    //            soundPlayer.Load();
+				//soundPlayer.Play();
 
-                Movimientos movi = new();
+
+				Movimientos movi = new();
                 if (e.Key == Key.Left)
                     movi = Movimientos.Izquierda;
                 if (e.Key == Key.Right)
@@ -85,7 +93,7 @@ namespace Juego_PA.Views.Niveles
             }
             else
             {
-                MessageBox.Show("Tecla incorrecta");
+                TeclaIncorrectapantalla.Visibility = Visibility.Visible;
             }
         }
 
@@ -226,6 +234,12 @@ namespace Juego_PA.Views.Niveles
         private void OkRegresar_Click(object sender, RoutedEventArgs e)
         {
             Aviso.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnOkTeclaIncorrecta_Click(object sender, RoutedEventArgs e)
+        {
+            TeclaIncorrectapantalla.Visibility = Visibility.Collapsed;
+
         }
     }
 }

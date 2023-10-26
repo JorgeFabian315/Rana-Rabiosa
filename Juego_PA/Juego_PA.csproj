@@ -49,7 +49,10 @@
     <Resource Include="Assets\pirana.png" />
     <Resource Include="Assets\rana.png" />
     <Resource Include="Assets\serpiente.png" />
-    <Resource Include="Assets\Spicy Nachos.otf" />
+    <EmbeddedResource Include="Views\Niveles\SonidoSalto.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Spicy Nachos.otf" />
     <Resource Include="Assets\tornado.png" />
     <Resource Include="Assets\Tutorial.jpg" />
     <Resource Include="Assets\tutorial2.jpeg" />

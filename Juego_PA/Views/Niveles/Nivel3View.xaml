@@ -77,9 +77,6 @@
                        Foreground="White"
                        FontFamily="/Assets/#Spicy Nachos"
                        Text="Nivel 3" />
-            
-            
-            
             <WrapPanel Grid.Column="4"
                        Margin="7"
                        VerticalAlignment="Bottom"
@@ -167,7 +164,6 @@
                         </Style>
                     </Image.Resources>
                 </Image>
-      
             </WrapPanel>
         </Grid>
         <Grid x:Name="Tablero"
@@ -210,7 +206,7 @@
                    Height="60"
                    Tag="LotoInicial"
                    Grid.ZIndex="4"
-                   Grid.Column="2"
+                   Grid.Column="3"
                    Grid.Row="2"
                    x:Name="FlorRoja"
                    Source="/Assets/flormala.png" />
@@ -218,33 +214,39 @@
                    Height="0"
                    Tag="LotoInicial"
                    Grid.ZIndex="4"
-                   Grid.Column="2"
+                   Grid.Column="3"
                    Margin="0 0 0 10"
                    Grid.Row="1"
                    Grid.RowSpan="2"
                    VerticalAlignment="Bottom"
                    x:Name="FlorMataRana"
                    Source="/Assets/flormatarana.png" />
+            <Image Width="60"
+                   Height="60"
+                   Tag="LotoInicial"
+                   Grid.ZIndex="4"
+                   Grid.Column="4"
+                   Grid.Row="4"
+                   x:Name="FlorRoja2"
+                   Source="/Assets/flormala.png" />
+            <Image Width="100"
+                   Height="0"
+                   Tag="LotoInicial"
+                   Grid.ZIndex="4"
+                   Grid.Column="4"
+                   Margin="0 0 0 10"
+                   Grid.Row="3"
+                   Grid.RowSpan="2"
+                   VerticalAlignment="Bottom"
+                   x:Name="FlorMataRana2"
+                   Source="/Assets/flormatarana.png" />
             <!--#ENDREGION ENEMIGOS PLANTA-->
-            <!--#REGION CANVAS ENEMIGOS MOVIMIENTO-->
-            <!--<Canvas Grid.Column="3"
-                    Grid.ColumnSpan="3"
-                    Grid.ZIndex="3"
-                    Grid.RowSpan="3"
-                    Focusable="False"
-                    Grid.Row="0"
-                    x:Name="Mycanvas">
-                <Rectangle Width="120"
-                           Height="120"
-                           Name="pescador"
-                           Canvas.Left="0"
-                           Canvas.Top="0">
-                    <Rectangle.Fill>
-                        <ImageBrush ImageSource="/Assets/lancha.png" />
-                    </Rectangle.Fill>
-                </Rectangle>
-            </Canvas>-->
-            <!--#ENDREGION CANVAS ENEMIGOS MOVIMIENTO-->
+            <Border Background="Black"
+                    Grid.ColumnSpan="6"
+                    Grid.ZIndex="10"
+                    Opacity="0"
+                    x:Name="bordeTransicion"
+                    Grid.RowSpan="6" />
         </Grid>
     </DockPanel>
 </UserControl>

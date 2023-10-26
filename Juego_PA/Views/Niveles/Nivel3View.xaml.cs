@@ -36,10 +36,11 @@ namespace Juego_PA.Views.Niveles
 
         public void IniciarJuego()
         {
-            CrearTablero(6, 6, Tablero);
+            //CrearTablero(6, 6, Tablero);
             CrearEnemigos();
             MediadorViewModel.IniciarJuegoNivel3Event += MediadorViewModel_IniciarJuegoNivel3Event;
             CrearMoneda();
+            CrearPozos();
         }
 
         private void MediadorViewModel_IniciarJuegoNivel3Event()
@@ -49,41 +50,34 @@ namespace Juego_PA.Views.Niveles
 
 
         #region CREAR COLUMNAS Y FILAS GRID
-        public void CrearTablero(int numColum, int numFila, Grid tablero)
+        public void CrearTablero(Grid tablero, int numColum = 6, int numFila = 6, int numeroTablero = 1)
         {
 
-            tablero.ColumnDefinitions.Clear();
-            tablero.RowDefinitions.Clear();
 
-            // Crear columnas y filas en el grid
-            for (int i = 0; i < numColum; i++)
+
+            if (tablero.ColumnDefinitions.Count < 1 || tablero.RowDefinitions.Count < 1)
             {
-                tablero.ColumnDefinitions.Add(new ColumnDefinition());
+                for (int i = 0; i < numColum; i++)
+                {
+                    tablero.ColumnDefinitions.Add(new ColumnDefinition());
+                }
+                for (int j = 0; j < numFila; j++)
+                {
+                    tablero.RowDefinitions.Add(new RowDefinition());
+                }
+
             }
-            for (int j = 0; j < numFila; j++)
-            {
-                tablero.RowDefinitions.Add(new RowDefinition());
-            }
+
+
 
             for (int fila = 0; fila < numFila; fila++)
             {
                 for (int columna = 0; columna < numColum; columna++)
                 {
                     Border _borderFondo = new();
-                    if (fila % 2 != 0)
-                    {
-                        if (columna % 2 == 0)
-                            _borderFondo.Background = Brushes.SkyBlue;
-                        else
-                            _borderFondo.Background = Brushes.DeepSkyBlue;
-                    }
-                    else
-                    {
-                        if (columna % 2 == 0)
-                            _borderFondo.Background = Brushes.DeepSkyBlue;
-                        else
-                            _borderFondo.Background = Brushes.SkyBlue;
-                    }
+
+                    PintarBordes(fila,columna,_borderFondo);
+
                     Grid.SetColumn(_borderFondo, columna);
 
                     Grid.SetRow(_borderFondo, fila);
@@ -93,9 +87,27 @@ namespace Juego_PA.Views.Niveles
             }
         }
 
+        private void PintarBordes(int fila, int columna, Border _borderFondo, int numeroTablero = 1)
+        {
+            if (fila % 2 != 0)
+            {
+                if (columna % 2 == 0)
+                    _borderFondo.Background = numeroTablero == 1 ? Brushes.SkyBlue : Brushes.DarkBlue;
+                else
+                    _borderFondo.Background = numeroTablero == 1 ? Brushes.DeepSkyBlue : Brushes.Blue;
+            }
+            else
+            {
+                if (columna % 2 == 0)
+                    _borderFondo.Background = numeroTablero == 1 ? Brushes.DeepSkyBlue : Brushes.Blue;
+                else
+                    _borderFondo.Background = numeroTablero == 1?  Brushes.SkyBlue: Brushes.DarkBlue;
+            }
+        }
+
         #endregion
 
-       
+
 
         private async void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -144,18 +156,33 @@ namespace Juego_PA.Views.Niveles
 
 
                 //ANIMACION ENEMIGOS PLANTA 
-                if (columnRana == 2 && rowRana == 2)
+                if (columnRana == 3 && rowRana == 2)
                 {
                     rana.Visibility = Visibility.Collapsed;
-                    IniciarAnimacionPlantas();
-                    await Task.Delay(500); // Pausa de un 0.5 segundos
-                    TerminarAnimacionPlantas();
+                    IniciarAnimacionPlantas(FlorMataRana,FlorRoja);
+                    await Task.Delay(600); // Pausa de un 0.5 segundos
+                    TerminarAnimacionPlantas(FlorMataRana, FlorRoja);
+                }
+                else if (columnRana == 4 && rowRana ==4)
+                {
+                    rana.Visibility = Visibility.Collapsed;
+                    IniciarAnimacionPlantas(FlorMataRana2, FlorRoja2);
+                    await Task.Delay(600); // Pausa de un 0.5 segundos
+                    TerminarAnimacionPlantas(FlorMataRana2, FlorRoja2);
                 }
                 else
                 {
-
                     CrearHoja(columnRana, rowRana);
                 }
+
+                if(columnRana == 2)
+                {
+                  IniciarAnimacionTransicionTablero();
+
+                }
+
+
+
 
             }
             else
@@ -274,23 +301,23 @@ namespace Juego_PA.Views.Niveles
         #endregion
 
         #region ANIMACIONES PLANTAS CARNIVORAS
-        private void IniciarAnimacionPlantas()
+        private void IniciarAnimacionPlantas(Image florCarnivora, Image florRoja)
         {
             // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorMataRana.
             DoubleAnimation animacionFlorMataRana = new DoubleAnimation();
             animacionFlorMataRana.To = 100; // Altura final deseada para FlorMataRana
             animacionFlorMataRana.Duration = TimeSpan.FromSeconds(0.5); // Duración de la animación (en segundos)
             // Asigna la animación al elemento de imagen FlorMataRana y comienza la animación.
-            FlorMataRana.BeginAnimation(Image.HeightProperty, animacionFlorMataRana);
+            florCarnivora.BeginAnimation(Image.HeightProperty, animacionFlorMataRana);
 
             // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorRoja.
             DoubleAnimation animacionFlorRoja = new DoubleAnimation();
             animacionFlorRoja.To = 0; // Altura final deseada para FlorRoja
             animacionFlorRoja.Duration = TimeSpan.FromSeconds(0.5); // Duración de la animación (en segundos)
             // Asigna la animación al elemento de imagen FlorRoja y comienza la animación.
-            FlorRoja.BeginAnimation(Image.HeightProperty, animacionFlorRoja);
+            florRoja.BeginAnimation(Image.HeightProperty, animacionFlorRoja);
         }
-        private void TerminarAnimacionPlantas()
+        private void TerminarAnimacionPlantas(Image florCarnivora, Image florRoja)
         {
 
             rana.Visibility = Visibility.Visible;
@@ -301,18 +328,65 @@ namespace Juego_PA.Views.Niveles
             // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorMataRana.
             DoubleAnimation animacionFlorMataRana = new DoubleAnimation();
             animacionFlorMataRana.To = 0; // Altura final deseada para FlorMataRana
-            animacionFlorMataRana.Duration = TimeSpan.FromSeconds(0.5); // Duración de la animación (en segundos)
+            animacionFlorMataRana.Duration = TimeSpan.FromSeconds(0.10); // Duración de la animación (en segundos)
             // Asigna la animación al elemento de imagen FlorMataRana y comienza la animación.
-            FlorMataRana.BeginAnimation(Image.HeightProperty, animacionFlorMataRana);
+            florCarnivora.BeginAnimation(Image.HeightProperty, animacionFlorMataRana);
 
             // Crea una nueva instancia de la animación para cambiar el tamaño de la imagen FlorRoja.
             DoubleAnimation animacionFlorRoja = new DoubleAnimation();
             animacionFlorRoja.To = 100; // Altura final deseada para FlorRoja
-            animacionFlorRoja.Duration = TimeSpan.FromSeconds(0.5); // Duración de la animación (en segundos)
+
+            animacionFlorRoja.Duration = TimeSpan.FromSeconds(0.4); // Duración de la animación (en segundos)
             // Asigna la animación al elemento de imagen FlorRoja y comienza la animación.
-            FlorRoja.BeginAnimation(Image.HeightProperty, animacionFlorRoja);
+            florRoja.BeginAnimation(Image.HeightProperty, animacionFlorRoja);
         }
         #endregion ANIMACIONES PLANTAS CARNIVORAS
+
+        #region CREAR POZOS
+        private void CrearPozos()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                var pozo = new Ellipse()
+                {
+                    Tag = "Pozo",
+                    Width=70,
+                    Height = 70,
+                    Fill = Brushes.DarkBlue
+                };
+
+                Grid.SetColumn(pozo, 2);
+                Grid.SetRow(pozo, i);
+
+                Tablero.Children.Add(pozo);
+            }
+        }
+
+        #endregion
+
+
+        #region ANIMACION TRANSICION 
+        private void IniciarAnimacionTransicionTablero()
+        {
+            DoubleAnimation animacionTransicion = new DoubleAnimation();
+            animacionTransicion.To = 1;
+            animacionTransicion.Duration = TimeSpan.FromSeconds(1);
+
+            DoubleAnimation animacionTransicionFinal = new DoubleAnimation();
+            animacionTransicionFinal.To = 0;
+            animacionTransicionFinal.Duration = TimeSpan.FromSeconds(1);
+
+            animacionTransicion.Completed += (sender, e) =>
+            {
+                // Cuando la primera animación haya terminado, comienza la segunda
+                bordeTransicion.BeginAnimation(Border.OpacityProperty, animacionTransicionFinal);
+            };
+
+            bordeTransicion.BeginAnimation(Border.OpacityProperty, animacionTransicion);
+
+
+        }
+        #endregion 
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {

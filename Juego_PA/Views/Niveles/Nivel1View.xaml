@@ -20,6 +20,12 @@
         </Grid.RowDefinitions>
         <Grid DockPanel.Dock="Top"
               Background="#004881">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".1*" />
+                <ColumnDefinition Width=".2*" />
+                <ColumnDefinition Width=".4*" />
+                <ColumnDefinition Width=".3*" />
+            </Grid.ColumnDefinitions>
             <Button Grid.ZIndex="5"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
@@ -46,10 +52,11 @@
             <TextBlock Text="Nivel 1"
                        Focusable="False"
                        Height="60"
+                       Grid.ColumnSpan="4"
+                       HorizontalAlignment="Center"
                        FontSize="30"
                        Foreground="White"
                        VerticalAlignment="Center"
-                       Margin="10,0"
                        TextAlignment="Center" />
             <Button Grid.Column="4"
                     Grid.ZIndex="5"
@@ -73,6 +80,17 @@
                     </ico:ImageAwesome.Resources>
                 </ico:ImageAwesome>
             </Button>
+            <StackPanel Grid.Column="1"
+                       VerticalAlignment="Center">
+                <TextBlock Text="Limite Movimientos: "
+                           FontSize="16"
+                           Foreground="White"
+                           FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Rana.LimiteMovimientos}"
+                           FontSize="20"
+                           Foreground="White"
+                           FontWeight="SemiBold" />
+            </StackPanel>
         </Grid>
         <Grid x:Name="Tablero"
               Grid.Row="1"
@@ -83,19 +101,6 @@
                             Value="4" />
                 </Style>
             </Grid.Resources>
-            <WrapPanel Grid.Row="0"
-                       Grid.ZIndex="5"
-                       VerticalAlignment="Top"
-                       Margin="5, 5,10,10">
-                <TextBlock Text="Limite Movimientos: "
-                           FontSize="15"
-                           Foreground="Black"
-                           FontWeight="SemiBold" />
-                <TextBlock Text="{Binding Rana.LimiteMovimientos}"
-                           FontSize="15"
-                           Foreground="Black"
-                           FontWeight="SemiBold" />
-            </WrapPanel>
             <Image Width="120"
                    Tag="LotoInicial"
                    Grid.ZIndex="4"
@@ -179,8 +184,42 @@
                             Content="Ok" />
                 </Grid>
             </Border>
-          
         </Grid>
         <!--#ENDREGION TUTORIAL-->
+        <!--#REGION TECLA INCORRECTA-->
+        <Grid Grid.ColumnSpan="4"
+              Grid.RowSpan="4"
+              Visibility="Collapsed"
+              x:Name="TeclaIncorrectapantalla">
+            <Border Background="Black"
+                    Opacity=".6" />
+            <Border Background="GhostWhite"
+                    Width="320"
+                    CornerRadius="10"
+                    Height="350">
+                <Grid>
+                    <Border Background="Red"
+                            CornerRadius="10,10,0,0"
+                            VerticalAlignment="Top"
+                            Height="50">
+                        <TextBlock Text="Tecla incorrecta"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontSize="20" />
+                    </Border>
+                    <Button HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Height="50"
+                            Margin="0,0,20,20"
+                            Width="50"
+                            Content="Ok"
+                            x:Name="btnOkTeclaIncorrecta"
+                            Click="btnOkTeclaIncorrecta_Click"
+                            Style="{StaticResource BotonOk}" />
+                </Grid>
+            </Border>
+        </Grid>
+        <!--#ENDREGION TECLA INCORRECTA-->
     </Grid>
 </UserControl>
