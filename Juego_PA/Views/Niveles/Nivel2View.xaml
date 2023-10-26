@@ -12,9 +12,9 @@
              Focusable="True"
              PreviewKeyDown="UserControl_PreviewKeyDown"
              d:DesignWidth="1000">
-    <DockPanel Background="#C0D3E4"
+    <DockPanel Background="GhostWhite"
                x:Name="dock">
-        <Grid Background="DeepSkyBlue" 
+        <Grid Background="DeepSkyBlue"
               Margin="5,0"
               DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
@@ -48,13 +48,11 @@
             </Button>
             <TextBlock Text="Nivel 2"
                        Focusable="False"
-                       Height="60"
                        Grid.ColumnSpan="4"
                        HorizontalAlignment="Center"
                        FontSize="30"
                        Foreground="White"
-                       VerticalAlignment="Center"
-                       TextAlignment="Center" />
+                       VerticalAlignment="Center" />
             <StackPanel Grid.Column="1"
                         VerticalAlignment="Center">
                 <TextBlock Text="Limite Movimientos: "
@@ -66,7 +64,8 @@
                            Foreground="White"
                            FontWeight="SemiBold" />
             </StackPanel>
-            <WrapPanel Grid.Column="4" HorizontalAlignment="Right"
+            <WrapPanel Grid.Column="4"
+                       HorizontalAlignment="Right"
                        Margin="15,10"
                        VerticalAlignment="Center">
                 <Image Height="40"
@@ -156,7 +155,7 @@
         </Grid>
         <Grid x:Name="Tablero"
               Focusable="True"
-              Margin="5,10">
+              Margin="5,10,5,0">
             <Grid.Resources>
                 <Style TargetType="Image">
                     <Setter Property="Grid.ZIndex"
@@ -186,8 +185,6 @@
                    Grid.Row="{Binding Rana.Y}"
                    Height="60" />
             <!--#ENDREGION RANA Y FLOR-->
-            
-            
             <vista:TeclaIncorrectaView Grid.ColumnSpan="5"
                                        Grid.RowSpan="5"
                                        Grid.ZIndex="8" />

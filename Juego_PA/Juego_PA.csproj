@@ -53,7 +53,7 @@
     <Resource Include="Assets\rana.png" />
     <Resource Include="Assets\serpiente.png" />
     <EmbeddedResource Include="Assets\Spicy Nachos.otf" />
-    <Resource Include="Assets\SonidoSalto.wav" />
+    <EmbeddedResource Include="Assets\Sonidos\SonidoSalto.wav" />
     <Resource Include="Assets\tornado.png" />
     <Resource Include="Assets\Tutorial.jpg" />
     <Resource Include="Assets\tutorial2.jpeg" />

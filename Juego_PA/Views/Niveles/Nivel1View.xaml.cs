@@ -26,13 +26,14 @@ namespace Juego_PA.Views.Niveles
 	public partial class Nivel1View : UserControl
 	{
 		Jugador _jugador = new();
-		SoundPlayer soundPlayer = new(@"C:\Juego_PA\Juego_PA\Assets\SonidoSalto.wav");
+		SoundPlayer soundPlayer = new("pack://application:,,/Juego_PA;component/Assets/Sonidos/SonidoSalto.wav");
 		public Nivel1View()
 		{
 			InitializeComponent();
 			MediadorViewModel.IniciarJuegoNivel1Event += MediadorViewModel_IniciarJuegoEvent;
 			MediadorViewModel.RegresarEvent += MediadorViewModel_RegresarEvent;
-
+			//soundPlayer.Load();
+			//soundPlayer.Play();
 			CrearTablero(4, 3, Tablero);
 			CrearCocodrilos();
 		}
@@ -58,9 +59,6 @@ namespace Juego_PA.Views.Niveles
 
 			if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
 			{
-				soundPlayer.Load();
-				soundPlayer.Play();
-
 				Movimientos movi = new();
 				if (e.Key == Key.Left)
 					movi = Movimientos.Izquierda;
