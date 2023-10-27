@@ -15,6 +15,7 @@
     <None Remove="Assets\flor.png" />
     <None Remove="Assets\flormala.png" />
     <None Remove="Assets\flormatarana.png" />
+    <None Remove="Assets\Ganaste.jpg" />
     <None Remove="Assets\GhostNightDEMO!-DEMO.ttf" />
     <None Remove="Assets\hola13.jpg" />
     <None Remove="Assets\lancha.png" />
@@ -49,6 +50,9 @@
     <Resource Include="Assets\cocodrilo.png" />
     <Resource Include="Assets\corazon.png" />
     <Resource Include="Assets\flor.png" />
+    <Resource Include="Assets\Ganaste.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\GhostNightDEMO!-DEMO.ttf" />
     <Resource Include="Assets\hola13.jpg" />
     <Resource Include="Assets\lancha.png" />

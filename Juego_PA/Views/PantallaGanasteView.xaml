@@ -11,19 +11,34 @@
     <Grid Grid.ColumnSpan="5"
           Grid.ZIndex="7"
           Grid.RowSpan="5">
-        <Border Background="Green"
-                 />
-        <Image Source="{Binding Imagen}"></Image>
+        <Border Background="Green" />
+        <Image 
+               Stretch="Fill">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source"
+                            Value="/Assets/descarga12.jpeg" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding GameOver}"
+                                     Value="false">
+                            <Setter Property="Source"
+                                    Value="/Assets/Ganaste.jpg" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+            
+        </Image>
         <Border Width="500"
                 CornerRadius="10"
-                Height="500"
-                >
+                Height="500">
             <StackPanel Margin="0,0,0,30"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                 <TextBlock TextWrapping="Wrap"
                            TextAlignment="Center"
-                           FontWeight="SemiBold" FontFamily="Algerian">
+                           FontWeight="SemiBold"
+                           FontFamily="Algerian">
                     <TextBlock.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="Text"
@@ -32,9 +47,7 @@
                                     Value="45" />
                             <Setter Property="Foreground"
                                     Value="Green" />
-                            
                             <Style.Triggers>
-                                
                                 <DataTrigger Binding="{Binding GameOver}"
                                              Value="true">
                                     <Setter Property="Text"
@@ -58,12 +71,9 @@
                                     Value="Visible" />
                             <Setter Property="Foreground"
                                     Value="Green" />
-                            
                             <Style.Triggers>
-                                
                                 <DataTrigger Binding="{Binding GameOver}"
                                              Value="true">
-                                    
                                     <Setter Property="Visibility"
                                             Value="Collapsed" />
                                 </DataTrigger>
@@ -71,18 +81,21 @@
                         </Style>
                     </TextBlock.Resources></TextBlock>
                 <Button Style="{StaticResource BotonVolverJugar}"
-                        Command="{Binding IniciarCommand}" FontFamily="Ink Free" />
+                        Command="{Binding IniciarCommand}"
+                        FontFamily="Ink Free" />
                 <Button IsDefault="False"
                         Tag="Nivel2"
                         x:Name="btnNivel2"
                         Focusable="False"
                         Click="btnNivel2_Click"
                         Command="{Binding IniciarCommand}"
-                        Style="{StaticResource BotonNivel2}" FontFamily="Ink Free"></Button>
+                        Style="{StaticResource BotonNivel2}"
+                        FontFamily="Ink Free"></Button>
                 <Button Content="Regresar"
                         Command="{Binding CambiarVistaCommand}"
                         Style="{StaticResource BotonesPantallaGanaste}"
-                        CommandParameter="{x:Static local:Vista.SeleccionarNivel}" FontFamily="Ink Free" />
+                        CommandParameter="{x:Static local:Vista.SeleccionarNivel}"
+                        FontFamily="Ink Free" />
             </StackPanel>
         </Border>
     </Grid>
