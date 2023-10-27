@@ -28,8 +28,8 @@ namespace Juego_PA.ViewModel
 		public bool GameOver { get; set; } = false;
 
 		public int NivelActual { get; set; }
-
-		public Vista Vista { get; set; } = Vista.Inicio;
+        public string Imagen { get; set; } = "/Assets/Ganaste.jpg";
+        public Vista Vista { get; set; } = Vista.Inicio;
 
 		public ICommand MoverCommand { get; set; }
 		public ICommand IniciarCommand { get; set; }
@@ -212,7 +212,8 @@ namespace Juego_PA.ViewModel
 			{
 				OnPropertyChanged("Rana");
 				await Task.Delay(300); // Pausa de un 0.5 segundos
-				Vista = Vista.Ganaste;
+                Imagen = "/Assets/Ganaste.Jpg";
+                Vista = Vista.Ganaste;
 				Rana.Puntaje += 100;
 				NivelActual = 1;
 				Rana.LimiteMovimientos = 0;
@@ -230,7 +231,8 @@ namespace Juego_PA.ViewModel
 			{
 				OnPropertyChanged("Rana");
 				await Task.Delay(300); // Pausa de un 0.5 segundos
-				Vista = Vista.Ganaste;
+                Imagen = "/Assets/Ganaste.Jpg";
+                Vista = Vista.Ganaste;
 				// Si cumple la expresion regular se suma 100  y si no 80 y si hace 15 movimientos se sumara 50
 				Rana.Puntaje += regex.IsMatch(_movimiento) ? 100 : _movimiento.Length > 15 ? 50 : 80;
 				Rana.Puntaje += (Rana.Vida * 10); // Se le sumara el puntaje dependiendo de su vida 
@@ -287,9 +289,11 @@ namespace Juego_PA.ViewModel
 
 		private void PerdistePorVidas()
 		{
-			Vista = Vista.Ganaste;
+            
+            Vista = Vista.Ganaste;
 			GameOver = true;
-		}
+            Imagen = "/Assets/descarga12.jpeg";
+        }
 
 
 

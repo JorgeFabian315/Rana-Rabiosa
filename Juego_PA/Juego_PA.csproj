@@ -11,9 +11,11 @@
     <None Remove="Assets\cocodrilo.png" />
     <None Remove="Assets\controles.png" />
     <None Remove="Assets\corazon.png" />
+    <None Remove="Assets\descarga12.jpeg" />
     <None Remove="Assets\flor.png" />
     <None Remove="Assets\flormala.png" />
     <None Remove="Assets\flormatarana.png" />
+    <None Remove="Assets\Ganaste.jpg" />
     <None Remove="Assets\hola13.jpg" />
     <None Remove="Assets\lancha.png" />
     <None Remove="Assets\loto.png" />
@@ -31,6 +33,7 @@
 
   <ItemGroup>
     <Resource Include="Assets\controles.png" />
+    <Resource Include="Assets\descarga12.jpeg" />
     <Resource Include="Assets\flormala.png" />
     <Resource Include="Assets\flormatarana.png" />
   </ItemGroup>
@@ -44,6 +47,7 @@
     <Resource Include="Assets\cocodrilo.png" />
     <Resource Include="Assets\corazon.png" />
     <Resource Include="Assets\flor.png" />
+    <Resource Include="Assets\Ganaste.jpg" />
     <Resource Include="Assets\hola13.jpg" />
     <Resource Include="Assets\lancha.png" />
     <Resource Include="Assets\loto.png" />

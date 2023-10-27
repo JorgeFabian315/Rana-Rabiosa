@@ -11,12 +11,13 @@
     <Grid Grid.ColumnSpan="5"
           Grid.ZIndex="7"
           Grid.RowSpan="5">
-        <Border Background="Black"
-                Opacity=".4" />
+        <Border Background="Green"
+                 />
+        <Image Source="{Binding Imagen}"></Image>
         <Border Width="500"
                 CornerRadius="10"
                 Height="500"
-                Background="GhostWhite">
+                >
             <StackPanel Margin="0,0,0,30"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
@@ -31,7 +32,9 @@
                                     Value="45" />
                             <Setter Property="Foreground"
                                     Value="Green" />
+                            
                             <Style.Triggers>
+                                
                                 <DataTrigger Binding="{Binding GameOver}"
                                              Value="true">
                                     <Setter Property="Text"
@@ -55,9 +58,12 @@
                                     Value="Visible" />
                             <Setter Property="Foreground"
                                     Value="Green" />
+                            
                             <Style.Triggers>
+                                
                                 <DataTrigger Binding="{Binding GameOver}"
                                              Value="true">
+                                    
                                     <Setter Property="Visibility"
                                             Value="Collapsed" />
                                 </DataTrigger>
