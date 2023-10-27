@@ -1,4 +1,5 @@
 ﻿using Juego_PA.ViewModel;
+using Juego_PA.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Juego_PA
 {
@@ -21,10 +23,24 @@ namespace Juego_PA
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer timer = new();  
         public MainWindow()
         {
             InitializeComponent();
+
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+
         }
 
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            PrincipallView principal = new();
+            principal.Show();
+            this.Close();
+            timer.Stop();
+        }
     }
 }

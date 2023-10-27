@@ -6,9 +6,61 @@
         xmlns:local="clr-namespace:Juego_PA"
         xmlns:vm="clr-namespace:Juego_PA.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow"
+        Height="500"
+        Width="600"
+        ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".7*" />
+            <RowDefinition Height=".3*" />
+        </Grid.RowDefinitions>
+        <Border Background="#6BBAA7"
+                Grid.RowSpan="2"
+                BorderThickness="0" />
+        <Image Source="/Assets/ranaLogo.png"
+               Stretch="Fill" Margin="0"/>
+        <TextBlock Text="LA RANA SALTARINA"
+                   Grid.Row="1"
+                   FontSize="45"
+                   Opacity="0"
+                   FontFamily="/Assets/#Ghost Night DEMO! DEMO.ttf"
+                   Foreground="WhiteSmoke"
+                   HorizontalAlignment="Center">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="10"/>
+            </TextBlock.Effect>
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                Storyboard.TargetProperty="Opacity"
+                                To="1"
+                                Duration="0:0:0.4"
+                                BeginTime="0:0:0.5"
+                                />
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                             To="55"
+                                             Duration="0:0:0.4"
+                                             BeginTime="0:0:1" />
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                             To="45"
+                                             Duration="0:0:0.4"
+                                             BeginTime="0:0:1.4" />
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                             To="55"
+                                             Duration="0:0:0.4"
+                                             BeginTime="0:0:1.8" />
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                             To="45"
+                                             Duration="0:0:0.4"
+                                             BeginTime="0:0:2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
     </Grid>
 </Window>

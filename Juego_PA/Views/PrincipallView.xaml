@@ -7,7 +7,7 @@
         xmlns:nivel="clr-namespace:Juego_PA.Views.Niveles"
         xmlns:local="clr-namespace:Juego_PA.Views"
         mc:Ignorable="d"
-        Title="Rana Rabiosa"
+        Title="LA RANA SALTARINA"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
         Height="600"
