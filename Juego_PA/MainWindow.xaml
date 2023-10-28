@@ -12,21 +12,15 @@
         Width="600"
         ResizeMode="NoResize">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".7*" />
-            <RowDefinition Height=".3*" />
-        </Grid.RowDefinitions>
-        <Border Background="#6BBAA7"
-                Grid.RowSpan="2"
-                BorderThickness="0" />
-        <Image Source="/Assets/ranaLogo.png"
+   
+        <Image Source="/Assets/ranaLogo.jpeg"
                Stretch="Fill" Margin="0"/>
-        <TextBlock Text="LA RANA SALTARINA"
+        <!--<TextBlock Text="LA RANA SALTARINA"
                    Grid.Row="1"
+                   FontFamily="/Assets/fonts/#Ghost Night DEMO! DEMO.ttf"
                    FontSize="45"
                    Opacity="0"
-                   FontFamily="/Assets/#Ghost Night DEMO! DEMO.ttf"
-                   Foreground="WhiteSmoke"
+                   Foreground="#C20077"
                    HorizontalAlignment="Center">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="10"/>
@@ -61,6 +55,6 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </TextBlock.Triggers>
-        </TextBlock>
+        </TextBlock>-->
     </Grid>
 </Window>

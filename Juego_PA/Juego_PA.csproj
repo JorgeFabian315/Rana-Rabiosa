@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\04b.TTF" />
     <None Remove="Assets\cocodrilo.png" />
     <None Remove="Assets\controles.png" />
     <None Remove="Assets\corazon.png" />
@@ -24,8 +25,8 @@
     <None Remove="Assets\moneda.png" />
     <None Remove="Assets\pirana.png" />
     <None Remove="Assets\rana.png" />
+    <None Remove="Assets\ranaLogo.jpeg" />
     <None Remove="Assets\ranaLogo.png" />
-    <None Remove="Assets\ranaLogo2.jpg" />
     <None Remove="Assets\serpiente.png" />
     <None Remove="Assets\SonidoSalto.wav" />
     <None Remove="Assets\Spicy Nachos.otf" />
@@ -35,6 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\fonts\04b.TTF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\controles.png" />
     <Resource Include="Assets\descarga12.jpeg" />
     <Resource Include="Assets\flormala.png" />
@@ -53,7 +57,7 @@
     <Resource Include="Assets\Ganaste.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\GhostNightDEMO!-DEMO.ttf" />
+    <Resource Include="Assets\fonts\GhostNightDEMO!-DEMO.ttf" />
     <Resource Include="Assets\hola13.jpg" />
     <Resource Include="Assets\lancha.png" />
     <Resource Include="Assets\loto.png" />
@@ -61,8 +65,8 @@
     <Resource Include="Assets\moneda.png" />
     <Resource Include="Assets\pirana.png" />
     <Resource Include="Assets\rana.png" />
+    <Resource Include="Assets\ranaLogo.jpeg" />
     <Resource Include="Assets\ranaLogo.png" />
-    <Resource Include="Assets\ranaLogo2.jpg" />
     <Resource Include="Assets\serpiente.png" />
     <EmbeddedResource Include="Assets\Spicy Nachos.otf" />
     <EmbeddedResource Include="Assets\Sonidos\SonidoSalto.wav" />

@@ -28,7 +28,7 @@ namespace Juego_PA
         {
             InitializeComponent();
 
-            timer.Interval = TimeSpan.FromSeconds(2.5);
+            timer.Interval = TimeSpan.FromSeconds(1.5);
             timer.Tick += Timer_Tick;
             timer.Start();
 
