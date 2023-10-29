@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Assets\04b.TTF" />
+    <None Remove="Assets\calcamonia2.png" />
     <None Remove="Assets\cocodrilo.png" />
     <None Remove="Assets\controles.png" />
     <None Remove="Assets\corazon.png" />
@@ -26,16 +27,15 @@
     <None Remove="Assets\pirana.png" />
     <None Remove="Assets\rana.png" />
     <None Remove="Assets\ranaLogo.jpeg" />
-    <None Remove="Assets\ranaLogo.png" />
     <None Remove="Assets\serpiente.png" />
     <None Remove="Assets\SonidoSalto.wav" />
     <None Remove="Assets\Spicy Nachos.otf" />
-    <None Remove="Assets\tornado.png" />
     <None Remove="Assets\Tutorial.jpg" />
     <None Remove="Assets\tutorial2.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\calcamonia2.png" />
     <Resource Include="Assets\fonts\04b.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -47,6 +47,7 @@
 
   <ItemGroup>
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
   </ItemGroup>
 
@@ -66,11 +67,9 @@
     <Resource Include="Assets\pirana.png" />
     <Resource Include="Assets\rana.png" />
     <Resource Include="Assets\ranaLogo.jpeg" />
-    <Resource Include="Assets\ranaLogo.png" />
     <Resource Include="Assets\serpiente.png" />
     <EmbeddedResource Include="Assets\Spicy Nachos.otf" />
     <EmbeddedResource Include="Assets\Sonidos\SonidoSalto.wav" />
-    <Resource Include="Assets\tornado.png" />
     <Resource Include="Assets\Tutorial.jpg" />
     <Resource Include="Assets\tutorial2.jpeg" />
   </ItemGroup>

@@ -11,8 +11,8 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/Tutorial.jpg" />
         </Grid.Background>
-        <Button Height="66"
-                Width="73"
+        <Button Height="70"
+                Width="70"
                 Style="{StaticResource BotonOk}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"

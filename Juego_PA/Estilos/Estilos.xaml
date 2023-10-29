@@ -538,4 +538,42 @@
         </Setter>
     </Style>
     <!--#ENDREGION ESTILOS BOTON Ok-->
+    
+    
+    
+    
+    <!--#REGION ESTILO BOTONES SWITCH-->
+    <Style TargetType="Button"
+           x:Key="BotonesSwitch">
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Background"
+                Value="#2F3033" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="BorderBrush"
+                Value="#1F2022" />
+        <Setter Property="BorderThickness"
+                Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="20"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#ENDREGION ESTILO BOTONES SWITCH-->
+    
+    
 </ResourceDictionary>

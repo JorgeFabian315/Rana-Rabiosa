@@ -6,125 +6,257 @@
              xmlns:local="clr-namespace:Juego_PA.Views.Niveles"
              xmlns:vista="clr-namespace:Juego_PA.Views"
              xmlns:ico="http://schemas.fontawesome.io/icons/"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="600"
-             d:DesignWidth="1000"
+             d:DesignWidth="1200"
              Loaded="OnLoaded"
              PreviewKeyDown="Tablero_PreviewKeyDown"
              Focusable="True"
-             Background="GhostWhite">
-    <Grid Focusable="False"
+             Background="Transparent">
+    <Grid Background="Transparent"
           x:Name="dock">
         <Grid.RowDefinitions>
-            <RowDefinition Height=".1*" />
-            <RowDefinition Height=".9*" />
+            <RowDefinition Height=".12*" />
+            <RowDefinition Height=".88*" />
         </Grid.RowDefinitions>
-        <Grid Background="DeepSkyBlue"
-              Margin="5,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".1*" />
-                <ColumnDefinition Width=".2*" />
-                <ColumnDefinition Width=".4*" />
-                <ColumnDefinition Width=".3*" />
-            </Grid.ColumnDefinitions>
-            <Button Grid.ZIndex="5"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left"
-                    Command="{Binding CambiarVistaCommand}"
-                    CommandParameter="{x:Static vista:Vista.SeleccionarNivel}"
-                    Style="{StaticResource botonTutorial}">
-                <ico:ImageAwesome Icon="ArrowLeft"
-                                  Margin="3">
-                    <ico:ImageAwesome.Resources>
-                        <Style TargetType="ico:ImageAwesome">
-                            <Setter Property="Foreground"
-                                    Value="#141726" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
-                                             Value="True">
-                                    <Setter Property="Foreground"
-                                            Value="#fff" />
-                                </DataTrigger>
-                            </Style.Triggers>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".15*" />
+            <ColumnDefinition Width=".7*" />
+            <ColumnDefinition Width=".15*" />
+        </Grid.ColumnDefinitions>
+        <Border Background="#50C5E7"
+                Grid.RowSpan="2"
+                BorderThickness="4,4,0,4"
+                BorderBrush="#2F3033"
+                CornerRadius="50,0,0,50">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".1*" />
+                    <RowDefinition Height=".3*" />
+                    <RowDefinition Height=".25*" />
+                    <RowDefinition Height=".3*" />
+                </Grid.RowDefinitions>
+                <Border Background="#2F3033"
+                        Width="30"
+                        Height="10"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,20,0" />
+                <Grid Height="125"
+                      Margin="25,0"
+                      Grid.Row="2"
+                      VerticalAlignment="Top">
+                    <Grid.Resources>
+                        <Style TargetType="materialDesign:PackIcon">
+                            <Setter Property="Width"
+                                    Value="30" />
+                            <Setter Property="Height"
+                                    Value="30" />
                         </Style>
-                    </ico:ImageAwesome.Resources>
-                </ico:ImageAwesome>
-            </Button>
-            <TextBlock Text="Nivel 1"
-                       Focusable="False"
-                       Grid.ColumnSpan="4"
-                       HorizontalAlignment="Center"
-                       FontSize="30"
-                       Foreground="White"
-                       VerticalAlignment="Center" />
-            <Button Grid.Column="4"
-                    Grid.ZIndex="5"
-                    VerticalAlignment="Center"
-                    Name="btnTutorial"
-                    Style="{StaticResource botonTutorial}"
-                    Click="btnTutorial_Click">
-                <ico:ImageAwesome Icon="QuestionCircleOutline">
-                    <ico:ImageAwesome.Resources>
-                        <Style TargetType="ico:ImageAwesome">
-                            <Setter Property="Foreground"
-                                    Value="#141726" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
-                                             Value="True">
-                                    <Setter Property="Foreground"
-                                            Value="#fff" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ico:ImageAwesome.Resources>
-                </ico:ImageAwesome>
-            </Button>
-            <StackPanel Grid.Column="1"
-                        VerticalAlignment="Center">
-                <TextBlock Text="Limite Movimientos: "
-                           FontSize="16"
+                    </Grid.Resources>
+                    <Button HorizontalAlignment="Center"
+                            x:Name="btnArriba"
+                            Click="btnArriba_Click"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="top">
+                        <materialDesign:PackIcon Kind="ChevronUp" />
+                    </Button>
+                    <Button HorizontalAlignment="Left"
+                            x:Name="btnIzquierda"
+                            Click="btnIzquierda_Click"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="ChevronLeft" />
+                    </Button>
+                    <Button HorizontalAlignment="Right"
+                            x:Name="btnDerecha"
+                            Click="btnDerecha_Click"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="ChevronRight" />
+                    </Button>
+                    <Button HorizontalAlignment="Center"
+                            x:Name="btnAbajo"
+                            Click="btnAbajo_Click"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Bottom">
+                        <materialDesign:PackIcon Kind="ChevronDown" />
+                    </Button>
+                </Grid>
+                <Border Background="#2F3033"
+                        Grid.Row="1"
+                        Width="90"
+                        Height="90"
+                        BorderThickness="8"
+                        BorderBrush="#1F2022"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        CornerRadius="45" />
+                <Image Source="/Assets/calcamonia2.png"
+                       Grid.Row="4"
+                       Margin="20"
+                       VerticalAlignment="Top" />
+            </Grid>
+        </Border>
+        <Border Width="10"
+                Grid.RowSpan="2"
+                Background="#2F3033"
+                HorizontalAlignment="Right" />
+        <Border Background="#F15C54"
+                Grid.RowSpan="2"
+                BorderThickness="0,4,4,4"
+                BorderBrush="#2F3033"
+                Grid.Column="2"
+                CornerRadius="0,50,50,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".2*" />
+                    <RowDefinition Height=".25*" />
+                    <RowDefinition Height=".25*" />
+                    <RowDefinition Height=".3*" />
+                </Grid.RowDefinitions>
+                <materialDesign:PackIcon Kind="Hospital"
+                                         Width="50"
+                                         Foreground="#2F3033"
+                                         Height="50"
+                                         HorizontalAlignment="Left"
+                                         Margin="20,0,0,0" />
+                <Grid Height="125"
+                      Margin="25,0"
+                      Grid.Row="1"
+                      VerticalAlignment="Center">
+                    <Button HorizontalAlignment="Center"
+                            VerticalAlignment="top"
+                            Style="{StaticResource BotonesSwitch}"
+                            Content="X" />
+                    <Button HorizontalAlignment="Left"
+                            Content="Y"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Center" />
+                    <Button HorizontalAlignment="Right"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Center"
+                            Content="A" />
+                    <Button HorizontalAlignment="Center"
+                            Style="{StaticResource BotonesSwitch}"
+                            Content="B"
+                            VerticalAlignment="Bottom" />
+                </Grid>
+                <Border Background="#2F3033"
+                        Grid.Row="2"
+                        Width="90"
+                        Height="90"
+                        BorderThickness="8"
+                        BorderBrush="#1F2022"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        CornerRadius="45" />
+                <!--<Image Source="/Assets/calcamonia2.png"
+                 Margin="20" 
+                 Grid.Row="4"
+                 />-->
+            </Grid>
+        </Border>
+        <Border Width="10"
+                Grid.RowSpan="2"
+                Background="#2F3033"
+                Grid.Column="2"
+                HorizontalAlignment="Left" />
+        <Border Background="DeepSkyBlue"
+                Margin="0"
+                BorderThickness="0,4"
+                BorderBrush="#2F3033"
+                Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".1*" />
+                    <ColumnDefinition Width=".2*" />
+                    <ColumnDefinition Width=".4*" />
+                    <ColumnDefinition Width=".3*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.ZIndex="5"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Command="{Binding CambiarVistaCommand}"
+                        CommandParameter="{x:Static vista:Vista.SeleccionarNivel}"
+                        Style="{StaticResource botonTutorial}">
+                    <ico:ImageAwesome Icon="ArrowLeft"
+                                      Margin="3">
+                        <ico:ImageAwesome.Resources>
+                            <Style TargetType="ico:ImageAwesome">
+                                <Setter Property="Foreground"
+                                        Value="#141726" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
+                                                 Value="True">
+                                        <Setter Property="Foreground"
+                                                Value="#fff" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ico:ImageAwesome.Resources>
+                    </ico:ImageAwesome>
+                </Button>
+                <TextBlock Text="Nivel 1"
+                           Focusable="False"
+                           Grid.ColumnSpan="4"
+                           HorizontalAlignment="Center"
+                           FontSize="30"
                            Foreground="White"
-                           FontWeight="SemiBold" />
-                <TextBlock Text="{Binding Rana.LimiteMovimientos}"
-                           FontSize="25"
-                           Foreground="White"
-                           FontWeight="SemiBold" />
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="Tablero"
-              Grid.Row="1"
-              Margin="5,6,5,0"
-              Focusable="True">
-            <Grid.Resources>
-                <Style TargetType="Image">
-                    <Setter Property="Grid.ZIndex"
-                            Value="4" />
-                </Style>
-            </Grid.Resources>
-            <Image Width="120"
-                   Tag="LotoInicial"
-                   Grid.ZIndex="4"
-                   Source="/Assets/loto.png"
-                   Height="120" />
-            <!--#REGION RANA Y FLOR-->
-            <Image Width="120"
-                   Grid.Column="2"
-                   Grid.Row="2"
-                   Tag="Flor"
-                   Grid.ZIndex="5"
-                   x:Name="flor"
-                   Source="/Assets/flor.png"
-                   Height="120" />
-            <Image Width="85"
-                   x:Name="rana"
-                   Tag="Rana"
-                   Source="/Assets/rana.png"
-                   Grid.ZIndex="6"
-                   Grid.Column="{Binding Rana.X}"
-                   Grid.Row="{Binding Rana.Y}"
-                   Height="85" />
-            <!--#ENDREGION RANA Y FLOR-->
-        </Grid>
+                           VerticalAlignment="Center" />
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Limite Movimientos: "
+                               FontSize="16"
+                               Foreground="White"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Rana.LimiteMovimientos}"
+                               FontSize="25"
+                               Foreground="White"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Focusable="False"
+                Background="Transparent"
+                BorderThickness="0,0,0,4"
+                BorderBrush="#2F3033">
+            <Grid x:Name="Tablero"
+                  Grid.Row="1"
+                  Focusable="True">
+                <Grid.Resources>
+                    <Style TargetType="Image">
+                        <Setter Property="Grid.ZIndex"
+                                Value="4" />
+                    </Style>
+                </Grid.Resources>
+                <Image Width="120"
+                       Tag="LotoInicial"
+                       Grid.ZIndex="4"
+                       Source="/Assets/loto.png"
+                       Height="120" />
+                <!--#REGION RANA Y FLOR-->
+                <Image Width="120"
+                       Grid.Column="2"
+                       Grid.Row="2"
+                       Tag="Flor"
+                       Grid.ZIndex="5"
+                       x:Name="flor"
+                       Source="/Assets/flor.png"
+                       Height="120" />
+                <Image Width="85"
+                       x:Name="rana"
+                       Tag="Rana"
+                       Source="/Assets/rana.png"
+                       Grid.ZIndex="6"
+                       Grid.Column="{Binding Rana.X}"
+                       Grid.Row="{Binding Rana.Y}"
+                       Height="85" />
+                <!--#ENDREGION RANA Y FLOR-->
+            </Grid>
+        </Border>
         <!--#REGION TUTORIAL-->
         <Grid Grid.RowSpan="2"
               x:Name="TutotialPantalla"
@@ -147,6 +279,7 @@
         <!--#REGION MENSAJE NO REGRESAR-->
         <Grid Grid.RowSpan="2"
               Visibility="Collapsed"
+              Grid.Column="1"
               x:Name="Aviso">
             <Border Background="Black"
                     Opacity=".5" />
@@ -186,7 +319,8 @@
             </Border>
         </Grid>
         <!--#ENDREGION TUTORIAL-->
-        
-        <vista:TeclaIncorrectaView Grid.ColumnSpan="5" Grid.RowSpan="5"/>
+        <vista:TeclaIncorrectaView 
+                                   Grid.Column="1"
+                                   Grid.RowSpan="5" />
     </Grid>
 </UserControl>

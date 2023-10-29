@@ -1,14 +1,17 @@
-﻿ <Application x:Class="Juego_PA.App"
-               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               xmlns:local="clr-namespace:Juego_PA"
-               StartupUri="MainWindow.xaml">
+﻿<Application x:Class="Juego_PA.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Juego_PA"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="./Views/PrincipallView.xaml">
     <Application.Resources>
-        
-      
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./Estilos/Estilos.xaml"/>
+                <ResourceDictionary Source="./Estilos/Estilos.xaml" />
+                <materialDesign:BundledTheme BaseTheme="Light"
+                                             PrimaryColor="Green"
+                                             SecondaryColor="LightGreen" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

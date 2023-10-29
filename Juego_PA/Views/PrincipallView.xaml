@@ -6,17 +6,26 @@
         xmlns:vm="clr-namespace:Juego_PA.ViewModel"
         xmlns:nivel="clr-namespace:Juego_PA.Views.Niveles"
         xmlns:local="clr-namespace:Juego_PA.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="LA RANA SALTARINA"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         Height="600"
-        Width="1000">
+        Width="1200">
     <Window.DataContext>
         <vm:JuegoViewModel x:Name="avm" />
     </Window.DataContext>
     <Grid>
-        <ContentControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".9*" />
+        </Grid.RowDefinitions>
+      
+        <ContentControl Grid.RowSpan="2">
             <ContentControl.Resources>
                 <Style TargetType="ContentControl">
                     <Style.Triggers>
@@ -97,5 +106,15 @@
                 </Style>
             </ContentControl.Resources>
         </ContentControl>
+        <WrapPanel HorizontalAlignment="Right" Margin="10">
+            <Button Margin="10,0">
+                <materialDesign:PackIcon Kind="Minus" 
+                                         Foreground="White"/>
+            </Button>
+            <Button>
+                <materialDesign:PackIcon Kind="Close"
+                                         Foreground="White" />
+            </Button>
+        </WrapPanel>
     </Grid>
 </Window>

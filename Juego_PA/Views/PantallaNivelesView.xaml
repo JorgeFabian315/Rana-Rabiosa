@@ -16,6 +16,29 @@
         <Image Source="/Assets/flor.png"
                Width="175"
                Margin="757,240,-132,-240" />
+        <Button Grid.ZIndex="5"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Command="{Binding CambiarVistaCommand}"
+                CommandParameter="{x:Static local:Vista.Inicio}"
+                Style="{StaticResource botonTutorial}">
+            <ico:ImageAwesome Icon="ArrowLeft"
+                              Margin="3">
+                <ico:ImageAwesome.Resources>
+                    <Style TargetType="ico:ImageAwesome">
+                        <Setter Property="Foreground"
+                                Value="#141726" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
+                                         Value="True">
+                                <Setter Property="Foreground"
+                                        Value="#fff" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ico:ImageAwesome.Resources>
+            </ico:ImageAwesome>
+        </Button>
         <StackPanel  VerticalAlignment="Center">
             <TextBlock Text="Selecciona el nivel"
                        Margin="0,0,0,20"
@@ -30,20 +53,15 @@
                     <Style TargetType="Button"
                            x:Key="BotonDesbloqueado">
                         <Setter Property="Width"
-                                Value="150" />
+                                Value="100" />
                         <Setter Property="Background"
                                 Value="#38B02E" />
                         <Setter Property="Cursor"
                                 Value="Hand" />
+                        <Setter Property="FontSize"
+                                Value="20" />
                         <Setter Property="Height"
-                                Value="150" />
-                        <Setter Property="Effect">
-                            <Setter.Value>
-                                <DropShadowEffect BlurRadius="25" 
-                                                  Opacity=".8"/>
-                            </Setter.Value>
-                        </Setter>
-
+                                Value="100" />
                         <Setter Property="Foreground"
                                 Value="White" />
                         <Setter Property="Margin"
@@ -67,10 +85,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                         To="165"
+                                                         To="110"
                                                          Duration="0:0:0.3" />
                                         <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                         To="165"
+                                                         To="110"
                                                          Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -79,10 +97,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                         To="150"
+                                                         To="100"
                                                          Duration="0:0:0.3" />
                                         <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                         To="150"
+                                                         To="100"
                                                          Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -92,11 +110,13 @@
                     <Style TargetType="Button"
                            x:Key="BotonBloqueado">
                         <Setter Property="Width"
-                                Value="150" />
+                                Value="100" />
+                        <Setter Property="FontSize"
+                                Value="20" />
                         <Setter Property="Background"
                                 Value="#383838" />
                         <Setter Property="Height"
-                                Value="150" />
+                                Value="100" />
                         <Setter Property="Foreground"
                                 Value="White" />
                         <Setter Property="Margin"
@@ -112,9 +132,9 @@
                                                               HorizontalAlignment="Center" />
                                         </Border>
                                         <Border Background="#1C1C1C"
-                                                Width="50"
+                                                Width="30"
                                                 CornerRadius="5"
-                                                Height="50"
+                                                Height="30"
                                                 VerticalAlignment="Top"
                                                 HorizontalAlignment="Right">
                                             <ico:ImageAwesome Icon="Lock"
@@ -133,22 +153,18 @@
                         Style="{StaticResource BotonDesbloqueado}"
                         Command="{Binding CambiarVistaCommand}"
                         CommandParameter="{x:Static local:Vista.Tutorial}"
-                        FontFamily="Monotype Corsiva"
-                        FontSize="30" />
+                        FontFamily="Monotype Corsiva" />
                 <Button Content="Nivel 2"
                         Style="{StaticResource BotonDesbloqueado}"
                         Command="{Binding CambiarVistaCommand}"
                         CommandParameter="{x:Static local:Vista.Tutorial2}"
-                        FontFamily="Monotype Corsiva"
-                        FontSize="30" />
+                        FontFamily="Monotype Corsiva" />
                 <Button Content="Nivel 3"
                         Style="{StaticResource BotonBloqueado}"
-                        FontFamily="Monotype Corsiva"
-                        FontSize="30" />
+                        FontFamily="Monotype Corsiva" />
                 <Button Content="Nivel 4"
                         Style="{StaticResource BotonBloqueado}"
-                        FontFamily="Monotype Corsiva"
-                        FontSize="30" />
+                        FontFamily="Monotype Corsiva" />
             </WrapPanel>
         </StackPanel>
     </Grid>

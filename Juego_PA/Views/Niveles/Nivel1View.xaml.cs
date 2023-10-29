@@ -237,5 +237,24 @@ namespace Juego_PA.Views.Niveles
 			Aviso.Visibility = Visibility.Collapsed;
 		}
 
-	}
+        private void btnIzquierda_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnArriba_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDerecha_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAbajo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }
