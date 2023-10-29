@@ -29,6 +29,7 @@
             </Image.Style>
             
         </Image>
+        <Border Background="Black" Opacity=".2"/>
         <Border Width="500"
                 CornerRadius="10"
                 Height="500">

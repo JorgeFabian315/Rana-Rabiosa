@@ -26,6 +26,7 @@ namespace Juego_PA.ViewModel
         public Rana Rana { get; set; } = new();
         public bool Ganaste { get; set; } = false;
         public bool GameOver { get; set; } = false;
+        public bool IniciarJuegoPropiedad { get; set; } = false;
 
         public int NivelActual { get; set; }
         public Vista Vista { get; set; } = Vista.Inicio;
@@ -131,6 +132,7 @@ namespace Juego_PA.ViewModel
             {
                 Vista = Vista.Ganaste;
                 GameOver = true;
+                IniciarJuegoPropiedad = false;
             }
 
             OnPropertyChanged();
@@ -146,6 +148,8 @@ namespace Juego_PA.ViewModel
             Ganaste = false;
             GameOver = false;
             _patron = "";
+
+            IniciarJuegoPropiedad = true;
 
             if (nivel == "1")
             {
@@ -255,6 +259,7 @@ namespace Juego_PA.ViewModel
             if (Rana.Vida == 0)
             {
                 PerdistePorVidas();
+                IniciarJuegoPropiedad = false;
             }
 
 
@@ -297,6 +302,12 @@ namespace Juego_PA.ViewModel
         private void CambiarVista(Vista vista)
         {
             Vista = vista;
+
+            if (vista == Vista.Nivel1 || vista == Vista.Nivel2 || vista == Vista.Nivel3)
+                IniciarJuegoPropiedad = true;
+            else
+                IniciarJuegoPropiedad = false;
+
             OnPropertyChanged();
         }
 

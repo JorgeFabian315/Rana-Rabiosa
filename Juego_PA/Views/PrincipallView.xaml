@@ -21,11 +21,61 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height=".1*" />
-            <RowDefinition Height=".9*" />
+            <RowDefinition Height=".09*" />
+            <RowDefinition Height=".91*" />
         </Grid.RowDefinitions>
-      
-        <ContentControl Grid.RowSpan="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".15*" />
+            <ColumnDefinition Width=".7*" />
+            <ColumnDefinition Width=".15*" />
+        </Grid.ColumnDefinitions>
+        <Border
+                BorderBrush="#2F3033"
+                BorderThickness="4,4,4,0"
+                Background="#2F3033">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Grid.ColumnSpan"
+                            Value="3" />
+                    <Setter Property="Grid.Column"
+                            Value="0" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IniciarJuegoPropiedad}"
+                                     Value="true">
+                            <Setter Property="Grid.ColumnSpan"
+                                    Value="1" />
+                            <Setter Property="Grid.Column"
+                                    Value="1" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Resources>
+            
+            <WrapPanel HorizontalAlignment="Right"
+                       Margin="10"
+                       Focusable="false">
+                <Button Margin="10,0"
+                        Height="32"
+                        Width="32"
+                        Padding="0"
+                        Focusable="false"
+                        Click="MinimizarClick">
+                    <materialDesign:PackIcon Kind="Minus"
+                                             Foreground="White" />
+                </Button>
+                <Button Focusable="false"
+                        Height="32"
+                        Width="32"
+                        Padding="0"
+                        Click="btnCerrarClick">
+                    <materialDesign:PackIcon Kind="Close"
+                                             Foreground="White" />
+                </Button>
+            </WrapPanel>
+        </Border>
+        
+        <ContentControl Grid.Row="1"
+                        Grid.ColumnSpan="4">
             <ContentControl.Resources>
                 <Style TargetType="ContentControl">
                     <Style.Triggers>
@@ -53,7 +103,6 @@
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
-                       
                         <DataTrigger Binding="{Binding Vista}"
                                      Value="{x:Static local:Vista.Ganaste}">
                             <Setter Property="Content">
@@ -106,15 +155,5 @@
                 </Style>
             </ContentControl.Resources>
         </ContentControl>
-        <WrapPanel HorizontalAlignment="Right" Margin="10">
-            <Button Margin="10,0">
-                <materialDesign:PackIcon Kind="Minus" 
-                                         Foreground="White"/>
-            </Button>
-            <Button>
-                <materialDesign:PackIcon Kind="Close"
-                                         Foreground="White" />
-            </Button>
-        </WrapPanel>
     </Grid>
 </Window>

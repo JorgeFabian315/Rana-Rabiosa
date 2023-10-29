@@ -26,6 +26,15 @@ namespace Juego_PA.Views
          
         }
 
+        private void MinimizarClick(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnCerrarClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
 }
