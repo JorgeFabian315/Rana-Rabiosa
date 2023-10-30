@@ -219,6 +219,8 @@ namespace Juego_PA.ViewModel
                 Rana.Puntaje += 100;
                 NivelActual = 1;
                 Rana.LimiteMovimientos = 0;
+                IniciarJuegoPropiedad = false;
+
             }
 
 
@@ -239,6 +241,8 @@ namespace Juego_PA.ViewModel
                 Rana.Puntaje += (Rana.Vida * 10); // Se le sumara el puntaje dependiendo de su vida 
                 Rana.LimiteMovimientos = 0;
                 NivelActual = 2;
+                IniciarJuegoPropiedad = false;
+
             }
 
             if (((Rana.X == 0 && Rana.Y == 1) || (Rana.X == 3 && Rana.Y == 0)

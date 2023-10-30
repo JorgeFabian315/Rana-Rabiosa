@@ -6,15 +6,14 @@
              xmlns:local="clr-namespace:Juego_PA.Views"
              mc:Ignorable="d"
              d:DesignHeight="600"
-             d:DesignWidth="1000">
+             d:DesignWidth="1200">
     <Grid Background="LightBlue">
         <Image Source="/Assets/hola13.jpg"
                Stretch="Fill"></Image>
         <Border Background="Black"
                 Opacity=".2" />
         <Image Source="/Assets/flor.png"
-               Margin="777,442,-107,-46"
-               Width="160"></Image>
+               Margin="1028,449,-60,-19" />
         <Image Source="/Assets/flor.png"
                Margin="8,415,662,-19"
                Width="130"></Image>

@@ -7,15 +7,14 @@
              xmlns:local="clr-namespace:Juego_PA.Views"
              mc:Ignorable="d"
              d:DesignHeight="600"
-             d:DesignWidth="1000">
+             d:DesignWidth="1200">
     <Grid Background="GhostWhite">
         <Image Source="/Assets/hola13.jpg"
                Stretch="Fill" />
         <Border Background="Black"
                 Opacity=".4" />
         <Image Source="/Assets/flor.png"
-               Width="175"
-               Margin="757,240,-132,-240" />
+               Margin="1027,470,-33,-16" />
         <Button Grid.ZIndex="5"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
@@ -39,44 +38,56 @@
                 </ico:ImageAwesome.Resources>
             </ico:ImageAwesome>
         </Button>
+        <TextBlock Text="Selecciona el nivel"
+                   Margin="0,51,0,-31"
+                   HorizontalAlignment="Center"
+                   FontSize="55"
+                   FontFamily="MV Boli"
+                   FontWeight="SemiBold"
+                   Foreground="#fff" />
         <StackPanel  VerticalAlignment="Center">
-            <TextBlock Text="Selecciona el nivel"
-                       Margin="0,0,0,20"
-                       HorizontalAlignment="Center"
-                       FontSize="55"
-                       FontFamily="MV Boli"
-                       FontWeight="SemiBold"
-                       Foreground="#fff" />
             <WrapPanel Margin="15"
                        HorizontalAlignment="Center">
                 <WrapPanel.Resources>
                     <Style TargetType="Button"
                            x:Key="BotonDesbloqueado">
                         <Setter Property="Width"
-                                Value="100" />
+                                Value="180" />
+                        <Setter Property="FontFamily"
+                                Value="/Assets/fonts/#Ghost Night DEMO! DEMO.ttf"/>
                         <Setter Property="Background"
-                                Value="#38B02E" />
+                                Value="GhostWhite" />
                         <Setter Property="Cursor"
                                 Value="Hand" />
                         <Setter Property="FontSize"
                                 Value="20" />
                         <Setter Property="Height"
-                                Value="100" />
+                                Value="200" />
+                        <Setter Property="BorderThickness"
+                                Value="6" />
+                        <Setter Property="BorderBrush"
+                                Value="#58AA2A" />
                         <Setter Property="Foreground"
-                                Value="White" />
+                                Value="#58AA2A" />
                         <Setter Property="Margin"
-                                Value="15 0" />
+                                Value="5,0" />
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate  TargetType="Button">
-                                    <Grid>
-                                        <Border CornerRadius="5"
-                                                Margin="5"
-                                                Background="{TemplateBinding Background}">
+                                    <Border CornerRadius="10"
+                                            Margin="5"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            Background="{TemplateBinding Background}">
+                                        <StackPanel Margin="7">
                                             <ContentPresenter VerticalAlignment="Center"
                                                               HorizontalAlignment="Center" />
-                                        </Border>
-                                    </Grid>
+                                            <Image Source="/Assets/level.jpg" 
+                                                   Margin="8"
+                                                   
+                                                  Stretch="Fill"/>
+                                        </StackPanel>
+                                    </Border>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -85,10 +96,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                         To="110"
+                                                         To="220"
                                                          Duration="0:0:0.3" />
                                         <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                         To="110"
+                                                         To="240"
                                                          Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -97,10 +108,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                         To="100"
+                                                         To="180"
                                                          Duration="0:0:0.3" />
                                         <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                         To="100"
+                                                         To="200"
                                                          Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -110,17 +121,19 @@
                     <Style TargetType="Button"
                            x:Key="BotonBloqueado">
                         <Setter Property="Width"
-                                Value="100" />
+                                Value="180" />
+                        <Setter Property="FontFamily"
+                                Value="/Assets/fonts/#Ghost Night DEMO! DEMO.ttf" />
                         <Setter Property="FontSize"
                                 Value="20" />
                         <Setter Property="Background"
                                 Value="#383838" />
                         <Setter Property="Height"
-                                Value="100" />
+                                Value="200" />
                         <Setter Property="Foreground"
                                 Value="White" />
                         <Setter Property="Margin"
-                                Value="15 0" />
+                                Value="5,0" />
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate  TargetType="Button">
@@ -132,9 +145,9 @@
                                                               HorizontalAlignment="Center" />
                                         </Border>
                                         <Border Background="#1C1C1C"
-                                                Width="30"
+                                                Width="50"
                                                 CornerRadius="5"
-                                                Height="30"
+                                                Height="50"
                                                 VerticalAlignment="Top"
                                                 HorizontalAlignment="Right">
                                             <ico:ImageAwesome Icon="Lock"
@@ -153,18 +166,18 @@
                         Style="{StaticResource BotonDesbloqueado}"
                         Command="{Binding CambiarVistaCommand}"
                         CommandParameter="{x:Static local:Vista.Tutorial}"
-                        FontFamily="Monotype Corsiva" />
+                       />
                 <Button Content="Nivel 2"
                         Style="{StaticResource BotonDesbloqueado}"
                         Command="{Binding CambiarVistaCommand}"
                         CommandParameter="{x:Static local:Vista.Tutorial2}"
-                        FontFamily="Monotype Corsiva" />
+                        />
                 <Button Content="Nivel 3"
                         Style="{StaticResource BotonBloqueado}"
-                        FontFamily="Monotype Corsiva" />
+                       />
                 <Button Content="Nivel 4"
                         Style="{StaticResource BotonBloqueado}"
-                        FontFamily="Monotype Corsiva" />
+                         />
             </WrapPanel>
         </StackPanel>
     </Grid>

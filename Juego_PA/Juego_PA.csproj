@@ -21,6 +21,7 @@
     <None Remove="Assets\GhostNightDEMO!-DEMO.ttf" />
     <None Remove="Assets\hola13.jpg" />
     <None Remove="Assets\lancha.png" />
+    <None Remove="Assets\level.jpg" />
     <None Remove="Assets\loto.png" />
     <None Remove="Assets\mitad.png" />
     <None Remove="Assets\moneda.png" />
@@ -61,6 +62,7 @@
     <Resource Include="Assets\fonts\GhostNightDEMO!-DEMO.ttf" />
     <Resource Include="Assets\hola13.jpg" />
     <Resource Include="Assets\lancha.png" />
+    <Resource Include="Assets\level.jpg" />
     <Resource Include="Assets\loto.png" />
     <Resource Include="Assets\mitad.png" />
     <Resource Include="Assets\moneda.png" />
