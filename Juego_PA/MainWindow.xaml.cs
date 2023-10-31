@@ -28,19 +28,19 @@ namespace Juego_PA
         {
             InitializeComponent();
 
-            //timer.Interval = TimeSpan.FromSeconds(1.5);
-            //timer.Tick += Timer_Tick;
-            //timer.Start();
+            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Tick += Timer_Tick;
+            timer.Start();
 
 
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            //PrincipallView principal = new();
-            //principal.Show();
-            //this.Close();
-            //timer.Stop();
+            PrincipallView principal = new();
+            this.Close();
+            principal.ShowDialog();
+            timer.Stop();
         }
     }
 }

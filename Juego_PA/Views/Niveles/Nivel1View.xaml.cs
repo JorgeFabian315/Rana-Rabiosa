@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Media;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +26,14 @@ namespace Juego_PA.Views.Niveles
 	/// </summary>
 	public partial class Nivel1View : UserControl
 	{
-		Jugador _jugador = new();
+		Jugador _jugador = new()
+		{
+			Nivel = 1
+		};
+
 		SoundPlayer soundPlayer = new("/Assets/Sonidos/SonidoSalto.wav");
-		public Nivel1View()
+        Movimientos movimiento = new();
+        public Nivel1View()
 		{
 			InitializeComponent();
 			MediadorViewModel.IniciarJuegoNivel1Event += MediadorViewModel_IniciarJuegoEvent;
@@ -47,7 +53,7 @@ namespace Juego_PA.Views.Niveles
 			EliminarHojas();
 		}
 
-		private async void Tablero_PreviewKeyDown(object sender, KeyEventArgs e)
+		private  void Tablero_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			var avm = this.DataContext as JuegoViewModel;
 
@@ -61,37 +67,20 @@ namespace Juego_PA.Views.Niveles
 				//soundPlayer.Load();
 				//soundPlayer.Play();
 
-				Movimientos movi = new();
 				if (e.Key == Key.Left)
-					movi = Movimientos.Izquierda;
+					movimiento = Movimientos.Izquierda;
 				if (e.Key == Key.Right)
-					movi = Movimientos.Derecha;
+					movimiento = Movimientos.Derecha;
 				if (e.Key == Key.Up)
-					movi = Movimientos.Arriba;
+					movimiento = Movimientos.Arriba;
 				if (e.Key == Key.Down)
-					movi = Movimientos.Abajo;
+					movimiento = Movimientos.Abajo;
 
-				_jugador.Movimiento = movi;
-				_jugador.Nivel = 1;
-				if (avm != null)
-					avm.MoverCommand.Execute(_jugador);
+                // CREAR HOJA EN LA MISMA POSICION DE LA RANA
+                MoverRana(movimiento);
 
-
-				// CREAR HOJA EN LA MISMA POSICION DE LA RANA
-				int columnRana = Grid.GetColumn(rana);
-				int rowRana = Grid.GetRow(rana);
-
-				if ((columnRana == 1 && rowRana == 1) || (columnRana == 3 && rowRana == 0))
-				{
-					await Task.Delay(300); // Pausa de un 0.5 segundos
-					soundPlayer.Stop();
-					EliminarHojas();
-				}
-				else
-					CrearHoja(columnRana, rowRana);
-
-			}
-			else
+            }
+            else
 			{
 				if (avm != null)
 					avm.OcultarTeclaIncorrectaCommand.Execute("mostrar");
@@ -239,22 +228,48 @@ namespace Juego_PA.Views.Niveles
 
         private void btnIzquierda_Click(object sender, RoutedEventArgs e)
         {
-
+			MoverRana(Movimientos.Izquierda);
         }
 
         private void btnArriba_Click(object sender, RoutedEventArgs e)
         {
-
+            MoverRana(Movimientos.Arriba);
         }
 
         private void btnDerecha_Click(object sender, RoutedEventArgs e)
         {
-
+            MoverRana(Movimientos.Derecha);
         }
 
         private void btnAbajo_Click(object sender, RoutedEventArgs e)
         {
-
+            MoverRana(Movimientos.Abajo);
         }
+
+
+        private async void MoverRana(Movimientos movi)
+		{
+            var avm = this.DataContext as JuegoViewModel;
+
+            _jugador.Movimiento = movi;
+            _jugador.Nivel = 1;
+            if (avm != null)
+                avm.MoverCommand.Execute(_jugador);
+
+            int columnRana = Grid.GetColumn(rana);
+            int rowRana = Grid.GetRow(rana);
+
+            if ((columnRana == 1 && rowRana == 1) || (columnRana == 3 && rowRana == 0))
+            {
+                await Task.Delay(300); // Pausa de un 0.5 segundos
+                soundPlayer.Stop();
+                EliminarHojas();
+            }
+			else
+			{
+				CrearHoja(columnRana,rowRana);
+			}
+        }
+
     }
 }

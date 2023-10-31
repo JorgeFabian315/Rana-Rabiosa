@@ -36,7 +36,7 @@ namespace Juego_PA.Views.Niveles
 
         public void IniciarJuego()
         {
-            //CrearTablero(6, 6, Tablero);
+            CrearTablero(Tablero,6, 6);
             CrearEnemigos();
             MediadorViewModel.IniciarJuegoNivel3Event += MediadorViewModel_IniciarJuegoNivel3Event;
             CrearMoneda();
@@ -50,7 +50,7 @@ namespace Juego_PA.Views.Niveles
 
 
         #region CREAR COLUMNAS Y FILAS GRID
-        public void CrearTablero(Grid tablero, int numColum = 6, int numFila = 6, int numeroTablero = 1)
+        public void CrearTablero(Grid tablero, int numColum = 6, int numFila = 6)
         {
             if (tablero.ColumnDefinitions.Count < 1 || tablero.RowDefinitions.Count < 1)
             {

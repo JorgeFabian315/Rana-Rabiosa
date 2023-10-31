@@ -156,7 +156,6 @@ namespace Juego_PA.Views.Niveles
             if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
             {
 
-
                 if (e.Key == Key.Left)
                     movimiento = Movimientos.Izquierda;
                 if (e.Key == Key.Right)
@@ -166,15 +165,8 @@ namespace Juego_PA.Views.Niveles
                 if (e.Key == Key.Down)
                     movimiento = Movimientos.Abajo;
 
-                _jugador.Movimiento = movimiento;
-                _jugador.Nivel = 2;
-
-                if (vm != null)
-                    vm.MoverCommand.Execute(_jugador);
-
-
                 // CREAR HOJA EN LA MISMA POSICION DE LA RANA
-                CrearHojaPosicionRana();
+                MoverRana(movimiento);
 
             }
             else
@@ -217,63 +209,34 @@ namespace Juego_PA.Views.Niveles
 
         private void btnAbajo_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as JuegoViewModel;
-
-            movimiento = Movimientos.Abajo;
-            _jugador.Movimiento = movimiento;
-            _jugador.Nivel = 2;
-            if (vm != null)
-            {
-                vm.MoverCommand.Execute(_jugador);
-                CrearHojaPosicionRana();
-            }
-
+            MoverRana(Movimientos.Abajo);
         }
 
         private void btnDerecha_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as JuegoViewModel;
-
-            movimiento = Movimientos.Derecha;
-            _jugador.Movimiento = movimiento;
-            _jugador.Nivel = 2;
-            if (vm != null)
-            {
-                vm.MoverCommand.Execute(_jugador);
-                CrearHojaPosicionRana();
-            }
+            MoverRana(Movimientos.Derecha);
         }
 
         private void btnIzquierda_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as JuegoViewModel;
-
-            movimiento = Movimientos.Izquierda;
-            _jugador.Movimiento = movimiento;
-            _jugador.Nivel = 2;
-            if (vm != null)
-            {
-                vm.MoverCommand.Execute(_jugador);
-                CrearHojaPosicionRana();
-            }
+            MoverRana(Movimientos.Izquierda);
         }
 
         private void btnArriba_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as JuegoViewModel;
-
-            movimiento = Movimientos.Arriba;
-            _jugador.Movimiento = movimiento;
-            _jugador.Nivel = 2;
-            if (vm != null)
-            {
-                vm.MoverCommand.Execute(_jugador);
-                CrearHojaPosicionRana();
-            }
+            MoverRana(Movimientos.Arriba);
         }
 
-        private async void CrearHojaPosicionRana()
+        private async void MoverRana(Movimientos movi)
         {
+            var vm = this.DataContext as JuegoViewModel;
+
+            _jugador.Movimiento = movi;
+            _jugador.Nivel = 2;
+
+            if (vm != null)
+                vm.MoverCommand.Execute(_jugador);
+
             int columnRana = Grid.GetColumn(rana);
             int rowRana = Grid.GetRow(rana);
 
