@@ -29,8 +29,7 @@
             <ColumnDefinition Width=".7*" />
             <ColumnDefinition Width=".15*" />
         </Grid.ColumnDefinitions>
-        <Border
-                BorderBrush="#2F3033"
+        <Border BorderBrush="#2F3033"
                 BorderThickness="4,4,4,0"
                 Background="#2F3033">
             <Border.Resources>
@@ -50,30 +49,51 @@
                     </Style.Triggers>
                 </Style>
             </Border.Resources>
-            
-            <WrapPanel HorizontalAlignment="Right"
-                       Margin="10"
-                       Focusable="false">
-                <Button Margin="10,0"
-                        Height="32"
-                        Width="32"
-                        Padding="0"
-                        Focusable="false"
-                        Click="MinimizarClick">
-                    <materialDesign:PackIcon Kind="Minus"
-                                             Foreground="White" />
-                </Button>
-                <Button Focusable="false"
-                        Height="32"
-                        Width="32"
-                        Padding="0"
-                        Click="btnCerrarClick">
-                    <materialDesign:PackIcon Kind="Close"
-                                             Foreground="White" />
-                </Button>
-            </WrapPanel>
+            <Grid Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*" />
+                    <ColumnDefinition Width=".5*" />
+                </Grid.ColumnDefinitions>
+                <WrapPanel>
+                    <Image Source="/Assets/rana.png"
+                           Width="40"
+                           Height="40"
+                           Margin="10,0,0,0" />
+                    <TextBlock Text="La Rana Saltarina"
+                               VerticalAlignment="Center"
+                               Foreground="White"
+                               FontFamily="/Assets/fonts/#Ghost Night DEMO! DEMO.ttf"
+                               FontSize="20"
+                               Margin="10,0,0,8">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="10" />
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Right"
+                           Margin="10"
+                           Grid.Column="1"
+                           Focusable="false">
+                    <Button Margin="10,0"
+                            Height="32"
+                            Width="32"
+                            Padding="0"
+                            Focusable="false"
+                            Click="MinimizarClick">
+                        <materialDesign:PackIcon Kind="Minus"
+                                                 Foreground="White" />
+                    </Button>
+                    <Button Focusable="false"
+                            Height="32"
+                            Width="32"
+                            Padding="0"
+                            Click="btnCerrarClick">
+                        <materialDesign:PackIcon Kind="Close"
+                                                 Foreground="White" />
+                    </Button>
+                </WrapPanel>
+            </Grid>
         </Border>
-        
         <ContentControl Grid.Row="1"
                         Grid.ColumnSpan="4">
             <ContentControl.Resources>
