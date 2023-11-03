@@ -31,6 +31,7 @@
         </Grid.ColumnDefinitions>
         <Border BorderBrush="#2F3033"
                 BorderThickness="4,4,4,0"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown"
                 Background="#2F3033">
             <Border.Resources>
                 <Style TargetType="Border">
