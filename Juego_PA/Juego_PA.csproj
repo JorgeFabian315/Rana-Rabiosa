@@ -30,7 +30,6 @@
     <None Remove="Assets\PERDISTE.png" />
     <None Remove="Assets\pirana.png" />
     <None Remove="Assets\rana.png" />
-    <None Remove="Assets\ranaLogo.jpeg" />
     <None Remove="Assets\serpiente.png" />
     <None Remove="Assets\SonidoSalto.wav" />
     <None Remove="Assets\Spicy Nachos.otf" />
@@ -77,7 +76,6 @@
     <Resource Include="Assets\PERDISTE.png" />
     <Resource Include="Assets\pirana.png" />
     <Resource Include="Assets\rana.png" />
-    <Resource Include="Assets\ranaLogo.jpeg" />
     <Resource Include="Assets\serpiente.png" />
     <EmbeddedResource Include="Assets\Spicy Nachos.otf" />
     <EmbeddedResource Include="Assets\Sonidos\SonidoSalto.wav" />

@@ -30,9 +30,7 @@ namespace Juego_PA
 
             timer.Interval = TimeSpan.FromSeconds(2);
             timer.Tick += Timer_Tick;
-            timer.Start();
-
-
+            timer.Start(); // :)
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
