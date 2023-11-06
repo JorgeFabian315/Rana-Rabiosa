@@ -17,12 +17,12 @@
             <Image.Style>
                 <Style TargetType="Image">
                     <Setter Property="Source"
-                            Value="/Assets/descarga12.jpeg" />
+                            Value="/Assets/PERDISTE.png" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding GameOver}"
                                      Value="false">
                             <Setter Property="Source"
-                                    Value="/Assets/Ganaste.jpg" />
+                                    Value="/Assets/GANASTE1.png" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -32,55 +32,11 @@
         <Border Background="Black" Opacity=".2"/>
         <Border Width="500"
                 CornerRadius="10"
-                Height="500">
-            <StackPanel Margin="0,0,0,30"
+                Height="500" Margin="70,0,230,-50">
+            <StackPanel Margin="0,0,150,30"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
-                <TextBlock TextWrapping="Wrap"
-                           TextAlignment="Center"
-                           FontWeight="SemiBold"
-                           FontFamily="Algerian">
-                    <TextBlock.Resources>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Text"
-                                    Value="Ganaste" />
-                            <Setter Property="FontSize"
-                                    Value="45" />
-                            <Setter Property="Foreground"
-                                    Value="Green" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameOver}"
-                                             Value="true">
-                                    <Setter Property="Text"
-                                            Value="Perdiste" />
-                                    <Setter Property="Foreground"
-                                            Value="#FFC62424" />
-                                    <Setter Property="FontSize"
-                                            Value="30" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Resources></TextBlock>
-                <TextBlock TextWrapping="Wrap"
-                           FontSize="20"
-                           Text="{Binding Rana.Puntaje, StringFormat=Puntaje: 0}"
-                           TextAlignment="Center"
-                           FontWeight="SemiBold">
-                    <TextBlock.Resources>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility"
-                                    Value="Visible" />
-                            <Setter Property="Foreground"
-                                    Value="Green" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameOver}"
-                                             Value="true">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Resources></TextBlock>
+                
                 <Button Style="{StaticResource BotonVolverJugar}"
                         Command="{Binding IniciarCommand}"
                         FontFamily="Ink Free" />
