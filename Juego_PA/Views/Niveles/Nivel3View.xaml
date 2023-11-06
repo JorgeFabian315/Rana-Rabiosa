@@ -14,7 +14,8 @@
              PreviewKeyDown="UserControl_PreviewKeyDown">
     <Grid>
         <DockPanel Background="#C0D3E4"
-                   x:Name="dock">
+                   x:Name="dock"
+                   Visibility="Collapsed">
             <Grid DockPanel.Dock="Top"
                   Height="60"
                   Margin="5"
@@ -250,5 +251,35 @@
                         Grid.RowSpan="6" />
             </Grid>
         </DockPanel>
+        <Grid Background="GhostWhite">
+            <Button Grid.ZIndex="5"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Command="{Binding CambiarVistaCommand}"
+                    CommandParameter="{x:Static vista:Vista.SeleccionarNivel}"
+                    Style="{StaticResource botonTutorial}">
+                <ico:ImageAwesome Icon="ArrowLeft"
+                                  Margin="3">
+                    <ico:ImageAwesome.Resources>
+                        <Style TargetType="ico:ImageAwesome">
+                            <Setter Property="Foreground"
+                                    Value="#141726" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
+                                             Value="True">
+                                    <Setter Property="Foreground"
+                                            Value="GREEN" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ico:ImageAwesome.Resources>
+                </ico:ImageAwesome>
+            </Button>
+            <TextBlock Text="Lo sentimos el nivel 3 aún no está listo" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="60"
+                       Foreground="Green"/>
+        </Grid>
     </Grid>
 </UserControl>

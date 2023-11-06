@@ -13,7 +13,7 @@
         ResizeMode="NoResize">
     <Grid>
    
-        <Image Source="/Assets/ranaLogo.jpeg"
+        <Image Source="/Assets/ranaLogo.png"
                Stretch="Fill" Margin="0"/>
         <!--<TextBlock Text="LA RANA SALTARINA"
                    Grid.Row="1"
