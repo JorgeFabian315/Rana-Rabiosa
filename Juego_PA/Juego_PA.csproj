@@ -27,9 +27,20 @@
     <None Remove="Assets\loto.png" />
     <None Remove="Assets\mitad.png" />
     <None Remove="Assets\moneda.png" />
+    <None Remove="Assets\Nivel3\Agua.jpg" />
+    <None Remove="Assets\Nivel3\cesped.png" />
+    <None Remove="Assets\Nivel3\Escenario.png" />
+    <None Remove="Assets\Nivel3\fuego.png" />
+    <None Remove="Assets\Nivel3\lava.jpg" />
+    <None Remove="Assets\Nivel3\llamas.png" />
+    <None Remove="Assets\Nivel3\roca-2.png" />
+    <None Remove="Assets\Nivel3\roca.png" />
+    <None Remove="Assets\Nivel3\slime-agua-2.png" />
+    <None Remove="Assets\Nivel3\slime-fuego.png" />
     <None Remove="Assets\PERDISTE.png" />
     <None Remove="Assets\pirana.png" />
     <None Remove="Assets\rana.png" />
+    <None Remove="Assets\ranaLogo.png" />
     <None Remove="Assets\serpiente.png" />
     <None Remove="Assets\SonidoSalto.wav" />
     <None Remove="Assets\Spicy Nachos.otf" />
@@ -73,9 +84,22 @@
     <Resource Include="Assets\loto.png" />
     <Resource Include="Assets\mitad.png" />
     <Resource Include="Assets\moneda.png" />
+    <Resource Include="Assets\Nivel3\Agua.jpg" />
+    <Resource Include="Assets\Nivel3\cesped.png" />
+    <Resource Include="Assets\Nivel3\Escenario.png" />
+    <Resource Include="Assets\Nivel3\fuego.png" />
+    <Resource Include="Assets\Nivel3\lava.jpg" />
+    <Resource Include="Assets\Nivel3\llamas.png" />
+    <Resource Include="Assets\Nivel3\roca-2.png" />
+    <Resource Include="Assets\Nivel3\roca.png" />
+    <Resource Include="Assets\Nivel3\slime-agua-2.png" />
+    <Resource Include="Assets\Nivel3\slime-fuego.png" />
     <Resource Include="Assets\PERDISTE.png" />
     <Resource Include="Assets\pirana.png" />
     <Resource Include="Assets\rana.png" />
+    <Resource Include="Assets\ranaLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\serpiente.png" />
     <EmbeddedResource Include="Assets\Spicy Nachos.otf" />
     <EmbeddedResource Include="Assets\Sonidos\SonidoSalto.wav" />

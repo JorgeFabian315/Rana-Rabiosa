@@ -11,5 +11,7 @@ namespace Juego_PA.Models
     {
         public Movimientos Movimiento { get; set; }     
         public int Nivel { get; set; }
+        public int Escenario { get; set; }
+        
     }
 }

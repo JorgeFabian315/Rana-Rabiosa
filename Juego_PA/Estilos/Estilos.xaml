@@ -6,7 +6,7 @@
     <Style TargetType="Button"
            x:Key="BotonesPantallaGanaste">
         <Setter Property="Background"
-                Value="#63DF41" />
+                Value="#BBB320" />
         <Setter Property="Width"
                 Value="300" />
         <Setter Property="Margin"
@@ -22,7 +22,7 @@
         <Setter Property="Height"
                 Value="50" />
         <Setter Property="BorderBrush"
-                Value="#257521" />
+                Value="black" />
         <Setter Property="BorderThickness"
                 Value="2" />
         <Setter Property="Template">
@@ -42,9 +42,9 @@
                                      Value="true">
                             <Setter Property="Background"
                                     TargetName="border"
-                                    Value="#F44336" />
+                                    Value="#B21D1D" />
                             <Setter Property="BorderBrush"
-                                    Value="#CD0000" />
+                                    Value="#B21D1D" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -55,7 +55,7 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                         To="315"
+                                         To="320"
                                          Duration="0:0:0.3" />
                         <DoubleAnimation Storyboard.TargetProperty="Height"
                                          To="60"
@@ -101,7 +101,7 @@
     <Style TargetType="Button"
            x:Key="BotonNivel2">
         <Setter Property="Background"
-                Value="#63DF41" />
+                Value="#BBB320" />
         <Setter Property="Width"
                 Value="300" />
         <Setter Property="Margin"
@@ -117,7 +117,7 @@
         <Setter Property="Height"
                 Value="50" />
         <Setter Property="BorderBrush"
-                Value="#257521" />
+                Value="black" />
         <Setter Property="BorderThickness"
                 Value="2" />
         <Setter Property="Template">
@@ -168,7 +168,7 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                         To="315"
+                                         To="320"
                                          Duration="0:0:0.3" />
                         <DoubleAnimation Storyboard.TargetProperty="Height"
                                          To="60"
@@ -227,7 +227,7 @@
     <Style TargetType="Button"
            x:Key="BotonVolverJugar">
         <Setter Property="Background"
-                Value="#63DF41" />
+                Value="#BBB320" />
         <Setter Property="Width"
                 Value="300" />
         <Setter Property="Margin"
@@ -243,7 +243,7 @@
         <Setter Property="Height"
                 Value="50" />
         <Setter Property="BorderBrush"
-                Value="#257521" />
+                Value="Black" />
         <Setter Property="BorderThickness"
                 Value="2" />
         <Setter Property="Template">
@@ -263,9 +263,9 @@
                                      Value="true">
                             <Setter Property="Background"
                                     TargetName="border"
-                                    Value="#F44336" />
+                                    Value="#B21D1D" />
                             <Setter Property="BorderBrush"
-                                    Value="#CD0000" />
+                                    Value="#B21D1D" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding NivelActual}"
                                      Value="1">
@@ -304,7 +304,7 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetProperty="Width"
-                                         To="315"
+                                         To="320"
                                          Duration="0:0:0.3" />
                         <DoubleAnimation Storyboard.TargetProperty="Height"
                                          To="60"

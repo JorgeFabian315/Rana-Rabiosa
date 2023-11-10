@@ -24,19 +24,28 @@ namespace Juego_PA.ViewModel
 
         private string _patron = "";
         public Rana Rana { get; set; } = new();
+        public Jugador Jugador { get; set; } = new();
         public bool Ganaste { get; set; } = false;
         public bool GameOver { get; set; } = false;
         public bool IniciarJuegoPropiedad { get; set; } = false;
-
         public int NivelActual { get; set; }
         public Vista Vista { get; set; } = Vista.Inicio;
-
         public ICommand MoverCommand { get; set; }
         public ICommand IniciarCommand { get; set; }
         public ICommand CambiarVistaCommand { get; set; }
         public ICommand Nivel2Command { get; set; }
         public ICommand MoverRanaOrigen => new RelayCommand(MoverRana);
         public ICommand OcultarTeclaIncorrectaCommand => new RelayCommand<string>(OcultarTeclaIncorrectaMetodo);
+        public ICommand RestarVidaRanaCommand => new RelayCommand(RestarVidaRana);
+
+        private void RestarVidaRana()
+        {
+            Rana.Vida--;
+            if (Rana.Vida == 0)
+                PerdistePorVidas();
+
+            OnPropertyChanged(nameof(Rana));
+        }
 
         public bool OcultarTeclaIncorrecta { get; set; } = true;
 
@@ -46,6 +55,8 @@ namespace Juego_PA.ViewModel
                 OcultarTeclaIncorrecta = true;
             else
                 OcultarTeclaIncorrecta = false;
+
+            MediadorViewModel.IniciarTimer();
 
             OnPropertyChanged();
         }
@@ -71,7 +82,10 @@ namespace Juego_PA.ViewModel
             CambiarVistaCommand = new RelayCommand<Vista>(CambiarVista);
 
         }
-        public void RealizarMovimiento(Jugador _jugador)
+
+
+
+        public async void RealizarMovimiento(Jugador jugador)
         {
             Rana.LimiteMovimientos -= 1;
 
@@ -80,50 +94,59 @@ namespace Juego_PA.ViewModel
                 _posicionXAnterior = Rana.X;
                 _posicionYAnterior = Rana.Y;
 
-                if (_jugador.Movimiento == Movimientos.Derecha)
+                if (jugador.Movimiento == Movimientos.Derecha)
                 {
                     Rana.X += 1;
                     _movimientoPermitido = "D";
                     _movimiento += "D";
                 }
-                else if (_jugador.Movimiento == Movimientos.Izquierda)
+                else if (jugador.Movimiento == Movimientos.Izquierda)
                 {
                     Rana.X -= 1;
                     _movimientoPermitido = "I";
                     _movimiento += "I";
                 }
-                else if (_jugador.Movimiento == Movimientos.Arriba)
+                else if (jugador.Movimiento == Movimientos.Arriba)
                 {
                     Rana.Y -= 1;
                     _movimientoPermitido = "A";
                     _movimiento += "A";
                 }
-                else if (_jugador.Movimiento == Movimientos.Abajo)
+                else if (jugador.Movimiento == Movimientos.Abajo)
                 {
                     Rana.Y += 1;
                     _movimientoPermitido = "B";
                     _movimiento += "B";
                 }
 
-                if (_jugador.Nivel == 1)
+                switch (jugador.Nivel)
                 {
-                    NivelActual = 1;
-                    Nivel1();
+                    case 1:
+                        NivelActual = 1;
+                        Nivel1();
+                        break;
+                    case 2:
+                        NivelActual = 2;
+                        Nivel2();
+                        break;
+                    case 3:
+                        NivelActual = 3;
+                        Nivel3();
+                        break;
+                    case 4:
+                        NivelActual = 4;
+                        Nivel4();
+                        break;
                 }
-                else if (_jugador.Nivel == 2)
+
+                if (jugador.Nivel == 3 && Rana.X == 4 && Rana.Y == 3 && jugador.Escenario != 2)
                 {
-                    NivelActual = 2;
-                    Nivel2();
-                }
-                else if (_jugador.Nivel == 3)
-                {
-                    NivelActual = 3;
-                    Nivel3();
-                }
-                else if (_jugador.Nivel == 4)
-                {
-                    NivelActual = 4;
-                    Nivel4();
+                    await Task.Delay(350); // Pausa de un 0.5 segundos
+                    Rana.X = 0;
+                    Rana.Y = 0;
+                    jugador.Escenario = 2;
+                    Jugador = jugador;
+                    MediadorViewModel.CambiarEscenarioLava();
                 }
 
             }
@@ -170,7 +193,7 @@ namespace Juego_PA.ViewModel
                 Vista = Vista.Nivel3;
                 Rana.Vida = 6;
                 MediadorViewModel.IniciarJuegoNivel3();
-                Rana.LimiteMovimientos = 20;
+                Rana.LimiteMovimientos = 30;
             }
             else if (nivel == "4")
             {
@@ -263,7 +286,6 @@ namespace Juego_PA.ViewModel
             if (Rana.Vida == 0)
             {
                 PerdistePorVidas();
-                IniciarJuegoPropiedad = false;
             }
 
 
@@ -298,6 +320,7 @@ namespace Juego_PA.ViewModel
 
             Vista = Vista.Ganaste;
             GameOver = true;
+            IniciarJuegoPropiedad = false;
         }
 
 

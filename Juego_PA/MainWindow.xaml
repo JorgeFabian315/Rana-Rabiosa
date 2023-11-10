@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:Juego_PA.ViewModel"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow"
+        Title="La rana saltarina"
         Height="500"
         Width="600"
         ResizeMode="NoResize">

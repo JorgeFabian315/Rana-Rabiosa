@@ -53,10 +53,20 @@ namespace Juego_PA.ViewModel
         }
 
 
+        public static event Action? CambiarEscenarioLavaEvent;
+
+        public static void CambiarEscenarioLava()
+        {
+            CambiarEscenarioLavaEvent?.Invoke();
+        }
 
 
+        public static event Action? IniciarTimerEvent;
 
-
+        public static void IniciarTimer()
+        {
+            IniciarTimerEvent?.Invoke();
+        }
 
 
 

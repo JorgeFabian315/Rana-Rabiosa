@@ -6,27 +6,172 @@
              xmlns:local="clr-namespace:Juego_PA.Views.Niveles"
              xmlns:ico="http://schemas.fontawesome.io/icons/"
              xmlns:vista="clr-namespace:Juego_PA.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="1000"
              Focusable="True"
              Loaded="UserControl_Loaded"
              PreviewKeyDown="UserControl_PreviewKeyDown">
-    <Grid>
-        <DockPanel Background="#C0D3E4"
-                   x:Name="dock"
-                   Visibility="Collapsed">
-            <Grid DockPanel.Dock="Top"
-                  Height="60"
-                  Margin="5"
-                  Focusable="False"
-                  Background="DeepSkyBlue">
+    <Grid Background="Transparent"
+          x:Name="dock">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".12*" />
+            <RowDefinition Height=".88*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".15*" />
+            <ColumnDefinition Width=".7*" />
+            <ColumnDefinition Width=".15*" />
+        </Grid.ColumnDefinitions>
+        <Border Background="#50C5E7"
+                Grid.RowSpan="2"
+                BorderThickness="4,4,0,4"
+                BorderBrush="#2F3033"
+                CornerRadius="50,0,0,50">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".1*" />
+                    <RowDefinition Height=".3*" />
+                    <RowDefinition Height=".25*" />
+                    <RowDefinition Height=".3*" />
+                </Grid.RowDefinitions>
+                <Border Background="#2F3033"
+                        Width="30"
+                        Height="10"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,20,0" />
+                <Grid Height="125"
+                      Margin="25,0"
+                      Grid.Row="2"
+                      VerticalAlignment="Top">
+                    <Grid.Resources>
+                        <Style TargetType="materialDesign:PackIcon">
+                            <Setter Property="Width"
+                                    Value="30" />
+                            <Setter Property="Height"
+                                    Value="30" />
+                        </Style>
+                    </Grid.Resources>
+                    <Button HorizontalAlignment="Center"
+                            x:Name="btnArriba"
+                            Click="btnArriba_Click"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="top">
+                        <materialDesign:PackIcon Kind="ChevronUp" />
+                    </Button>
+                    <Button HorizontalAlignment="Left"
+                            x:Name="btnIzquierda"
+                            Click="btnIzquierda_Click"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="ChevronLeft" />
+                    </Button>
+                    <Button HorizontalAlignment="Right"
+                            x:Name="btnDerecha"
+                            Click="btnDerecha_Click"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="ChevronRight" />
+                    </Button>
+                    <Button HorizontalAlignment="Center"
+                            x:Name="btnAbajo"
+                            Click="btnAbajo_Click"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Bottom">
+                        <materialDesign:PackIcon Kind="ChevronDown" />
+                    </Button>
+                </Grid>
+                <Border Background="#2F3033"
+                        Grid.Row="1"
+                        Width="90"
+                        Height="90"
+                        BorderThickness="8"
+                        BorderBrush="#1F2022"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        CornerRadius="45" />
+                <Image Source="/Assets/calcamonia2.png"
+                       Grid.Row="4"
+                       Margin="20"
+                       VerticalAlignment="Top" />
+            </Grid>
+        </Border>
+        <Border Width="10"
+                Grid.RowSpan="2"
+                Background="#2F3033"
+                HorizontalAlignment="Right" />
+        <Border Background="#F15C54"
+                Grid.RowSpan="2"
+                BorderThickness="0,4,4,4"
+                BorderBrush="#2F3033"
+                Grid.Column="2"
+                CornerRadius="0,50,50,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".2*" />
+                    <RowDefinition Height=".25*" />
+                    <RowDefinition Height=".25*" />
+                    <RowDefinition Height=".3*" />
+                </Grid.RowDefinitions>
+                <materialDesign:PackIcon Kind="Hospital"
+                                         Width="50"
+                                         Foreground="#2F3033"
+                                         Height="50"
+                                         HorizontalAlignment="Left"
+                                         Margin="20,0,0,0" />
+                <Grid Height="125"
+                      Margin="25,0"
+                      Grid.Row="1"
+                      VerticalAlignment="Center">
+                    <Button HorizontalAlignment="Center"
+                            VerticalAlignment="top"
+                            Style="{StaticResource BotonesSwitch}"
+                            Content="X" />
+                    <Button HorizontalAlignment="Left"
+                            Content="Y"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Center" />
+                    <Button HorizontalAlignment="Right"
+                            Style="{StaticResource BotonesSwitch}"
+                            VerticalAlignment="Center"
+                            Content="A" />
+                    <Button HorizontalAlignment="Center"
+                            Style="{StaticResource BotonesSwitch}"
+                            Content="B"
+                            VerticalAlignment="Bottom" />
+                </Grid>
+                <Border Background="#2F3033"
+                        Grid.Row="2"
+                        Width="90"
+                        Height="90"
+                        BorderThickness="8"
+                        BorderBrush="#1F2022"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        CornerRadius="45" />
+                <!--<Image Source="/Assets/calcamonia2.png"
+                       Margin="20" 
+                       Grid.Row="4"
+                       />-->
+            </Grid>
+        </Border>
+        <Border Width="10"
+                Grid.RowSpan="2"
+                Background="#2F3033"
+                Grid.Column="2"
+                HorizontalAlignment="Left" />
+        <Border Background="DeepSkyBlue"
+                Margin="0"
+                BorderThickness="0,4"
+                BorderBrush="#2F3033"
+                Grid.Column="1">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".1*" />
                     <ColumnDefinition Width=".2*" />
                     <ColumnDefinition Width=".4*" />
-                    <ColumnDefinition Width=".1*" />
-                    <ColumnDefinition Width=".2*" />
+                    <ColumnDefinition Width=".3*" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.ZIndex="5"
                         VerticalAlignment="Center"
@@ -51,42 +196,33 @@
                         </ico:ImageAwesome.Resources>
                     </ico:ImageAwesome>
                 </Button>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="Limite de Movimientos: "
-                               FontSize="15"
+                <TextBlock Text="Nivel 3"
+                           Focusable="False"
+                           Grid.ColumnSpan="4"
+                           HorizontalAlignment="Center"
+                           FontSize="30"
+                           Foreground="White"
+                           VerticalAlignment="Center" />
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Limite Movimientos: "
+                               FontSize="16"
                                Foreground="White"
                                FontWeight="SemiBold" />
                     <TextBlock Text="{Binding Rana.LimiteMovimientos}"
-                               FontFamily="/Assets/#Spicy Nachos"
-                               FontSize="35"
-                               Foreground="White"
-                               FontWeight="DemiBold" />
-                </StackPanel>
-                <StackPanel Grid.Column="3">
-                    <TextBlock Text="Puntaje: "
-                               FontSize="15"
+                               FontSize="25"
                                Foreground="White"
                                FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding Rana.Puntaje}"
-                               FontFamily="/Assets/#Spicy Nachos"
-                               FontSize="35"
-                               Foreground="White"
-                               FontWeight="DemiBold" />
                 </StackPanel>
-                <TextBlock Grid.ColumnSpan="5"
-                           HorizontalAlignment="Center"
-                           FontSize="50"
-                           Foreground="White"
-                           FontFamily="/Assets/#Spicy Nachos"
-                           Text="Nivel 3" />
                 <WrapPanel Grid.Column="4"
-                           Margin="7"
-                           VerticalAlignment="Bottom"
-                           HorizontalAlignment="Right">
-                    <Image Height="35"
+                           HorizontalAlignment="Right"
+                           Margin="15,10"
+                           VerticalAlignment="Center">
+                    <Image Height="40"
+                           Width="40"
                            Grid.ZIndex="1">
                         <Image.Resources>
-                            <Style TargetType="{x:Type Image}">
+                            <Style TargetType="Image">
                                 <Setter Property="Source"
                                         Value="/Assets/corazon.png" />
                                 <Style.Triggers>
@@ -95,19 +231,17 @@
                                         <Setter Property="Source"
                                                 Value="/Assets/mitad.png" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Rana.Vida}"
-                                                 Value="0">
-                                        <Setter Property="Visibility"
-                                                Value="Collapsed" />
-                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Image.Resources>
                     </Image>
-                    <Image Height="35"
+                    <Image Height="40"
+                           Width="40"
+                           Grid.Column="1"
+                           Grid.Row="0"
                            Grid.ZIndex="1">
                         <Image.Resources>
-                            <Style TargetType="{x:Type Image}">
+                            <Style TargetType="Image">
                                 <Setter Property="Source"
                                         Value="/Assets/corazon.png" />
                                 <Style.Triggers>
@@ -119,18 +253,19 @@
                                     <DataTrigger Binding="{Binding Rana.Vida}"
                                                  Value="2">
                                         <Setter Property="Visibility"
-                                                Value="Collapsed" />
+                                                Value="Hidden" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Rana.Vida}"
                                                  Value="1">
                                         <Setter Property="Visibility"
-                                                Value="Collapsed" />
+                                                Value="Hidden" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Image.Resources>
                     </Image>
-                    <Image Height="35"
+                    <Image Height="40"
+                           Width="40"
                            Grid.ZIndex="1">
                         <Image.Resources>
                             <Style TargetType="{x:Type Image}">
@@ -145,22 +280,22 @@
                                     <DataTrigger Binding="{Binding Rana.Vida}"
                                                  Value="4">
                                         <Setter Property="Visibility"
-                                                Value="Collapsed" />
+                                                Value="Hidden" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Rana.Vida}"
                                                  Value="3">
                                         <Setter Property="Visibility"
-                                                Value="Collapsed" />
+                                                Value="Hidden" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Rana.Vida}"
                                                  Value="2">
                                         <Setter Property="Visibility"
-                                                Value="Collapsed" />
+                                                Value="Hidden" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Rana.Vida}"
                                                  Value="1">
                                         <Setter Property="Visibility"
-                                                Value="Collapsed" />
+                                                Value="Hidden" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -168,118 +303,282 @@
                     </Image>
                 </WrapPanel>
             </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Focusable="False"
+                Background="Transparent"
+                BorderThickness="0,0,0,4"
+                BorderBrush="#2F3033">
             <Grid x:Name="Tablero"
-                  Background="#C0D3E4"
                   Focusable="True"
-                  Margin="5,0,5,5">
-                <Grid.Resources>
-                    <Style  TargetType="Border">
-                        <Setter Property="Margin"
-                                Value="2" />
-                        <Setter Property="CornerRadius"
-                                Value="3" />
-                    </Style>
-                </Grid.Resources>
-                <!--#REGION RANA Y FLOR-->
-                <Image Width="70"
+                  Background="Transparent">
+                
+                
+                
+                
+                <!--#REGION ESCENARIO 1-->
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Right"
+                       Grid.Column="0"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="4"
+                       Source="/Assets/Nivel3/cesped.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Right"
+                       Grid.Column="2"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="0"
+                       Source="/Assets/Nivel3/cesped.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Right"
+                       Grid.Column="2"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="3"
+                       Source="/Assets/Nivel3/cesped.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Left"
+                       Grid.Column="2"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="0"
+                       Source="/Assets/Nivel3/cesped.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       Margin="5,10,5,0"
+                       HorizontalAlignment="Left"
+                       Grid.Column="0"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="4"
+                       Source="/Assets/Nivel3/roca.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Right"
+                       Grid.Column="4"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="0"
+                       Source="/Assets/Nivel3/cesped.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Left"
+                       Grid.Column="3"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="2"
+                       Source="/Assets/Nivel3/cesped.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       Margin="5,10,5,0"
+                       HorizontalAlignment="Left"
+                       Grid.Column="4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="0"
+                       Source="/Assets/Nivel3/roca.png"
+                       Height="80" />
+                <Image Width="40"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       Margin="5,10,5,0"
+                       HorizontalAlignment="Left"
+                       Grid.Column="1"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="1"
+                       Source="/Assets/Nivel3/roca-2.png"
+                       Height="40" />
+                <Image Width="40"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       Margin="5,10,5,0"
+                       HorizontalAlignment="Left"
+                       Grid.Column="2"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="3"
+                       Source="/Assets/Nivel3/roca-2.png"
+                       Height="40" />
+                <Image Width="40"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       Margin="5,10,5,0"
+                       HorizontalAlignment="Right"
+                       Grid.Column="4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="1"
+                       Source="/Assets/Nivel3/roca-2.png"
+                       Height="40" />
+         
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       Margin="5,10,5,0"
+                       HorizontalAlignment="Left"
+                       Grid.Column="4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="4"
+                       Source="/Assets/Nivel3/roca.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_1"
+                       Grid.ZIndex="4"
+                       Margin="5,10,5,0"
+                       HorizontalAlignment="Right"
+                       Grid.Column="4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="4"
+                       Source="/Assets/Nivel3/roca.png"
+                       Height="80" />
+                <!--#ENDREGION ESCENARIO 1-->
+                
+                <!--#REGION ESCENARIO 2-->
+                <Image Width="80"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Right"
+                       Visibility="Collapsed"
+                       Grid.Column="0"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="4"
+                       Source="/Assets/Nivel3/fuego.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Left"
+                       Grid.Column="0"
+                       Margin="5,0,15,4"
+                       Visibility="Collapsed"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="4"
+                       Source="/Assets/Nivel3/fuego.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Right"
+                       Grid.Column="4"
+                       Visibility="Collapsed"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="4"
+                       Source="/Assets/Nivel3/fuego.png"
+                       Height="80" />
+                <Image Width="80"
+                       Visibility="Collapsed"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Left"
+                       Grid.Column="4"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="4"
+                       Source="/Assets/Nivel3/fuego.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Right"
+                       Grid.Column="5"
+                       Margin="5,0,5,4"
+                       VerticalAlignment="Bottom"
+                       Visibility="Collapsed"
+                       Grid.Row="0"
+                       Source="/Assets/Nivel3/fuego.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Left"
+                       Grid.Column="2"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="3"
+                       Visibility="Collapsed"
+                       Source="/Assets/Nivel3/llamas.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Left"
+                       Grid.Column="2"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Visibility="Collapsed"
+                       Grid.Row="1"
+                       Source="/Assets/Nivel3/llamas.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Left"
+                       Grid.Column="0"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="2"
+                       Visibility="Collapsed"
+                       Source="/Assets/Nivel3/llamas.png"
+                       Height="80" />
+                <!--#ENDREGION ESCENARIO 2-->
+                
+                <Image Width="95"
+                       Grid.ZIndex="8"
+                       x:Name="slime1"
+                       Height="95" />
+                <Image Width="95"
+                       Grid.ZIndex="8"
+                       x:Name="slime2"
+                       Height="95" />
+                <TextBlock FontSize="30"
+                           Foreground="black"
+                           Grid.ZIndex="8"
+                           x:Name="lblsegundos" />
+                <Ellipse Width="50"
+                         Height="50"
+                         Fill="Black"
+                         x:Name="remolino"
+                         Grid.ZIndex="4"
+                         Grid.Column="4"
+                         Grid.Row="3" />
+                <Image Width="85"
                        Tag="LotoInicial"
                        Grid.ZIndex="4"
                        Source="/Assets/loto.png"
-                       Height="70" />
-                <Image Width="80"
-                       Grid.Column="5"
-                       Grid.Row="5"
-                       Tag="Flor"
-                       Grid.ZIndex="5"
-                       x:Name="flor"
-                       Source="/Assets/flor.png"
-                       Height="80" />
-                <Image Width="50"
+                       Height="85" />
+                <Image Width="60"
                        x:Name="rana"
                        Tag="Rana"
                        Source="/Assets/rana.png"
                        Grid.ZIndex="6"
                        Grid.Column="{Binding Rana.X}"
                        Grid.Row="{Binding Rana.Y}"
-                       Height="50" />
+                       Height="60" />
                 <!--#ENDREGION RANA Y FLOR-->
-                <!--#REGION ENEMIGOS PLANTA-->
-                <Image Width="60"
-                       Height="60"
-                       Tag="LotoInicial"
-                       Grid.ZIndex="4"
-                       Grid.Column="3"
-                       Grid.Row="2"
-                       x:Name="FlorRoja"
-                       Source="/Assets/flormala.png" />
-                <Image Width="100"
-                       Height="0"
-                       Tag="LotoInicial"
-                       Grid.ZIndex="4"
-                       Grid.Column="3"
-                       Margin="0 0 0 10"
-                       Grid.Row="1"
-                       Grid.RowSpan="2"
-                       VerticalAlignment="Bottom"
-                       x:Name="FlorMataRana"
-                       Source="/Assets/flormatarana.png" />
-                <Image Width="60"
-                       Height="60"
-                       Tag="LotoInicial"
-                       Grid.ZIndex="4"
-                       Grid.Column="4"
-                       Grid.Row="4"
-                       x:Name="FlorRoja2"
-                       Source="/Assets/flormala.png" />
-                <Image Width="100"
-                       Height="0"
-                       Tag="LotoInicial"
-                       Grid.ZIndex="4"
-                       Grid.Column="4"
-                       Margin="0 0 0 10"
-                       Grid.Row="3"
-                       Grid.RowSpan="2"
-                       VerticalAlignment="Bottom"
-                       x:Name="FlorMataRana2"
-                       Source="/Assets/flormatarana.png" /> 
-                <!--#ENDREGION ENEMIGOS PLANTA-->
-                <Border Background="Black"
-                        Grid.ColumnSpan="6"
-                        Grid.ZIndex="10"
-                        Opacity="0"
-                        x:Name="bordeTransicion"
-                        Grid.RowSpan="6" />
+                <vista:TeclaIncorrectaView Grid.ColumnSpan="5"
+                                           Grid.RowSpan="5"
+                                           Grid.ZIndex="8" />
             </Grid>
-        </DockPanel>
-        <Grid Background="GhostWhite">
-            <Button Grid.ZIndex="5"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    Command="{Binding CambiarVistaCommand}"
-                    CommandParameter="{x:Static vista:Vista.SeleccionarNivel}"
-                    Style="{StaticResource botonTutorial}">
-                <ico:ImageAwesome Icon="ArrowLeft"
-                                  Margin="3">
-                    <ico:ImageAwesome.Resources>
-                        <Style TargetType="ico:ImageAwesome">
-                            <Setter Property="Foreground"
-                                    Value="#141726" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button},Path=IsMouseOver}"
-                                             Value="True">
-                                    <Setter Property="Foreground"
-                                            Value="GREEN" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ico:ImageAwesome.Resources>
-                </ico:ImageAwesome>
-            </Button>
-            <TextBlock Text="Lo sentimos el nivel 3 aún no está listo" 
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="60"
-                       Foreground="Green"/>
-        </Grid>
+        </Border>
     </Grid>
 </UserControl>

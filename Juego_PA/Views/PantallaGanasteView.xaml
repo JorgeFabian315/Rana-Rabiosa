@@ -11,7 +11,6 @@
     <Grid Grid.ColumnSpan="5"
           Grid.ZIndex="7"
           Grid.RowSpan="5">
-        <Border Background="Green" />
         <Image 
                Stretch="Fill">
             <Image.Style>
@@ -29,7 +28,7 @@
             </Image.Style>
             
         </Image>
-        <Border Background="Black" Opacity=".2"/>
+        <Border Background="Black" Opacity="0.2"/>
         <Border Width="500"
                 CornerRadius="10"
                 Height="500" Margin="70,0,230,-50">

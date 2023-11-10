@@ -176,7 +176,9 @@
                         Command="{Binding CambiarVistaCommand}"
                         CommandParameter="{x:Static local:Vista.Tutorial2}" />
                 <Button Content="Nivel 3"
-                        Style="{StaticResource BotonBloqueado}" />
+                        Command="{Binding IniciarCommand}"
+                        CommandParameter="3"
+                        Style="{StaticResource BotonDesbloqueado}" />
                 <Button Content="Nivel 4"
                         Style="{StaticResource BotonBloqueado}" />
             </WrapPanel>
