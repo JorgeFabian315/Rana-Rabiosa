@@ -59,7 +59,12 @@ namespace Juego_PA.ViewModel
         {
             CambiarEscenarioLavaEvent?.Invoke();
         }
+        public static event Action? CambiarEscenarioAguaEvent;
 
+        public static void CambiarEscenarioAgua()
+        {
+            CambiarEscenarioAguaEvent?.Invoke();
+        }
 
         public static event Action? IniciarTimerEvent;
 

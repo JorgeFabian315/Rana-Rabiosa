@@ -170,10 +170,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".1*" />
                     <ColumnDefinition Width=".2*" />
-                    <ColumnDefinition Width=".4*" />
-                    <ColumnDefinition Width=".3*" />
+                    <ColumnDefinition Width=".2*" />
+                    <ColumnDefinition Width=".25*" />
+                    <ColumnDefinition Width=".25*" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.ZIndex="5"
+                        Click="RegresarClick"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
                         Command="{Binding CambiarVistaCommand}"
@@ -198,7 +200,7 @@
                 </Button>
                 <TextBlock Text="Nivel 3"
                            Focusable="False"
-                           Grid.ColumnSpan="4"
+                           Grid.ColumnSpan="5"
                            HorizontalAlignment="Center"
                            FontSize="30"
                            Foreground="White"
@@ -210,6 +212,18 @@
                                Foreground="White"
                                FontWeight="SemiBold" />
                     <TextBlock Text="{Binding Rana.LimiteMovimientos}"
+                               FontSize="25"
+                               Foreground="White"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+                <StackPanel Grid.Column="3"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Puntaje: "
+                               FontSize="16"
+                               Foreground="White"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Rana.Puntaje}"
                                FontSize="25"
                                Foreground="White"
                                FontWeight="SemiBold" />
@@ -304,6 +318,10 @@
                 </WrapPanel>
             </Grid>
         </Border>
+        
+        
+        
+        
         <Border Grid.Row="1"
                 Grid.Column="1"
                 Focusable="False"
@@ -313,10 +331,6 @@
             <Grid x:Name="Tablero"
                   Focusable="True"
                   Background="Transparent">
-                
-                
-                
-                
                 <!--#REGION ESCENARIO 1-->
                 <Image Width="80"
                        Tag="Escenario_1"
@@ -428,7 +442,6 @@
                        Grid.Row="1"
                        Source="/Assets/Nivel3/roca-2.png"
                        Height="40" />
-         
                 <Image Width="80"
                        Tag="Escenario_1"
                        Grid.ZIndex="4"
@@ -450,7 +463,6 @@
                        Source="/Assets/Nivel3/roca.png"
                        Height="80" />
                 <!--#ENDREGION ESCENARIO 1-->
-                
                 <!--#REGION ESCENARIO 2-->
                 <Image Width="80"
                        Tag="Escenario_2"
@@ -541,12 +553,27 @@
                        Source="/Assets/Nivel3/llamas.png"
                        Height="80" />
                 <!--#ENDREGION ESCENARIO 2-->
-                
                 <Image Width="95"
                        Grid.ZIndex="8"
                        x:Name="slime1"
+                       Grid.Row="1"
+                       Grid.Column="2"
                        Height="95" />
+                <Image Width="70"
+                       Height="70"
+                       x:Name="Corazon"
+                       HorizontalAlignment="Center"
+                       Grid.ZIndex="4"
+                       Source="/Assets/corazon.png" />
+                <Image Width="70"
+                       Height="70"
+                       x:Name="Estrella"
+                       HorizontalAlignment="Center"
+                       Grid.ZIndex="4"
+                       Source="/Assets/estrella.png" />
                 <Image Width="95"
+                       Grid.Row="4"
+                       Grid.Column="4"
                        Grid.ZIndex="8"
                        x:Name="slime2"
                        Height="95" />
@@ -554,10 +581,10 @@
                            Foreground="black"
                            Grid.ZIndex="8"
                            x:Name="lblsegundos" />
-                <Ellipse Width="50"
-                         Height="50"
-                         Fill="Black"
+                <Image   Width="80"
+                         Height="80"
                          x:Name="remolino"
+                         Source="/Assets/remolino.png"
                          Grid.ZIndex="4"
                          Grid.Column="4"
                          Grid.Row="3" />

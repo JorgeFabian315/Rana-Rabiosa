@@ -37,6 +37,21 @@ namespace Juego_PA.ViewModel
         public ICommand MoverRanaOrigen => new RelayCommand(MoverRana);
         public ICommand OcultarTeclaIncorrectaCommand => new RelayCommand<string>(OcultarTeclaIncorrectaMetodo);
         public ICommand RestarVidaRanaCommand => new RelayCommand(RestarVidaRana);
+        public ICommand SumarVidaRanaCommand => new RelayCommand(SumarVidaRana);
+        public ICommand SumarPuntajeCommand => new RelayCommand(SumarPuntaje);
+
+        private void SumarPuntaje()
+        {
+            Rana.Puntaje += 10;
+            OnPropertyChanged(nameof(Rana));
+        }
+
+        private void SumarVidaRana()
+        {
+            if(Rana.Vida < 6)
+                Rana.Vida++;   
+            OnPropertyChanged(nameof(Rana));
+        }
 
         private void RestarVidaRana()
         {
@@ -141,7 +156,7 @@ namespace Juego_PA.ViewModel
 
                 if (jugador.Nivel == 3 && Rana.X == 4 && Rana.Y == 3 && jugador.Escenario != 2)
                 {
-                    await Task.Delay(350); // Pausa de un 0.5 segundos
+                    await Task.Delay(300); // Pausa de un 0.5 segundos
                     Rana.X = 0;
                     Rana.Y = 0;
                     jugador.Escenario = 2;
@@ -167,7 +182,7 @@ namespace Juego_PA.ViewModel
 
             Rana.X = 0;
             Rana.Y = 0;
-            Vista = Vista.Nivel1;
+            Rana.Puntaje = 0;
             Ganaste = false;
             GameOver = false;
             _patron = "";
@@ -193,7 +208,8 @@ namespace Juego_PA.ViewModel
                 Vista = Vista.Nivel3;
                 Rana.Vida = 6;
                 MediadorViewModel.IniciarJuegoNivel3();
-                Rana.LimiteMovimientos = 30;
+                MediadorViewModel.CambiarEscenarioAgua();
+                Rana.LimiteMovimientos = 100;
             }
             else if (nivel == "4")
             {
@@ -202,7 +218,6 @@ namespace Juego_PA.ViewModel
                 MediadorViewModel.IniciarJuegoNivel4();
                 Rana.LimiteMovimientos = 20;
             }
-
 
             OnPropertyChanged();
         }
