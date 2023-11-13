@@ -13,6 +13,17 @@
              Focusable="True"
              Loaded="UserControl_Loaded"
              PreviewKeyDown="UserControl_PreviewKeyDown">
+    <UserControl.Resources>
+        <SolidColorBrush Color="#58AA2A"
+                         x:Key="Color1" />
+        <Color x:Key="color1">#58AA2A</Color>
+        <SolidColorBrush Color="#58AA2A"
+                         x:Key="Color2" />
+        <Color x:Key="color2">#E5E7E6</Color>
+        <SolidColorBrush Color="#58AA2A"
+                         x:Key="Colorpanel" />
+        <Color x:Key="colorpanel">#353638</Color>
+    </UserControl.Resources>
     <Grid Background="Transparent"
           x:Name="dock">
         <Grid.RowDefinitions>
@@ -24,11 +35,20 @@
             <ColumnDefinition Width=".7*" />
             <ColumnDefinition Width=".15*" />
         </Grid.ColumnDefinitions>
-        <Border Background="#50C5E7"
+        <!--MANDO LATERAL IZQUIERDO-->
+        <Border 
                 Grid.RowSpan="2"
                 BorderThickness="4,4,0,4"
                 BorderBrush="#2F3033"
                 CornerRadius="50,0,0,50">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="{StaticResource color1}"
+                                  Offset="0.45" />
+                    <GradientStop Color="#2F3033"
+                                  Offset="0.45" />
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height=".1*" />
@@ -55,6 +75,8 @@
                     </Grid.Resources>
                     <Button HorizontalAlignment="Center"
                             x:Name="btnArriba"
+                            Background="GhostWhite"
+                            Foreground="Black"
                             Click="btnArriba_Click"
                             Style="{StaticResource BotonesSwitch}"
                             VerticalAlignment="top">
@@ -62,6 +84,8 @@
                     </Button>
                     <Button HorizontalAlignment="Left"
                             x:Name="btnIzquierda"
+                            Background="GhostWhite"
+                            Foreground="Black"
                             Click="btnIzquierda_Click"
                             Style="{StaticResource BotonesSwitch}"
                             VerticalAlignment="Center">
@@ -70,12 +94,16 @@
                     <Button HorizontalAlignment="Right"
                             x:Name="btnDerecha"
                             Click="btnDerecha_Click"
+                            Background="GhostWhite"
+                            Foreground="Black"
                             Style="{StaticResource BotonesSwitch}"
                             VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="ChevronRight" />
                     </Button>
                     <Button HorizontalAlignment="Center"
                             x:Name="btnAbajo"
+                            Background="GhostWhite"
+                            Foreground="Black"
                             Click="btnAbajo_Click"
                             Style="{StaticResource BotonesSwitch}"
                             VerticalAlignment="Bottom">
@@ -101,12 +129,21 @@
                 Grid.RowSpan="2"
                 Background="#2F3033"
                 HorizontalAlignment="Right" />
-        <Border Background="#F15C54"
+        <!--MANDO LATERAL DERECHO-->
+        <Border
                 Grid.RowSpan="2"
                 BorderThickness="0,4,4,4"
                 BorderBrush="#2F3033"
                 Grid.Column="2"
                 CornerRadius="0,50,50,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1 0">
+                    <GradientStop Color="{StaticResource color1}"
+                                  Offset="0.45" />
+                    <GradientStop Color="#2F3033"
+                                  Offset="0.45" />
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height=".2*" />
@@ -126,19 +163,27 @@
                       VerticalAlignment="Center">
                     <Button HorizontalAlignment="Center"
                             VerticalAlignment="top"
+                            Background="GhostWhite"
+                            Foreground="Black"
                             Style="{StaticResource BotonesSwitch}"
                             Content="X" />
                     <Button HorizontalAlignment="Left"
                             Content="Y"
+                            Background="GhostWhite"
+                            Foreground="Black"
                             Style="{StaticResource BotonesSwitch}"
                             VerticalAlignment="Center" />
                     <Button HorizontalAlignment="Right"
                             Style="{StaticResource BotonesSwitch}"
                             VerticalAlignment="Center"
-                            Content="A" />
+                            Content="A"
+                            Background="GhostWhite"
+                            Foreground="Black" />
                     <Button HorizontalAlignment="Center"
                             Style="{StaticResource BotonesSwitch}"
                             Content="B"
+                            Background="GhostWhite"
+                            Foreground="Black"
                             VerticalAlignment="Bottom" />
                 </Grid>
                 <Border Background="#2F3033"
@@ -161,7 +206,7 @@
                 Background="#2F3033"
                 Grid.Column="2"
                 HorizontalAlignment="Left" />
-        <Border Background="DeepSkyBlue"
+        <Border Background="{StaticResource Colorpanel}"
                 Margin="0"
                 BorderThickness="0,4"
                 BorderBrush="#2F3033"
@@ -473,6 +518,17 @@
                        Margin="5,0,15,4"
                        VerticalAlignment="Bottom"
                        Grid.Row="4"
+                       Source="/Assets/Nivel3/fuego.png"
+                       Height="80" />
+                <Image Width="80"
+                       Tag="Escenario_2"
+                       Grid.ZIndex="4"
+                       HorizontalAlignment="Right"
+                       Visibility="Collapsed"
+                       Grid.Column="2"
+                       Margin="5,0,15,4"
+                       VerticalAlignment="Bottom"
+                       Grid.Row="0"
                        Source="/Assets/Nivel3/fuego.png"
                        Height="80" />
                 <Image Width="80"

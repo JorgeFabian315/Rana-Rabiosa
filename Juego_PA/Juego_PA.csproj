@@ -28,6 +28,7 @@
     <None Remove="Assets\loto.png" />
     <None Remove="Assets\mitad.png" />
     <None Remove="Assets\Nivel3\Agua.jpg" />
+    <None Remove="Assets\Nivel3\arbol-fuego.png" />
     <None Remove="Assets\Nivel3\cesped.png" />
     <None Remove="Assets\Nivel3\Escenario.png" />
     <None Remove="Assets\Nivel3\fuego.png" />
@@ -85,6 +86,7 @@
     <Resource Include="Assets\loto.png" />
     <Resource Include="Assets\mitad.png" />
     <Resource Include="Assets\Nivel3\Agua.jpg" />
+    <Resource Include="Assets\Nivel3\arbol-fuego.png" />
     <Resource Include="Assets\Nivel3\cesped.png" />
     <Resource Include="Assets\Nivel3\Escenario.png" />
     <Resource Include="Assets\Nivel3\fuego.png" />

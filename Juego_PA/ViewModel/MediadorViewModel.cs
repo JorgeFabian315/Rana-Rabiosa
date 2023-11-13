@@ -52,7 +52,6 @@ namespace Juego_PA.ViewModel
             IniciarJuegoNivel4Event?.Invoke();
         }
 
-
         public static event Action? CambiarEscenarioLavaEvent;
 
         public static void CambiarEscenarioLava()
@@ -66,11 +65,11 @@ namespace Juego_PA.ViewModel
             CambiarEscenarioAguaEvent?.Invoke();
         }
 
-        public static event Action? IniciarTimerEvent;
+        public static event Action<bool>? EstadoTimerEvent;
 
-        public static void IniciarTimer()
+        public static void EstadoTimer(bool estado)
         {
-            IniciarTimerEvent?.Invoke();
+            EstadoTimerEvent?.Invoke(estado);
         }
 
 

@@ -35,10 +35,10 @@ namespace Juego_PA.Views.Niveles
         int columnRana;
         int rowRana;
         int contador = 0;
-        int filaAleatoria = 10;
-        int columnaAleatoria = 10;
-        int filaAleatoria2 = 10;
-        int columnaAleatoria2 = 10;
+        int filaAleatoria = 1;
+        int columnaAleatoria = 2;
+        int filaAleatoria2 = 4;
+        int columnaAleatoria2 = 4;
         bool tocado = false;
         bool tocado2 = false;
         private Movimientos movimiento = new();
@@ -48,7 +48,7 @@ namespace Juego_PA.Views.Niveles
         {
             InitializeComponent();
             MediadorViewModel.CambiarEscenarioLavaEvent += MediadorViewModel_CambiarEscenarioLavaEvent;
-            MediadorViewModel.IniciarTimerEvent += MediadorViewModel_IniciarTimerEvent;
+            MediadorViewModel.EstadoTimerEvent += MediadorViewModel_EstadoTimerEvent;
             MediadorViewModel.IniciarJuegoNivel3Event += MediadorViewModel_IniciarJuegoNivel3Event;
             MediadorViewModel.CambiarEscenarioAguaEvent += MediadorViewModel_CambiarEscenarioAguaEvent;
         }
@@ -75,8 +75,8 @@ namespace Juego_PA.Views.Niveles
             rowRana = Grid.GetRow(rana);
 
             contador++;
-            
-            if (contador == 10)
+
+            if (contador == 5)
             {
                 (filaAleatoria, columnaAleatoria) = (random.Next(1, 5), random.Next(1, 5));
                 (filaAleatoria2, columnaAleatoria2) = (random.Next(1, 5), random.Next(1, 5));
@@ -172,7 +172,6 @@ namespace Juego_PA.Views.Niveles
             {
                 if (vm != null)
                     vm.OcultarTeclaIncorrectaCommand.Execute("mostrar");
-                timer.Stop();
             }
         }
         #endregion
@@ -321,9 +320,16 @@ namespace Juego_PA.Views.Niveles
 
 
         #endregion
-        private void MediadorViewModel_IniciarTimerEvent()
+        private void MediadorViewModel_EstadoTimerEvent(bool estado)
         {
-            timer.Start();
+            if (estado == false)
+            {
+                timer.Stop();
+            }
+            else
+            {
+                timer.Start();
+            }
         }
 
         private void RegresarClick(object sender, RoutedEventArgs e)

@@ -48,8 +48,8 @@ namespace Juego_PA.ViewModel
 
         private void SumarVidaRana()
         {
-            if(Rana.Vida < 6)
-                Rana.Vida++;   
+            if (Rana.Vida < 6)
+                Rana.Vida++;
             OnPropertyChanged(nameof(Rana));
         }
 
@@ -57,8 +57,11 @@ namespace Juego_PA.ViewModel
         {
             Rana.Vida--;
             if (Rana.Vida == 0)
+            {
                 PerdistePorVidas();
+                MediadorViewModel.EstadoTimer(false);
 
+            }
             OnPropertyChanged(nameof(Rana));
         }
 
@@ -67,11 +70,15 @@ namespace Juego_PA.ViewModel
         private void OcultarTeclaIncorrectaMetodo(string p)
         {
             if (p == "ocultar")
+            {
+                MediadorViewModel.EstadoTimer(true);
                 OcultarTeclaIncorrecta = true;
+            }
             else
+            {
+                MediadorViewModel.EstadoTimer(false);
                 OcultarTeclaIncorrecta = false;
-
-            MediadorViewModel.IniciarTimer();
+            }
 
             OnPropertyChanged();
         }
@@ -95,7 +102,6 @@ namespace Juego_PA.ViewModel
             Nivel2Command = new RelayCommand(Nivel2);
             IniciarCommand = new RelayCommand<string>(IniciarJuego);
             CambiarVistaCommand = new RelayCommand<Vista>(CambiarVista);
-
         }
 
 
@@ -153,7 +159,7 @@ namespace Juego_PA.ViewModel
                         Nivel4();
                         break;
                 }
-
+                //CAMBIO DE ESCENARIO LAVA
                 if (jugador.Nivel == 3 && Rana.X == 4 && Rana.Y == 3 && jugador.Escenario != 2)
                 {
                     await Task.Delay(300); // Pausa de un 0.5 segundos
@@ -165,12 +171,13 @@ namespace Juego_PA.ViewModel
                 }
 
             }
-
+            // PERDISTE POR USAR TODOS LOS MOVIMIENTOS
             if (Rana.LimiteMovimientos == 0)
             {
                 Vista = Vista.Ganaste;
                 GameOver = true;
                 IniciarJuegoPropiedad = false;
+                MediadorViewModel.EstadoTimer(false);
             }
 
             OnPropertyChanged();
@@ -312,6 +319,7 @@ namespace Juego_PA.ViewModel
             if (Rana.Vida == 0)
             {
                 PerdistePorVidas();
+                MediadorViewModel.EstadoTimer(false);
             }
 
 
