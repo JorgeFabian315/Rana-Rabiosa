@@ -27,6 +27,7 @@ namespace Juego_PA.Views.Niveles
         #region VARIABLES 
         string escenarioAgua = "pack://application:,,,/Assets/Nivel3/Agua.jpg";
         string escenarioLava = "pack://application:,,,/Assets/Nivel3/lava.jpg";
+        string escenarioTierra = "pack://application:,,,/Assets/Nivel3/tierra.jpeg";
         string slimeLavaRuta = "pack://application:,,,/Assets/Nivel3/slime-fuego.png";
         string slimeAguaRuta = "pack://application:,,,/Assets/Nivel3/slime-agua-2.png";
         Jugador jugador = new();
@@ -51,6 +52,12 @@ namespace Juego_PA.Views.Niveles
             MediadorViewModel.EstadoTimerEvent += MediadorViewModel_EstadoTimerEvent;
             MediadorViewModel.IniciarJuegoNivel3Event += MediadorViewModel_IniciarJuegoNivel3Event;
             MediadorViewModel.CambiarEscenarioAguaEvent += MediadorViewModel_CambiarEscenarioAguaEvent;
+            MediadorViewModel.PuenteEvent += MediadorViewModel_PuenteEvent;
+        }
+
+        private void MediadorViewModel_PuenteEvent()
+        {
+            Puente.Visibility = Visibility.Visible;
         }
 
         private void MediadorViewModel_IniciarJuegoNivel3Event()
@@ -61,8 +68,7 @@ namespace Juego_PA.Views.Niveles
             timer.Tick += Timer_Tick;
             timer.Start();
             contador = 0;
-            MoverImagenes(Corazon, random.Next(1, 4), random.Next(0, 4));
-            MoverImagenes(Estrella, random.Next(1, 4), random.Next(0, 4));
+            MoverImagenes(Corazon, 0, 3);
             EliminarHojas();
         }
 
@@ -76,7 +82,7 @@ namespace Juego_PA.Views.Niveles
 
             contador++;
 
-            if (contador == 5)
+            if (contador == 10)
             {
                 (filaAleatoria, columnaAleatoria) = (random.Next(1, 5), random.Next(1, 5));
                 (filaAleatoria2, columnaAleatoria2) = (random.Next(1, 5), random.Next(1, 5));
@@ -107,6 +113,11 @@ namespace Juego_PA.Views.Niveles
             slime2.Source = new BitmapImage(new Uri(slimeLavaRuta));
             remolino.Visibility = Visibility.Collapsed;
             jugador.Escenario = 2;
+            Corazon.Visibility = Visibility.Collapsed;
+            Llave1.Visibility = Visibility.Collapsed;
+            Llave2.Visibility = Visibility.Collapsed;
+            MoverImagenes(Llave3, 4, 0);
+
             foreach (var img in Tablero.Children.OfType<Image>())
             {
                 if ((string)img.Tag == "Escenario_1")
@@ -128,7 +139,17 @@ namespace Juego_PA.Views.Niveles
             slime1.Source = new BitmapImage(new Uri(slimeAguaRuta));
             slime2.Source = new BitmapImage(new Uri(slimeAguaRuta));
             remolino.Visibility = Visibility.Visible;
+            Corazon.Visibility = Visibility.Visible;
+            MoverImagenes(Corazon, 0, 3);
             jugador.Escenario = 1;
+            Puente.Visibility = Visibility.Collapsed;
+
+            Llave1.Visibility = Visibility.Visible;
+            Llave2.Visibility = Visibility.Visible;
+
+            MoverImagenes(Llave1, 2, 0);
+            MoverImagenes(Llave2, 3, 4);
+
 
             foreach (var img in Tablero.Children.OfType<Image>())
             {
@@ -151,6 +172,9 @@ namespace Juego_PA.Views.Niveles
             this.Focus();
             this.Focusable = true;
             var vm = this.DataContext as JuegoViewModel;
+
+            if (vm != null)
+                vm.MensajeLLaveCommand.Execute("mostrar");
 
             if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
             {
@@ -177,10 +201,9 @@ namespace Juego_PA.Views.Niveles
         #endregion
 
         #region MOVER RANA
-        private void MoverRana(Movimientos movi)
+        private async void MoverRana(Movimientos movi)
         {
             var vm = this.DataContext as JuegoViewModel;
-
             jugador.Movimiento = movi;
             jugador.Nivel = 3;
 
@@ -197,24 +220,65 @@ namespace Juego_PA.Views.Niveles
             if (columnCorazon == columnRana && rowRana == filaCorazon)
             {
                 vm?.SumarVidaRanaCommand.Execute(null);
-                MoverImagenes(Corazon, random.Next(1, 4), random.Next(0, 4));
+                MoverImagenes(Corazon, 4, 1);
+                if (columnCorazon == 4 && filaCorazon == 1)
+                {
+                    Corazon.Visibility = Visibility.Collapsed;
+                    MoverImagenes(Corazon, 4, 4);
+                }
             }
-
             #endregion
 
-            #region OBTENER PUNTAJE EXTRA
-            int columnEstrella = Grid.GetColumn(Estrella);
-            int filaEstrella = Grid.GetRow(Estrella);
 
-            if (columnEstrella == columnRana && rowRana == filaEstrella)
+
+
+            #region LLAVES
+            int columnLlave1 = Grid.GetColumn(Llave1);
+            int filaLlave1 = Grid.GetRow(Llave1);
+
+            if (columnLlave1 == columnRana && rowRana == filaLlave1 && jugador.Escenario == 1)
             {
-                vm?.SumarPuntajeCommand.Execute(null);
-                MoverImagenes(Estrella, random.Next(1, 4), random.Next(0, 4));
+                await Task.Delay(150); // Pausa de un 0.5 segundos
+                vm?.ConseguirLlaveCommand.Execute(null);
+                MoverImagenes(Llave1, 4, 4);
+                Llave1.Visibility = Visibility.Collapsed;
+                timer.Stop();
             }
+
+            int columnLlave2 = Grid.GetColumn(Llave2);
+            int filaLlave2 = Grid.GetRow(Llave2);
+
+            if (columnLlave2 == columnRana && rowRana == filaLlave2 && jugador.Escenario == 1)
+            {
+                await Task.Delay(150); // Pausa de un 0.5 segundos
+                vm?.ConseguirLlaveCommand.Execute(null);
+                MoverImagenes(Llave2, 4, 4);
+                Llave2.Visibility = Visibility.Collapsed;
+                timer.Stop();
+            }
+
+
+            int columnLlave3 = Grid.GetColumn(Llave3);
+            int filaLlave3 = Grid.GetRow(Llave3);
+
+            if (columnLlave3 == columnRana && rowRana == filaLlave3 && jugador.Escenario == 2)
+            {
+                await Task.Delay(150); // Pausa de un 0.5 segundos
+                vm?.ConseguirLlaveCommand.Execute(null);
+                MoverImagenes(Llave3, 0, 4);
+                Llave3.Visibility = Visibility.Collapsed;
+                timer.Stop();
+            }
+
 
             #endregion
 
-            CrearHoja(columnRana, rowRana);
+
+
+
+
+            if (jugador.Escenario == 1)
+                CrearHoja(columnRana, rowRana);
         }
         #endregion
 
@@ -241,6 +305,8 @@ namespace Juego_PA.Views.Niveles
         {
 
         }
+
+
 
         #region CREAR HOJA DE LOTO
         public void CrearHoja(int colum, int row)

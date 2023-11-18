@@ -23,11 +23,21 @@ namespace Juego_PA.ViewModel
         Regex? regex;
 
         private string _patron = "";
+
+
+        public string Llaves { get; set; } = "";
+        public bool LlavesConseguidas { get; set; } = false;
+        public string MensajeLlaves { get; set; } = "";
+        public bool MostrarMensaje { get; set; } = false;
+
+
+
         public Rana Rana { get; set; } = new();
         public Jugador Jugador { get; set; } = new();
         public bool Ganaste { get; set; } = false;
         public bool GameOver { get; set; } = false;
         public bool IniciarJuegoPropiedad { get; set; } = false;
+        public bool Escenario2 { get; set; } = false;
         public int NivelActual { get; set; }
         public Vista Vista { get; set; } = Vista.Inicio;
         public ICommand MoverCommand { get; set; }
@@ -39,10 +49,52 @@ namespace Juego_PA.ViewModel
         public ICommand RestarVidaRanaCommand => new RelayCommand(RestarVidaRana);
         public ICommand SumarVidaRanaCommand => new RelayCommand(SumarVidaRana);
         public ICommand SumarPuntajeCommand => new RelayCommand(SumarPuntaje);
+        public ICommand ConseguirLlaveCommand => new RelayCommand(ConseguirLlave);
+        public ICommand MensajeLLaveCommand => new RelayCommand(MensajeLLave);
+
+        private void MensajeLLave()
+        {
+            MostrarMensaje = false;
+            MediadorViewModel.EstadoTimer(true);
+            OnPropertyChanged();
+        }
+
+        private void ConseguirLlave()
+        {
+            if (Llaves != "LLL")
+            { 
+                Llaves += "L";
+                MensajeLlaves = "Has conseguido " + (Llaves.Length == 1 ? "una llave." :
+                Llaves.Length == 2 ? "dos llaves. \n  Ya puedes ir al siguiente mapa." : "todas las llaves \n Ya puedes conseguir la recompensa final.");
+               
+                if (Llaves == "LLL")
+                {
+                    MediadorViewModel.DesbloquearFlor();
+                    LlavesConseguidas = true;
+                }
+
+                MostrarMensaje = true;
+            }
+
+            OnPropertyChanged();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void SumarPuntaje()
         {
-            Rana.Puntaje += 10;
+            Rana.Puntaje += 100;
             OnPropertyChanged(nameof(Rana));
         }
 
@@ -140,6 +192,71 @@ namespace Juego_PA.ViewModel
                     _movimiento += "B";
                 }
 
+                if (Rana.X >= 5)
+                    Rana.X = 4;
+                if (Rana.Y >= 5)
+                    Rana.Y = 4;
+
+
+
+                if (jugador.Nivel == 3 && jugador.Escenario == 1)
+                {
+
+                    if ((Rana.X == 1 && Rana.Y == 0) ||
+                        (Rana.X == 3 && Rana.Y == 0) ||
+                        (Rana.X == 4 && Rana.Y == 0) ||
+                        (Rana.X == 1 && Rana.Y == 1) ||
+                        (Rana.X == 0 && Rana.Y == 4) ||
+                        (Rana.X == 3 && Rana.Y == 2) ||
+                        (Rana.X == 4 && Rana.Y == 4) ||
+                        (Rana.X == 1 && Rana.Y == 3)
+                        )
+                    {
+                        Rana.X = _posicionXAnterior;
+                        Rana.Y = _posicionYAnterior;
+                    }
+                    NivelActual = 3;
+                    Nivel3();
+                }
+                if (jugador.Nivel == 3 && jugador.Escenario == 2)
+                {
+
+                    if ((Rana.Y == 0 && Llaves != "LLL") ||
+                      (((Rana.X == 2 && Rana.Y == 1) ||
+                      (Rana.X == 2 && Rana.Y == 2) ||
+                      (Rana.X == 2 && Rana.Y == 3) ||
+                      (Rana.X == 2 && Rana.Y == 4) ||
+                      (Rana.X == 3 && Rana.Y == 4) ||
+                      (Rana.X == 4 && Rana.Y == 4) || Rana.Y == 0) && Llaves == "LLL"))
+                    {
+                        Nivel3();
+                        NivelActual = 3;
+
+
+                    }
+                    else
+                    {
+                        if (Llaves != "LLL")
+                        {
+                            MensajeLlaves = "Aún te faltan " + (Llaves.Length == 1 ? "una llave" : "dos llaves");
+                            MostrarMensaje = true;
+                        }
+                        Rana.X = _posicionXAnterior;
+                        Rana.Y = _posicionYAnterior;
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
                 switch (jugador.Nivel)
                 {
                     case 1:
@@ -150,10 +267,6 @@ namespace Juego_PA.ViewModel
                         NivelActual = 2;
                         Nivel2();
                         break;
-                    case 3:
-                        NivelActual = 3;
-                        Nivel3();
-                        break;
                     case 4:
                         NivelActual = 4;
                         Nivel4();
@@ -162,12 +275,20 @@ namespace Juego_PA.ViewModel
                 //CAMBIO DE ESCENARIO LAVA
                 if (jugador.Nivel == 3 && Rana.X == 4 && Rana.Y == 3 && jugador.Escenario != 2)
                 {
-                    await Task.Delay(300); // Pausa de un 0.5 segundos
-                    Rana.X = 0;
-                    Rana.Y = 0;
-                    jugador.Escenario = 2;
-                    Jugador = jugador;
-                    MediadorViewModel.CambiarEscenarioLava();
+                    if (Llaves.Length == 2)
+                    {
+                        await Task.Delay(100); // Pausa de un 0.5 segundos
+                        Rana.X = 0;
+                        Rana.Y = 0;
+                        jugador.Escenario = 2;
+                        Jugador = jugador;
+                        MediadorViewModel.CambiarEscenarioLava();
+                    }
+                    else
+                    {
+                        MensajeLlaves = "Aún te faltan " + (Llaves.Length == 1 ? "una llave" : "dos llaves");
+                        MostrarMensaje = true;
+                    }
                 }
 
             }
@@ -217,6 +338,10 @@ namespace Juego_PA.ViewModel
                 MediadorViewModel.IniciarJuegoNivel3();
                 MediadorViewModel.CambiarEscenarioAgua();
                 Rana.LimiteMovimientos = 100;
+                Jugador.Escenario = 1;
+                MostrarMensaje = false;
+                Llaves = "";
+
             }
             else if (nivel == "4")
             {
@@ -313,7 +438,7 @@ namespace Juego_PA.ViewModel
 
             OnPropertyChanged();
         }
-        private void Nivel3()
+        private async void Nivel3()
         {
 
             if (Rana.Vida == 0)
@@ -323,7 +448,15 @@ namespace Juego_PA.ViewModel
             }
 
 
-
+            if(Rana.X == 4 && Rana.Y == 4 && Jugador.Escenario == 2)
+            {
+                OnPropertyChanged("Rana");
+                await Task.Delay(200); // Pausa de un 0.5 segundos
+                Vista = Vista.Ganaste;
+                Rana.LimiteMovimientos = 0;
+                NivelActual = 3;
+                IniciarJuegoPropiedad = false;
+            }
 
 
 

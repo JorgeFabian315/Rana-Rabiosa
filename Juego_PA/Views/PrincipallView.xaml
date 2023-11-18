@@ -14,7 +14,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Height="600"
+        Height="655"
         Width="1200">
     <Window.DataContext>
         <vm:JuegoViewModel x:Name="avm" />

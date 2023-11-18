@@ -73,7 +73,12 @@ namespace Juego_PA.ViewModel
         }
 
 
+        public static event Action? PuenteEvent;
 
+        public static void DesbloquearFlor()
+        {
+            PuenteEvent?.Invoke();
+        }
 
 
     }
