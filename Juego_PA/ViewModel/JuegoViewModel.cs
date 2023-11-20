@@ -328,7 +328,7 @@ namespace Juego_PA.ViewModel
                 Rana.Vida = 6;
                 MediadorViewModel.IniciarJuegoNivel3();
                 MediadorViewModel.CambiarEscenarioAgua();
-                Rana.LimiteMovimientos = 350;
+                Rana.LimiteMovimientos = 50;
                 Jugador.Escenario = 1;
                 MostrarMensaje = false;
                 Llaves = "";
