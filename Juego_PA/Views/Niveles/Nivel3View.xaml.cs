@@ -82,7 +82,7 @@ namespace Juego_PA.Views.Niveles
 
             contador++;
 
-            if (contador == 10)
+            if (contador == 20)
             {
                 (filaAleatoria, columnaAleatoria) = (random.Next(1, 5), random.Next(1, 5));
                 (filaAleatoria2, columnaAleatoria2) = (random.Next(1, 5), random.Next(1, 5));
@@ -113,7 +113,13 @@ namespace Juego_PA.Views.Niveles
             slime2.Source = new BitmapImage(new Uri(slimeLavaRuta));
             remolino.Visibility = Visibility.Collapsed;
             jugador.Escenario = 2;
-            Corazon.Visibility = Visibility.Collapsed;
+
+            if (Corazon.Visibility == Visibility.Collapsed)
+            {
+                Corazon.Visibility = Visibility.Visible;
+            }
+                
+            MoverImagenes(Corazon, 2, 3);
             Llave1.Visibility = Visibility.Collapsed;
             Llave2.Visibility = Visibility.Collapsed;
             MoverImagenes(Llave3, 4, 0);
@@ -221,10 +227,20 @@ namespace Juego_PA.Views.Niveles
             {
                 vm?.SumarVidaRanaCommand.Execute(null);
                 MoverImagenes(Corazon, 4, 1);
-                if (columnCorazon == 4 && filaCorazon == 1)
+
+                if (columnCorazon == 4 && filaCorazon == 1 && jugador.Escenario == 1)
+                {
+                    MoverImagenes(Corazon, 1, 4);
+                }
+                else if (columnCorazon == 1 && filaCorazon == 4 && jugador.Escenario == 1)
                 {
                     Corazon.Visibility = Visibility.Collapsed;
                     MoverImagenes(Corazon, 4, 4);
+                }
+                else if (columnCorazon == 2 && filaCorazon == 3 && jugador.Escenario == 2)
+                {
+                    Corazon.Visibility = Visibility.Collapsed;
+                    MoverImagenes(Corazon, 1, 4);
                 }
             }
             #endregion

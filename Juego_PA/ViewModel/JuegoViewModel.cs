@@ -246,17 +246,6 @@ namespace Juego_PA.ViewModel
                     }
                 }
 
-
-
-
-
-
-
-
-
-
-
-
                 switch (jugador.Nivel)
                 {
                     case 1:
@@ -277,9 +266,11 @@ namespace Juego_PA.ViewModel
                 {
                     if (Llaves.Length == 2)
                     {
-                        await Task.Delay(100); // Pausa de un 0.5 segundos
+                        _quedarseInmovil = true;
+                        await Task.Delay(50); // Pausa de un 0.5 segundos
                         Rana.X = 0;
                         Rana.Y = 0;
+                        _quedarseInmovil = false;
                         jugador.Escenario = 2;
                         Jugador = jugador;
                         MediadorViewModel.CambiarEscenarioLava();
@@ -337,7 +328,7 @@ namespace Juego_PA.ViewModel
                 Rana.Vida = 6;
                 MediadorViewModel.IniciarJuegoNivel3();
                 MediadorViewModel.CambiarEscenarioAgua();
-                Rana.LimiteMovimientos = 35;
+                Rana.LimiteMovimientos = 350;
                 Jugador.Escenario = 1;
                 MostrarMensaje = false;
                 Llaves = "";
