@@ -17,6 +17,7 @@ namespace Juego_PA.Views
         Nivel2,
         Nivel3,
         Tutorial2,
+        Tutorial3,
         Nivel4
     };
 

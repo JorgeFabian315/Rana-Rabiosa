@@ -214,8 +214,10 @@ namespace Juego_PA.Views.Niveles
             jugador.Nivel = 3;
 
             if (vm != null)
+            {
+                vm.MensajeLLaveCommand.Execute("mostrar");
                 vm.MoverCommand.Execute(jugador);
-
+            }
             columnRana = Grid.GetColumn(rana);
             rowRana = Grid.GetRow(rana);
 
@@ -304,22 +306,22 @@ namespace Juego_PA.Views.Niveles
         }
         private void btnAbajo_Click(object sender, RoutedEventArgs e)
         {
-
+            MoverRana(Movimientos.Abajo);
         }
 
         private void btnDerecha_Click(object sender, RoutedEventArgs e)
         {
-
+            MoverRana(Movimientos.Derecha);
         }
 
         private void btnIzquierda_Click(object sender, RoutedEventArgs e)
         {
-
+            MoverRana(Movimientos.Izquierda);
         }
 
         private void btnArriba_Click(object sender, RoutedEventArgs e)
         {
-
+            MoverRana(Movimientos.Arriba);
         }
 
 

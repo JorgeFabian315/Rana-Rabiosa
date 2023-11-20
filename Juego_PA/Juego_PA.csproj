@@ -52,6 +52,7 @@
     <None Remove="Assets\Spicy Nachos.otf" />
     <None Remove="Assets\Tutorial.jpg" />
     <None Remove="Assets\tutorial2.jpeg" />
+    <None Remove="Assets\Tutorial3.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -117,6 +118,7 @@
     <EmbeddedResource Include="Assets\Sonidos\SonidoSalto.wav" />
     <Resource Include="Assets\Tutorial.jpg" />
     <Resource Include="Assets\tutorial2.jpeg" />
+    <Resource Include="Assets\Tutorial3.png" />
   </ItemGroup>
 
 </Project>
