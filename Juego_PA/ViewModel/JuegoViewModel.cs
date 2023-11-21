@@ -62,11 +62,11 @@ namespace Juego_PA.ViewModel
         private void ConseguirLlave()
         {
             if (Llaves != "LLL")
-            { 
+            {
                 Llaves += "L";
                 MensajeLlaves = "Has conseguido " + (Llaves.Length == 1 ? "una llave." :
                 Llaves.Length == 2 ? "dos llaves. \n  Ya puedes ir al siguiente mapa." : "todas las llaves \n Ya puedes conseguir la recompensa final.");
-               
+
                 if (Llaves == "LLL")
                 {
                     MediadorViewModel.DesbloquearFlor();
@@ -236,11 +236,6 @@ namespace Juego_PA.ViewModel
                     }
                     else
                     {
-                        if (Llaves != "LLL")
-                        {
-                            MensajeLlaves = "Aún te faltan " + (Llaves.Length == 1 ? "una llave" : "dos llaves");
-                            MostrarMensaje = true;
-                        }
                         Rana.X = _posicionXAnterior;
                         Rana.Y = _posicionYAnterior;
                     }
@@ -277,7 +272,7 @@ namespace Juego_PA.ViewModel
                     }
                     else
                     {
-                        MensajeLlaves = "Aún te faltan " + (Llaves.Length == 1 ? "una llave" : "dos llaves");
+                        MensajeLlaves = "No puedes avanzar aún te " + (Llaves.Length == 1 ? "falta una llave" : "faltan dos llaves");
                         MostrarMensaje = true;
                     }
                 }
@@ -439,7 +434,7 @@ namespace Juego_PA.ViewModel
             }
 
 
-            if(Rana.X == 4 && Rana.Y == 4 && Jugador.Escenario == 2)
+            if (Rana.X == 4 && Rana.Y == 4 && Jugador.Escenario == 2)
             {
                 OnPropertyChanged("Rana");
                 await Task.Delay(200); // Pausa de un 0.5 segundos
