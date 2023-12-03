@@ -14,13 +14,8 @@
     <None Remove="Assets\cocodrilo.png" />
     <None Remove="Assets\controles.png" />
     <None Remove="Assets\corazon.png" />
-    <None Remove="Assets\descarga12.jpeg" />
     <None Remove="Assets\espiral.png" />
-    <None Remove="Assets\estrella.png" />
     <None Remove="Assets\flor.png" />
-    <None Remove="Assets\flormala.png" />
-    <None Remove="Assets\flormatarana.png" />
-    <None Remove="Assets\Ganaste.jpg" />
     <None Remove="Assets\GANASTE1.png" />
     <None Remove="Assets\GhostNightDEMO!-DEMO.ttf" />
     <None Remove="Assets\hola13.jpg" />
@@ -30,7 +25,6 @@
     <None Remove="Assets\llave_oscura.png" />
     <None Remove="Assets\loto.png" />
     <None Remove="Assets\mitad.png" />
-    <None Remove="Assets\moneda.png" />
     <None Remove="Assets\Nivel3\Agua.jpg" />
     <None Remove="Assets\Nivel3\arbol-fuego.png" />
     <None Remove="Assets\Nivel3\cesped.png" />
@@ -43,6 +37,9 @@
     <None Remove="Assets\Nivel3\slime-agua-2.png" />
     <None Remove="Assets\Nivel3\slime-fuego.png" />
     <None Remove="Assets\Nivel3\tierra.jpeg" />
+    <None Remove="Assets\Nivel4\cesped.png" />
+    <None Remove="Assets\Nivel4\Estrella.png" />
+    <None Remove="Assets\Nivel4\mosca.png" />
     <None Remove="Assets\PERDISTE.png" />
     <None Remove="Assets\rana.png" />
     <None Remove="Assets\ranaLogo.png" />
@@ -62,14 +59,10 @@
   <ItemGroup>
     <Resource Include="Assets\calcamonia2.png" />
     <Resource Include="Assets\espiral.png" />
-    <Resource Include="Assets\estrella.png" />
     <Resource Include="Assets\fonts\04b.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\controles.png" />
-    <Resource Include="Assets\descarga12.jpeg" />
-    <Resource Include="Assets\flormala.png" />
-    <Resource Include="Assets\flormatarana.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,9 +75,6 @@
     <Resource Include="Assets\cocodrilo.png" />
     <Resource Include="Assets\corazon.png" />
     <Resource Include="Assets\flor.png" />
-    <Resource Include="Assets\Ganaste.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Assets\fonts\GhostNightDEMO!-DEMO.ttf" />
     <Resource Include="Assets\GANASTE1.png" />
     <Resource Include="Assets\hola13.jpg" />
@@ -94,7 +84,6 @@
     <Resource Include="Assets\llave_oscura.png" />
     <Resource Include="Assets\loto.png" />
     <Resource Include="Assets\mitad.png" />
-    <Resource Include="Assets\moneda.png" />
     <Resource Include="Assets\Nivel3\Agua.jpg" />
     <Resource Include="Assets\Nivel3\arbol-fuego.png" />
     <Resource Include="Assets\Nivel3\cesped.png" />
@@ -107,6 +96,9 @@
     <Resource Include="Assets\Nivel3\slime-agua-2.png" />
     <Resource Include="Assets\Nivel3\slime-fuego.png" />
     <Resource Include="Assets\Nivel3\tierra.jpeg" />
+    <Resource Include="Assets\Nivel4\cesped.png" />
+    <Resource Include="Assets\Nivel4\Estrella.png" />
+    <Resource Include="Assets\Nivel4\mosca.png" />
     <Resource Include="Assets\PERDISTE.png" />
     <Resource Include="Assets\rana.png" />
     <Resource Include="Assets\ranaLogo.png">

@@ -180,7 +180,9 @@
                         CommandParameter="{x:Static local:Vista.Tutorial3}"
                         Style="{StaticResource BotonDesbloqueado}" />
                 <Button Content="Nivel 4"
-                        Style="{StaticResource BotonBloqueado}" />
+                        Command="{Binding IniciarCommand}"
+                    CommandParameter="4"
+                    Style="{StaticResource BotonDesbloqueado}" />
             </WrapPanel>
         </StackPanel>
     </Grid>

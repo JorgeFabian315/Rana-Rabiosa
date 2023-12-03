@@ -51,6 +51,20 @@ namespace Juego_PA.ViewModel
         public ICommand SumarPuntajeCommand => new RelayCommand(SumarPuntaje);
         public ICommand ConseguirLlaveCommand => new RelayCommand(ConseguirLlave);
         public ICommand MensajeLLaveCommand => new RelayCommand(MensajeLLave);
+        public ICommand ConseguirEstrellaCommand => new RelayCommand(ConseguirEstrella);
+
+        public int CantidadEstrellas { get; set; }
+        private void ConseguirEstrella()
+        {
+            CantidadEstrellas++;
+            if(CantidadEstrellas == 3)
+            {
+                MediadorViewModel.ConseguirTodasEstrellas();
+            }
+            OnPropertyChanged();
+        }
+
+        public ICommand RealizarMovimientoNivel4Command => new RelayCommand<Jugador>(RealizarMovimientoNivel4);
 
         private void MensajeLLave()
         {
@@ -78,19 +92,6 @@ namespace Juego_PA.ViewModel
 
             OnPropertyChanged();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void SumarPuntaje()
         {
@@ -155,9 +156,6 @@ namespace Juego_PA.ViewModel
             IniciarCommand = new RelayCommand<string>(IniciarJuego);
             CambiarVistaCommand = new RelayCommand<Vista>(CambiarVista);
         }
-
-
-
         public async void RealizarMovimiento(Jugador jugador)
         {
             Rana.LimiteMovimientos -= 1;
@@ -251,10 +249,6 @@ namespace Juego_PA.ViewModel
                         NivelActual = 2;
                         Nivel2();
                         break;
-                    case 4:
-                        NivelActual = 4;
-                        Nivel4();
-                        break;
                 }
                 //CAMBIO DE ESCENARIO LAVA
                 if (jugador.Nivel == 3 && Rana.X == 4 && Rana.Y == 3 && jugador.Escenario != 2)
@@ -289,8 +283,6 @@ namespace Juego_PA.ViewModel
 
             OnPropertyChanged();
         }
-
-
         public void IniciarJuego(string nivel)
         {
 
@@ -334,7 +326,9 @@ namespace Juego_PA.ViewModel
                 Vista = Vista.Nivel4;
                 Rana.Vida = 6;
                 MediadorViewModel.IniciarJuegoNivel4();
-                Rana.LimiteMovimientos = 20;
+                Rana.LimiteMovimientos = 70;
+                CantidadEstrellas = 0;
+                patron4 = "";
             }
 
             OnPropertyChanged();
@@ -450,11 +444,111 @@ namespace Juego_PA.ViewModel
 
             OnPropertyChanged();
         }
-        private void Nivel4()
+
+        int posicionAnteriorX4;
+        int posicionAnteriorY4;
+        int x;
+        int y;
+        string patron4 = "";
+        Regex expresionRegular4 = new(@"BDBBBBDBBBBBDDDDDDDA");
+        public async void RealizarMovimientoNivel4(Jugador jugador)
         {
+            Rana.LimiteMovimientos -= 1;
+
+            NivelActual = 4;
+
+            if (Rana.LimiteMovimientos > 0 && !_quedarseInmovil)
+            {
+                posicionAnteriorX4 = Rana.X;
+                posicionAnteriorY4 = Rana.Y;
+
+                if (jugador.Movimiento == Movimientos.Derecha)
+                {
+                    Rana.X += 1;
+                    patron4 += "D";
+                }
+                else if (jugador.Movimiento == Movimientos.Izquierda)
+                {
+                    Rana.X -= 1;
+                    patron4 += "I";
+
+                }
+                else if (jugador.Movimiento == Movimientos.Arriba)
+                {
+                    Rana.Y -= 1;
+                    patron4 += "A";
+
+                }
+                else if (jugador.Movimiento == Movimientos.Abajo)
+                {
+                    Rana.Y += 1;
+                    patron4 += "B";
+                }
+
+
+                x = Rana.X;
+                y = Rana.Y;
+
+                if ( (y == 0 && x == 5) ||
+                     (y == 1 && (x == 2 || x == 3 || x == 5 || x == 7)) ||
+                     (y == 2 && (x == 0 || x == 7 || x == 9)) ||
+                     (y == 3 && (x== 0 ||  x >= 2))||
+                     (y == 4 && (x == 0 || x == 7 || x == 9)) ||
+                     (y == 5 && (x == 0 || x == 1 || x == 3 || x == 5 || x == 6 || x == 7 || x == 9)) ||
+                     (y == 6 && x == 9) ||
+                     (y == 7 && (x == 3 || x == 4 || x == 5 || x == 6 || x == 8 || x == 9)) ||
+                     (y == 8 && (x == 0 || x == 1 || x == 6)))
+                {
+                    Rana.X = posicionAnteriorX4;
+                    Rana.Y = posicionAnteriorY4;
+                }
+
+                ////Regresar a inicio por los enemigos
+                if ((y == 1 && x == 8) || (y == 4 && x == 8) || (y == 6 && x == 1) ||
+                    (y == 8 && x == 8 && CantidadEstrellas < 3) ||
+                    (y == 9 && x == 8 && CantidadEstrellas < 3))
+                {
+                    _quedarseInmovil = true;
+                    OnPropertyChanged(nameof(Rana));
+                    await Task.Delay(350); // Pausa de un 0.5 segundos
+                    Rana.X = 0;
+                    Rana.Y = 0;
+                    Rana.Vida--;
+                    _quedarseInmovil = false;
+                }
+
+                if (expresionRegular4.IsMatch(patron4) || (Rana.X == 9 && Rana.Y == 8))
+                {
+                    OnPropertyChanged("Rana");
+                    await Task.Delay(300); // Pausa de un 0.5 segundos
+                    Vista = Vista.Ganaste;
+                    Rana.LimiteMovimientos = 0;
+                    NivelActual = 4;
+                    GameOver = false;
+                    Ganaste = true;
+                    IniciarJuegoPropiedad = false;
+                }
+
+            }
+            if (Rana.LimiteMovimientos == 0 && Ganaste == false)
+            {
+                Vista = Vista.Ganaste;
+                GameOver = true;
+                Ganaste = false;
+                IniciarJuegoPropiedad = false;
+                MediadorViewModel.EstadoTimer(false);
+            }
+
             OnPropertyChanged();
 
         }
+
+
+
+
+
+
+
 
 
         private void PerdistePorVidas()

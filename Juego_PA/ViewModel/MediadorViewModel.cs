@@ -81,5 +81,11 @@ namespace Juego_PA.ViewModel
         }
 
 
+        public static event Action?ConseguirTodasEstrellasEvent;
+
+        public static void ConseguirTodasEstrellas()
+        {
+            ConseguirTodasEstrellasEvent?.Invoke();
+        }
     }
 }

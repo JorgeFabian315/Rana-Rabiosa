@@ -159,6 +159,13 @@
                             <Setter Property="CommandParameter"
                                     Value="4" />
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding NivelActual}"
+                                     Value="4">
+                            <Setter Property="Content"
+                                    Value="Nivel 1" />
+                            <Setter Property="CommandParameter"
+                                    Value="1" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

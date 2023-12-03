@@ -82,7 +82,7 @@ namespace Juego_PA.Views.Niveles
 
             contador++;
 
-            if (contador == 20)
+            if (contador == 15)
             {
                 (filaAleatoria, columnaAleatoria) = (random.Next(1, 5), random.Next(1, 5));
                 (filaAleatoria2, columnaAleatoria2) = (random.Next(1, 5), random.Next(1, 5));
@@ -401,8 +401,6 @@ namespace Juego_PA.Views.Niveles
             Grid.SetColumn(enemigo, x);
             Grid.SetRow(enemigo, y);
         }
-
-
         #endregion
         private void MediadorViewModel_EstadoTimerEvent(bool estado)
         {
