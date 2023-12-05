@@ -546,8 +546,83 @@
     </Style>
     <!--#ENDREGION ESTILOS BOTON Ok-->
     
+   <!--#REGION COLORES-->
+    <Color x:Key="color2">#38B02E</Color>
+    <Style TargetType="Border"
+           x:Key="colorDeFondoMandos">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,1"
+                                     EndPoint="1 0">
+                    <GradientStop Color="{StaticResource color2}"
+                                  Offset="0.45" />
+                    <GradientStop Color="#2F3033"
+                                  Offset="0.45" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#ENDREGION COLORES-->
     
-    
+    <!--#REGION ESTRELLAS-->
+    <Style TargetType="Image"
+           x:Key="es1">
+        <Setter Property="Source"
+                Value="/Assets/Nivel4/Estrella.png" />
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding CantidadEstrellas}"
+                         Value="1">
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding CantidadEstrellas}"
+                         Value="2">
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding CantidadEstrellas}"
+                         Value="3">
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Image"
+           x:Key="es2">
+        <Setter Property="Source"
+                Value="/Assets/Nivel4/Estrella.png" />
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding CantidadEstrellas}"
+                         Value="2">
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding CantidadEstrellas}"
+                         Value="3">
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Image"
+           x:Key="es3">
+        <Setter Property="Source"
+                Value="/Assets/Nivel4/Estrella.png" />
+        <Setter Property="Visibility"
+                Value="Collapsed" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding CantidadEstrellas}"
+                         Value="3">
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!--#ENDREGION ESTRELLAS-->
     
     <!--#REGION ESTILO BOTONES SWITCH-->
     <Style TargetType="Button"

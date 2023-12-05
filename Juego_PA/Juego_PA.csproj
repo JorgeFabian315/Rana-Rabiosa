@@ -19,7 +19,6 @@
     <None Remove="Assets\GANASTE1.png" />
     <None Remove="Assets\GhostNightDEMO!-DEMO.ttf" />
     <None Remove="Assets\hola13.jpg" />
-    <None Remove="Assets\lancha.png" />
     <None Remove="Assets\level.jpg" />
     <None Remove="Assets\llave.png" />
     <None Remove="Assets\llave_oscura.png" />
@@ -43,6 +42,7 @@
     <None Remove="Assets\PERDISTE.png" />
     <None Remove="Assets\rana.png" />
     <None Remove="Assets\ranaLogo.png" />
+    <None Remove="Assets\RanaRosa.png" />
     <None Remove="Assets\remolino.png" />
     <None Remove="Assets\serpiente.png" />
     <None Remove="Assets\SonidoSalto.wav" />
@@ -78,7 +78,6 @@
     <Resource Include="Assets\fonts\GhostNightDEMO!-DEMO.ttf" />
     <Resource Include="Assets\GANASTE1.png" />
     <Resource Include="Assets\hola13.jpg" />
-    <Resource Include="Assets\lancha.png" />
     <Resource Include="Assets\level.jpg" />
     <Resource Include="Assets\llave.png" />
     <Resource Include="Assets\llave_oscura.png" />
@@ -104,6 +103,7 @@
     <Resource Include="Assets\ranaLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\RanaRosa.png" />
     <Resource Include="Assets\remolino.png" />
     <Resource Include="Assets\serpiente.png" />
     <EmbeddedResource Include="Assets\Spicy Nachos.otf" />

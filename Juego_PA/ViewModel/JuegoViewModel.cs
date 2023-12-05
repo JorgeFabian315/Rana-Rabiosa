@@ -47,6 +47,7 @@ namespace Juego_PA.ViewModel
         public ICommand MoverRanaOrigen => new RelayCommand(MoverRana);
         public ICommand OcultarTeclaIncorrectaCommand => new RelayCommand<string>(OcultarTeclaIncorrectaMetodo);
         public ICommand RestarVidaRanaCommand => new RelayCommand(RestarVidaRana);
+        public ICommand GanasteJuegoCommand => new RelayCommand(GanasteJuego);
         public ICommand SumarVidaRanaCommand => new RelayCommand(SumarVidaRana);
         public ICommand SumarPuntajeCommand => new RelayCommand(SumarPuntaje);
         public ICommand ConseguirLlaveCommand => new RelayCommand(ConseguirLlave);
@@ -450,7 +451,6 @@ namespace Juego_PA.ViewModel
         int x;
         int y;
         string patron4 = "";
-        Regex expresionRegular4 = new(@"BDBBBBDBBBBBDDDDDDDA");
         public async void RealizarMovimientoNivel4(Jugador jugador)
         {
             Rana.LimiteMovimientos -= 1;
@@ -489,10 +489,10 @@ namespace Juego_PA.ViewModel
                 x = Rana.X;
                 y = Rana.Y;
 
-                if ( (y == 0 && x == 5) ||
+                if ((y == 0 && x == 5) ||
                      (y == 1 && (x == 2 || x == 3 || x == 5 || x == 7)) ||
                      (y == 2 && (x == 0 || x == 7 || x == 9)) ||
-                     (y == 3 && (x== 0 ||  x >= 2))||
+                     (y == 3 && (x == 0 || x >= 2)) ||
                      (y == 4 && (x == 0 || x == 7 || x == 9)) ||
                      (y == 5 && (x == 0 || x == 1 || x == 3 || x == 5 || x == 6 || x == 7 || x == 9)) ||
                      (y == 6 && x == 9) ||
@@ -504,9 +504,7 @@ namespace Juego_PA.ViewModel
                 }
 
                 ////Regresar a inicio por los enemigos
-                if ((y == 1 && x == 8) || (y == 4 && x == 8) || (y == 6 && x == 1) ||
-                    (y == 8 && x == 8 && CantidadEstrellas < 3) ||
-                    (y == 9 && x == 8 && CantidadEstrellas < 3))
+                if ((y == 1 && x == 8) || (y == 4 && x == 8) || (y == 6 && x == 1))
                 {
                     _quedarseInmovil = true;
                     OnPropertyChanged(nameof(Rana));
@@ -517,20 +515,10 @@ namespace Juego_PA.ViewModel
                     _quedarseInmovil = false;
                 }
 
-                if (expresionRegular4.IsMatch(patron4) || (Rana.X == 9 && Rana.Y == 8))
-                {
-                    OnPropertyChanged("Rana");
-                    await Task.Delay(300); // Pausa de un 0.5 segundos
-                    Vista = Vista.Ganaste;
-                    Rana.LimiteMovimientos = 0;
-                    NivelActual = 4;
-                    GameOver = false;
-                    Ganaste = true;
-                    IniciarJuegoPropiedad = false;
-                }
+                ////
 
             }
-            if (Rana.LimiteMovimientos == 0 && Ganaste == false)
+            if ((Rana.LimiteMovimientos == 0 && Ganaste == false) || (Rana.Vida == 0))
             {
                 Vista = Vista.Ganaste;
                 GameOver = true;
@@ -545,7 +533,18 @@ namespace Juego_PA.ViewModel
 
 
 
-
+        public async void GanasteJuego()
+        {
+            OnPropertyChanged("Rana");
+            await Task.Delay(200); // Pausa de un 0.5 segundos
+            Vista = Vista.Ganaste;
+            Rana.LimiteMovimientos = 0;
+            NivelActual = 4;
+            GameOver = false;
+            Ganaste = true;
+            IniciarJuegoPropiedad = false;
+            OnPropertyChanged();
+        }
 
 
 
