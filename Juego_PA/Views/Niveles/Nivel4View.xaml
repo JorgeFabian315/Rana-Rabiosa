@@ -391,6 +391,7 @@
                        Grid.Row="3" />
                 <Image Width="140"
                        Height="150"
+                       Tag="Enemigo"
                        Name="Cocodrilo"
                        Grid.ZIndex="6"
                        Source="/Assets/cocodrilo.png"
@@ -402,8 +403,8 @@
                        Name="Flor"
                        Grid.ZIndex="6"
                        Source="/Assets/RanaRosa.png"
-                       Grid.Column="5"
-                       Grid.Row="0" />
+                       Grid.Column="9"
+                       Grid.Row="8" />
                 
                 <Image Width="45"
                        Height="45"

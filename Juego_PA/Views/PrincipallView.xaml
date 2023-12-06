@@ -173,10 +173,26 @@
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.Tutorial4}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <local:Tutorial4View />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
                                      Value="{x:Static local:Vista.Tutorial3}">
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <local:TutorialNivel3View />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="{x:Static local:Vista.NivelExtra}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <nivel:NivelExtraView  Focusable="True" />
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>

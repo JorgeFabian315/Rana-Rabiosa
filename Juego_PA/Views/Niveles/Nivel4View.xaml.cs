@@ -30,6 +30,11 @@ namespace Juego_PA.Views.Niveles
         int rowRana;
         private Movimientos movimiento = new();
         DispatcherTimer timer = new();
+        Image Serpiente1 = new Image();
+        Image Serpiente2 = new Image();
+        Image Serpiente3 = new Image();
+        Image Serpiente4 = new Image();
+        Image Serpiente5 = new Image();
         public Nivel4View()
         {
             InitializeComponent();
@@ -38,14 +43,26 @@ namespace Juego_PA.Views.Niveles
 
             MediadorViewModel.IniciarJuegoNivel4Event += MediadorViewModel_IniciarJuegoNivel4Event;
             MediadorViewModel.ConseguirTodasEstrellasEvent += MediadorViewModel_ConseguirTodasEstrellasEvent;
+            Serpiente1 = CrearMoverSerpeinte(8, 1);
+            Serpiente2 = CrearMoverSerpeinte(8, 4);
+            Serpiente3 = CrearMoverSerpeinte(1, 6);
+            Serpiente4 = CrearMoverSerpeinte(8, 8);
+            Serpiente5 = CrearMoverSerpeinte(9, 9);
 
             CrearRocas();
         }
 
         private void MediadorViewModel_ConseguirTodasEstrellasEvent()
         {
-            Flor.Visibility = Visibility.Visible;
-            MoverImagenes(Flor, 9, 8);
+            foreach (var img in Tablero.Children.OfType<Image>())
+            {
+                if ((string)img.Tag == "Enemigo")
+                {
+                    img.Visibility = Visibility.Collapsed;
+                    MoverImagenes(img, 9, 3);
+
+                }
+            }
         }
 
         private void MediadorViewModel_IniciarJuegoNivel4Event()
@@ -62,8 +79,20 @@ namespace Juego_PA.Views.Niveles
             MoverImagenes(Estrella2, 6, 4);
             MoverImagenes(Estrella3, 0, 9);
 
-            Flor.Visibility = Visibility.Collapsed;
-            MoverImagenes(Flor, 0, 5);
+            foreach (var img in Tablero.Children.OfType<Image>())
+            {
+                if ((string)img.Tag == "Enemigo")
+                {
+                    img.Visibility = Visibility.Visible;
+                }
+            }
+
+            MoverImagenes(Serpiente1, 8, 1);
+            MoverImagenes(Serpiente2,8, 4);
+            MoverImagenes(Serpiente3,1, 6);
+            MoverImagenes(Serpiente4,8, 8);
+            MoverImagenes(Serpiente5 ,9, 9);
+
 
         }
 
@@ -78,20 +107,20 @@ namespace Juego_PA.Views.Niveles
             var vm = this.DataContext as JuegoViewModel;
             contador++;
             contadorC++;
-            if(contador == 17)
+            if (contador == 20)
             {
                 tocadoM = false;
                 MoverImagenes(Mosca, r.Next(1, 10), r.Next(1, 10));
                 contador = 0;
             }
-            if(contadorC == 30)
+            if (contadorC == 40)
             {
                 tocadoC = false;
                 MoverImagenes(Cocodrilo, r.Next(1, 9), r.Next(1, 8));
                 contadorC = 0;
             }
 
-            if(columnRana == Grid.GetColumn(Cocodrilo) && rowRana == Grid.GetRow(Cocodrilo) && tocadoC == false)
+            if (columnRana == Grid.GetColumn(Cocodrilo) && rowRana == Grid.GetRow(Cocodrilo) && tocadoC == false)
             {
                 tocadoC = true;
                 vm?.RestarVidaRanaCommand.Execute(null);
@@ -215,6 +244,18 @@ namespace Juego_PA.Views.Niveles
                 vm?.GanasteJuegoCommand.Execute(null);
             }
 
+
+
+            if ((Grid.GetColumn(Serpiente1) == columnRana && Grid.GetRow(Serpiente1) == rowRana) ||
+                (Grid.GetColumn(Serpiente2) == columnRana && Grid.GetRow(Serpiente2) == rowRana) ||
+                (Grid.GetColumn(Serpiente3) == columnRana && Grid.GetRow(Serpiente3) == rowRana) ||
+                (Grid.GetColumn(Serpiente4) == columnRana && Grid.GetRow(Serpiente4) == rowRana) ||
+                (Grid.GetColumn(Serpiente5) == columnRana && Grid.GetRow(Serpiente5) == rowRana)
+                )
+            {
+                vm?.RegresarteEnemigosCommand.Execute(null);
+            }
+
         }
         #endregion
 
@@ -261,41 +302,39 @@ namespace Juego_PA.Views.Niveles
                 MoverImagenes(roca, i, 3);
                 Tablero.Children.Add(roca);
             }
-            CrearMoverRoca(5,0);
-            CrearMoverRoca(2,1);
-            CrearMoverRoca(3,1);
-            CrearMoverRoca(5,1);
-            CrearMoverRoca(7,1);
-            CrearMoverRoca(7,2);
-            CrearMoverRoca(9,2);
-            CrearMoverRoca(9,4);
-            CrearMoverRoca(7,4);
-            CrearMoverRoca(5,5);
-            CrearMoverRoca(0,5);
-            CrearMoverRoca(1,5);
-            CrearMoverRoca(6,5);
-            CrearMoverRoca(7,5);
-            CrearMoverRoca(9,5);
-            CrearMoverRoca(9,6);
-            CrearMoverRoca(3,7);
-            CrearMoverRoca(4,7);
-            CrearMoverRoca(5,7);
-            CrearMoverRoca(6,7);
-            CrearMoverRoca(8,7);
-            CrearMoverRoca(9,7);
-            CrearMoverRoca(0,8);
-            CrearMoverRoca(6,8);
-            CrearMoverRoca(1,8);
-            CrearMoverRoca(0,2);
-            CrearMoverRoca(0,3);
-            CrearMoverRoca(0,4);
-            CrearMoverRoca(0,5);
-            CrearMoverRoca(0,5);
-            CrearMoverRoca(3,5);
+            CrearMoverRoca(5, 0);
+            CrearMoverRoca(2, 1);
+            CrearMoverRoca(3, 1);
+            CrearMoverRoca(5, 1);
+            CrearMoverRoca(7, 1);
+            CrearMoverRoca(7, 2);
+            CrearMoverRoca(9, 2);
+            CrearMoverRoca(9, 4);
+            CrearMoverRoca(7, 4);
+            CrearMoverRoca(5, 5);
+            CrearMoverRoca(0, 5);
+            CrearMoverRoca(1, 5);
+            CrearMoverRoca(6, 5);
+            CrearMoverRoca(7, 5);
+            CrearMoverRoca(9, 5);
+            CrearMoverRoca(9, 6);
+            CrearMoverRoca(3, 7);
+            CrearMoverRoca(4, 7);
+            CrearMoverRoca(5, 7);
+            CrearMoverRoca(6, 7);
+            CrearMoverRoca(8, 7);
+            CrearMoverRoca(9, 7);
+            CrearMoverRoca(0, 8);
+            CrearMoverRoca(6, 8);
+            CrearMoverRoca(1, 8);
+            CrearMoverRoca(0, 2);
+            CrearMoverRoca(0, 3);
+            CrearMoverRoca(0, 4);
+            CrearMoverRoca(0, 5);
+            CrearMoverRoca(0, 5);
+            CrearMoverRoca(3, 5);
 
-            CrearMoverSerpeinte(8, 1);
-            CrearMoverSerpeinte(8, 4);
-            CrearMoverSerpeinte(1, 6);
+
         }
         public Image Roca()
         {
@@ -311,22 +350,23 @@ namespace Juego_PA.Views.Niveles
         {
             Image serpeiente = new()
             {
-                Tag = "Serpiente",
+                Tag = "Enemigo",
                 Source = new BitmapImage(new Uri("pack://application:,,,/Assets/serpiente.png")),
             };
             return serpeiente;
         }
-        public void CrearMoverSerpeinte(int x, int y)
+        public Image CrearMoverSerpeinte(int x, int y)
         {
             var ser = Serpiente();
             MoverImagenes(ser, x, y);
             Tablero.Children.Add(ser);
+            return ser;
         }
 
         public void CrearMoverRoca(int x, int y)
         {
             var roca = Roca();
-            MoverImagenes(roca,x,y);
+            MoverImagenes(roca, x, y);
             Tablero.Children.Add(roca);
         }
 

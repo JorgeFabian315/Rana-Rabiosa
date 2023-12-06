@@ -49,6 +49,7 @@ namespace Juego_PA.ViewModel
         public ICommand RestarVidaRanaCommand => new RelayCommand(RestarVidaRana);
         public ICommand GanasteJuegoCommand => new RelayCommand(GanasteJuego);
         public ICommand SumarVidaRanaCommand => new RelayCommand(SumarVidaRana);
+        public ICommand RegresarteEnemigosCommand => new RelayCommand(RegresarteEnemigos);
         public ICommand SumarPuntajeCommand => new RelayCommand(SumarPuntaje);
         public ICommand ConseguirLlaveCommand => new RelayCommand(ConseguirLlave);
         public ICommand MensajeLLaveCommand => new RelayCommand(MensajeLLave);
@@ -58,7 +59,7 @@ namespace Juego_PA.ViewModel
         private void ConseguirEstrella()
         {
             CantidadEstrellas++;
-            if(CantidadEstrellas == 3)
+            if (CantidadEstrellas == 3)
             {
                 MediadorViewModel.ConseguirTodasEstrellas();
             }
@@ -331,6 +332,12 @@ namespace Juego_PA.ViewModel
                 CantidadEstrellas = 0;
                 patron4 = "";
             }
+            else if (nivel == "5")
+            {
+                Vista = Vista.NivelExtra;
+                Rana.Vida = 6;
+                //MediadorViewModel.IniciarJuegoNivel4();
+            }
 
             OnPropertyChanged();
         }
@@ -451,7 +458,7 @@ namespace Juego_PA.ViewModel
         int x;
         int y;
         string patron4 = "";
-        public async void RealizarMovimientoNivel4(Jugador jugador)
+        public void RealizarMovimientoNivel4(Jugador jugador)
         {
             Rana.LimiteMovimientos -= 1;
 
@@ -504,16 +511,7 @@ namespace Juego_PA.ViewModel
                 }
 
                 ////Regresar a inicio por los enemigos
-                if ((y == 1 && x == 8) || (y == 4 && x == 8) || (y == 6 && x == 1))
-                {
-                    _quedarseInmovil = true;
-                    OnPropertyChanged(nameof(Rana));
-                    await Task.Delay(350); // Pausa de un 0.5 segundos
-                    Rana.X = 0;
-                    Rana.Y = 0;
-                    Rana.Vida--;
-                    _quedarseInmovil = false;
-                }
+
 
                 ////
 
@@ -533,10 +531,8 @@ namespace Juego_PA.ViewModel
 
 
 
-        public async void GanasteJuego()
+        public void GanasteJuego()
         {
-            OnPropertyChanged("Rana");
-            await Task.Delay(200); // Pausa de un 0.5 segundos
             Vista = Vista.Ganaste;
             Rana.LimiteMovimientos = 0;
             NivelActual = 4;
@@ -574,6 +570,18 @@ namespace Juego_PA.ViewModel
         }
 
         #endregion
+
+        public async void RegresarteEnemigos()
+        {
+            _quedarseInmovil = true;
+            OnPropertyChanged(nameof(Rana));
+            await Task.Delay(350); // Pausa de un 0.5 segundos
+            Rana.X = 0;
+            Rana.Y = 0;
+            Rana.Vida--;
+            _quedarseInmovil = false;
+            OnPropertyChanged();
+        }
 
         #region Notificar OnpropertyChanged
 

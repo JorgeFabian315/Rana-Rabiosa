@@ -50,6 +50,7 @@
     <None Remove="Assets\Tutorial.jpg" />
     <None Remove="Assets\tutorial2.jpeg" />
     <None Remove="Assets\Tutorial3.png" />
+    <None Remove="Assets\Tutorial4.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -111,6 +112,7 @@
     <Resource Include="Assets\Tutorial.jpg" />
     <Resource Include="Assets\tutorial2.jpeg" />
     <Resource Include="Assets\Tutorial3.png" />
+    <Resource Include="Assets\Tutorial4.jpeg" />
   </ItemGroup>
 
 </Project>
