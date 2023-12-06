@@ -177,20 +177,8 @@
         <Border Margin="0"
                 BorderThickness="0,4"
                 BorderBrush="#2F3033"
-                Grid.Column="1">
-            <Border.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="Background"
-                            Value="#38B02E" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Jugador.Escenario}"
-                                     Value="2">
-                            <Setter Property="Background"
-                                    Value="#B21D1D" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Border.Resources>
+                Grid.Column="1"
+                Background="#38B02E">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".1*" />

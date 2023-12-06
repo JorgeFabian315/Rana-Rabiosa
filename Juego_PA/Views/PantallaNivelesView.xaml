@@ -183,10 +183,6 @@
                         Command="{Binding CambiarVistaCommand}"
                         CommandParameter="{x:Static local:Vista.Tutorial4}"
                         Style="{StaticResource BotonDesbloqueado}" />
-                <Button Content="Nivel 5"
-                        Command="{Binding IniciarCommand}"
-                        CommandParameter="5"
-                        Style="{StaticResource BotonDesbloqueado}" />
             </WrapPanel>
         </StackPanel>
     </Grid>

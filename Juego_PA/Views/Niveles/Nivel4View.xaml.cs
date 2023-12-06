@@ -88,10 +88,10 @@ namespace Juego_PA.Views.Niveles
             }
 
             MoverImagenes(Serpiente1, 8, 1);
-            MoverImagenes(Serpiente2,8, 4);
-            MoverImagenes(Serpiente3,1, 6);
-            MoverImagenes(Serpiente4,8, 8);
-            MoverImagenes(Serpiente5 ,9, 9);
+            MoverImagenes(Serpiente2, 8, 4);
+            MoverImagenes(Serpiente3, 1, 6);
+            MoverImagenes(Serpiente4, 8, 8);
+            MoverImagenes(Serpiente5, 9, 9);
 
 
         }
@@ -178,8 +178,12 @@ namespace Juego_PA.Views.Niveles
             this.Focusable = true;
             var vm = this.DataContext as JuegoViewModel;
 
+
             if (e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Up || e.Key == Key.Down)
             {
+
+               vm?.OcultarTeclaIncorrectaCommand.Execute("ocultar");
+
                 if (e.Key == Key.Left)
                     movimiento = Movimientos.Izquierda;
                 if (e.Key == Key.Right)
