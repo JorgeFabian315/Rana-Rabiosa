@@ -561,6 +561,22 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding CantidadEstrellas}"
+                         Value="3">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,1"
+                                             EndPoint="1 0">
+                            <GradientStop Color="#FFBE00"
+                                          Offset="0.45" />
+                            <GradientStop Color="#2F3033"
+                                          Offset="0.45" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
     <!--#ENDREGION COLORES-->
     

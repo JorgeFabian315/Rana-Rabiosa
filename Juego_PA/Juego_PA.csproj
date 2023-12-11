@@ -15,6 +15,7 @@
     <None Remove="Assets\controles.png" />
     <None Remove="Assets\corazon.png" />
     <None Remove="Assets\espiral.png" />
+    <None Remove="Assets\estrellasticker.png" />
     <None Remove="Assets\flor.png" />
     <None Remove="Assets\GANASTE1.png" />
     <None Remove="Assets\GhostNightDEMO!-DEMO.ttf" />
@@ -60,6 +61,7 @@
   <ItemGroup>
     <Resource Include="Assets\calcamonia2.png" />
     <Resource Include="Assets\espiral.png" />
+    <Resource Include="Assets\estrellasticker.png" />
     <Resource Include="Assets\fonts\04b.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

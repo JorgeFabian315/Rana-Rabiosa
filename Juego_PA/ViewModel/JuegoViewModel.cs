@@ -294,6 +294,7 @@ namespace Juego_PA.ViewModel
             Ganaste = false;
             GameOver = false;
             _patron = "";
+            CantidadEstrellas = 0;
 
             IniciarJuegoPropiedad = true;
 
@@ -329,7 +330,6 @@ namespace Juego_PA.ViewModel
                 Rana.Vida = 6;
                 MediadorViewModel.IniciarJuegoNivel4();
                 Rana.LimiteMovimientos = 70;
-                CantidadEstrellas = 0;
                 patron4 = "";
             }
             else if (nivel == "5")
@@ -523,6 +523,7 @@ namespace Juego_PA.ViewModel
                 Ganaste = false;
                 IniciarJuegoPropiedad = false;
                 MediadorViewModel.EstadoTimer(false);
+                CantidadEstrellas = 0;
             }
 
             OnPropertyChanged();
@@ -539,6 +540,7 @@ namespace Juego_PA.ViewModel
             GameOver = false;
             Ganaste = true;
             IniciarJuegoPropiedad = false;
+            CantidadEstrellas = 0;
             OnPropertyChanged();
         }
 
@@ -552,6 +554,7 @@ namespace Juego_PA.ViewModel
             Vista = Vista.Ganaste;
             GameOver = true;
             IniciarJuegoPropiedad = false;
+            CantidadEstrellas = 0;
         }
 
 

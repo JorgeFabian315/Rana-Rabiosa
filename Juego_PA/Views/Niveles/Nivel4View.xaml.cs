@@ -35,6 +35,7 @@ namespace Juego_PA.Views.Niveles
         Image Serpiente3 = new Image();
         Image Serpiente4 = new Image();
         Image Serpiente5 = new Image();
+        bool moverCocodrilo = true;
         public Nivel4View()
         {
             InitializeComponent();
@@ -63,6 +64,10 @@ namespace Juego_PA.Views.Niveles
 
                 }
             }
+             moverCocodrilo = false;
+
+            Aviso.Visibility = Visibility.Visible;
+
         }
 
         private void MediadorViewModel_IniciarJuegoNivel4Event()
@@ -93,6 +98,9 @@ namespace Juego_PA.Views.Niveles
             MoverImagenes(Serpiente4, 8, 8);
             MoverImagenes(Serpiente5, 9, 9);
 
+            MoverImagenes(Cocodrilo, r.Next(1, 9), r.Next(1, 8));
+
+            moverCocodrilo = true;
 
         }
 
@@ -113,7 +121,7 @@ namespace Juego_PA.Views.Niveles
                 MoverImagenes(Mosca, r.Next(1, 10), r.Next(1, 10));
                 contador = 0;
             }
-            if (contadorC == 40)
+            if (contadorC == 35 && moverCocodrilo == true)
             {
                 tocadoC = false;
                 MoverImagenes(Cocodrilo, r.Next(1, 9), r.Next(1, 8));
@@ -242,6 +250,7 @@ namespace Juego_PA.Views.Niveles
 
             var cFlor = Grid.GetColumn(Flor);
             var rFlor = Grid.GetRow(Flor);
+
             if (columnRana == cFlor && rowRana == rFlor)
             {
                 timer.Stop();
@@ -259,6 +268,7 @@ namespace Juego_PA.Views.Niveles
             {
                 vm?.RegresarteEnemigosCommand.Execute(null);
             }
+
 
         }
         #endregion

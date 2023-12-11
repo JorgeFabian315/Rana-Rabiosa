@@ -167,6 +167,23 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         CornerRadius="45" />
+                <Image Source="/Assets/estrellasticker.png"
+                       Grid.Row="3"
+                       Margin="10">
+                    <Image.Resources>
+                        <Style TargetType="Image">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CantidadEstrellas}"
+                                             Value="3">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Resources>
+                </Image>
             </Grid>
         </Border>
         <Border Width="10"
@@ -177,8 +194,20 @@
         <Border Margin="0"
                 BorderThickness="0,4"
                 BorderBrush="#2F3033"
-                Grid.Column="1"
-                Background="#38B02E">
+                Grid.Column="1">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Background"
+                            Value="#38B02E" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CantidadEstrellas}"
+                                     Value="3">
+                            <Setter Property="Background"
+                                    Value="#FFBE00" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Resources>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".1*" />
@@ -232,12 +261,12 @@
                 <StackPanel Grid.Column="3"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
-                            Margin="0,0,0,5">
+                            Margin="0,5,0,0">
                     <TextBlock Text="Estrellas: "
                                FontSize="16"
                                Foreground="White"
                                FontWeight="SemiBold" />
-                    <WrapPanel Margin="0,10,0,0">
+                    <WrapPanel Margin="0,6,0,0">
                         <Image Width="30"
                                Style="{StaticResource es1}"
                                Height="30" />
@@ -245,8 +274,8 @@
                                Style="{StaticResource es2}"
                                Height="30" />
                         <Image Width="30"
-                               Height="30" 
-                               Style="{StaticResource es3}"/>
+                               Height="30"
+                               Style="{StaticResource es3}" />
                     </WrapPanel>
                 </StackPanel>
                 <WrapPanel Grid.Column="4"
@@ -348,7 +377,6 @@
             <Grid x:Name="Tablero"
                   Focusable="True"
                   Background="Transparent">
-                
                 <Image Width="50"
                        Height="50"
                        Grid.ZIndex="4"
@@ -393,7 +421,6 @@
                        Source="/Assets/RanaRosa.png"
                        Grid.Column="9"
                        Grid.Row="8" />
-                
                 <Image Width="45"
                        Height="45"
                        x:Name="rana"
@@ -402,11 +429,10 @@
                        Grid.ZIndex="6"
                        Grid.Column="{Binding Rana.X}"
                        Grid.Row="{Binding Rana.Y}" />
-                
-                
-                <Grid Grid.ColumnSpan="15" Name="Aviso"
-                                           Grid.RowSpan="15"
-                                           Grid.ZIndex="8">
+                <Grid Grid.ColumnSpan="15"
+                      Name="Aviso"
+                      Grid.RowSpan="15"
+                      Grid.ZIndex="8">
                     <Grid.Resources>
                         <Style TargetType="Grid">
                             <Setter Property="Visibility"
@@ -427,10 +453,11 @@
                             CornerRadius="10"
                             Height="250">
                         <Grid>
-                            <Border Background="green"
-                                    CornerRadius="10,10,0,0"
+                            <Border CornerRadius="10,10,0,0"
                                     VerticalAlignment="Top"
-                                    Height="50">
+                                    Height="50"
+                                    Background="#FFBE00">
+                             
                                 <TextBlock Text="Aviso"
                                            FontWeight="SemiBold"
                                            Foreground="White"
@@ -452,6 +479,7 @@
                                     Content="Ok"
                                     Click="btnOk_Click"
                                     x:Name="btnOk"
+                                    Background="#FFBE00"
                                     Style="{StaticResource BotonOk}" />
                         </Grid>
                     </Border>

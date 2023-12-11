@@ -81,6 +81,19 @@
                             Padding="0"
                             Focusable="false"
                             Click="MinimizarClick">
+                        <Button.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Background"
+                                        Value="#38B02E" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CantidadEstrellas}"
+                                                 Value="3">
+                                        <Setter Property="Background"
+                                                Value="#FFBE00" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
                         <materialDesign:PackIcon Kind="Minus"
                                                  Foreground="White" />
                     </Button>
@@ -89,6 +102,19 @@
                             Width="32"
                             Padding="0"
                             Click="btnCerrarClick">
+                        <Button.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Background"
+                                        Value="#38B02E" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CantidadEstrellas}"
+                                                 Value="3">
+                                        <Setter Property="Background"
+                                                Value="#FFBE00" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
                         <materialDesign:PackIcon Kind="Close"
                                                  Foreground="White" />
                     </Button>
